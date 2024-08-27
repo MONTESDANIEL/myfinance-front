@@ -23,17 +23,17 @@ export const About = () => {
                 <form action="mailto:tuemail@ejemplo.com" method="post" encType="text/plain">
                     <div className="row">
                         <div className="col-md-6 mb-3">
-                            <label htmlFor="name" className="form-label">Nombre</label>
-                            <input type="text" className="form-control" id="name" name="name" required />
+                            <label htmlFor="nameContact" className="form-label">Nombre</label>
+                            <input type="text" className="form-control" id="nameContact" name="name" required />
                         </div>
                         <div className="col-md-6 mb-3">
-                            <label htmlFor="email" className="form-label">Correo Electrónico</label>
-                            <input type="email" className="form-control" id="email" name="email" required />
+                            <label htmlFor="emailContact" className="form-label">Correo Electrónico</label>
+                            <input type="email" className="form-control" id="emailContact" name="email" required />
                         </div>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="message" className="form-label">Mensaje</label>
-                        <textarea className="form-control" id="message" name="message" rows="4" required></textarea>
+                        <label htmlFor="messageContact" className="form-label">Mensaje</label>
+                        <textarea className="form-control" id="message" name="messageContact" rows="4" required></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary"><i className="bi bi-send"></i> Enviar</button>
                 </form>

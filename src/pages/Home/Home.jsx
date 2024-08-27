@@ -1,9 +1,9 @@
 import { ThemeBtn } from "../../components/ThemeBtn"
 import { About } from './HomeAbout';
 import { Initial } from './HomeInitial';
-import { HomeManagement } from "./HomeManagement";
+import { HomeManagement } from "./HomeManagement/HomeManagement";
 import { News } from './HomeNews';
-import { Profile } from './HomeProfile';
+import { Profile } from './HomeProfile/HomeProfile';
 import { useEffect } from 'react';
 
 function handleHomeRedirect() {

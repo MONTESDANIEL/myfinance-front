@@ -4,27 +4,27 @@ export const Profile = () => {
             <div className="d-lg-none navbar container-fluid justify-content-center">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
-                        <button className="nav-link active text-secondary" id="v-pills-userdata-tab" data-bs-toggle="pill" data-bs-target="#v-pills-userdata" type="button" role="tab" aria-controls="v-pills-userdata" aria-selected="true">
+                        <button className="nav-link active text-secondary" id="v-pills-userdata-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-userdata" type="button" role="tab" aria-controls="v-pills-userdata" aria-selected="true">
                             <i className="bi bi-person"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-configuration-tab" data-bs-toggle="pill" data-bs-target="#v-pills-configuration" type="button" role="tab" aria-controls="v-pills-configuration" aria-selected="false">
+                        <button className="nav-link text-secondary" id="v-pills-configuration-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-configuration" type="button" role="tab" aria-controls="v-pills-configuration" aria-selected="false">
                             <i className="bi bi-gear"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-tags-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tags" type="button" role="tab" aria-controls="v-pills-tags" aria-selected="false">
+                        <button className="nav-link text-secondary" id="v-pills-tags-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-tags" type="button" role="tab" aria-controls="v-pills-tags" aria-selected="false">
                             <i className="bi bi-tags"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-budget-tab" data-bs-toggle="pill" data-bs-target="#v-pills-budget" type="button" role="tab" aria-controls="v-pills-budget" aria-selected="false">
+                        <button className="nav-link text-secondary" id="v-pills-budget-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-budget" type="button" role="tab" aria-controls="v-pills-budget" aria-selected="false">
                             <i className="bi bi-wallet"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-goals-tab" data-bs-toggle="pill" data-bs-target="#v-pills-goals" type="button" role="tab" aria-controls="v-pills-goals" aria-selected="false">
+                        <button className="nav-link text-secondary" id="v-pills-goals-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-goals" type="button" role="tab" aria-controls="v-pills-goals" aria-selected="false">
                             <i className="bi bi-piggy-bank"></i>
                         </button>
                     </li>
