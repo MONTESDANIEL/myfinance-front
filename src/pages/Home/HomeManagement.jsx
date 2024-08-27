@@ -72,6 +72,71 @@ export const HomeManagement = () => {
                     </div>
                 </form>
             </div>
+            {/* Acceso Rápido */}
+            <div>
+                <h2 className="text-center mb-4">Acceso Rápido</h2>
+                <div className="row mb-4">
+                    {/* Registrar Ingreso/Gasto */}
+                    <div className="col-md-12">
+                        <div className="card mb-3">
+                            <div className="card-header">
+                                Registrar Ingreso/Gasto
+                            </div>
+                            <div className="card-body">
+                                <form>
+                                    <div className="mb-3">
+                                        <label htmlFor="amount" className="form-label">Monto</label>
+                                        <input type="number" className="form-control" id="amount" placeholder="Ingrese el monto" />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="description" className="form-label">Descripción</label>
+                                        <input type="text" className="form-control" id="description" placeholder="Ingrese una descripción" />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="type" className="form-label">Tipo</label>
+                                        <select className="form-select" id="type">
+                                            <option value="income">Ingreso</option>
+                                            <option value="expense">Gasto</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary"><i className="bi bi-plus-circle"> Registrar</i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* Ver Transacciones */}
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="card mb-3">
+                            <div className="card-header">
+                                Ver Transacciones
+                            </div>
+                            <div className="card-body">
+                                <div className="table-responsive">
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <th>Descripción</th>
+                                                <th>Monto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>2024-08-22</td>
+                                                <td>Pago de Alquiler</td>
+                                                <td>$500</td>
+                                            </tr>
+                                            {/* Más filas aquí */}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

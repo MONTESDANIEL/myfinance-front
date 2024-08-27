@@ -1,8 +1,7 @@
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { Bar, Line, Pie, Radar } from 'react-chartjs-2';
+// Registrar los componentes necesarios de Chart.js
+ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 export const Initial = () => {
     // Datos del gráfico
@@ -12,22 +11,35 @@ export const Initial = () => {
             {
                 label: 'Ingresos',
                 data: [1200, 1900, 3000, 1123, 4234, 5345, 1567, 1678, 4788, 1900, 1324, 3223],
-                backgroundColor: '#a6ff93',
-                borderColor: '#71e558',
+                backgroundColor: '#28a745',
+                borderColor: '#218838',
                 borderWidth: 1,
             },
             {
                 label: 'Gastos',
                 data: [123, 3343, 253, 563, 564, 756, 767, 567, 56, 879, 677, 89],
-                backgroundColor: '#ee8a8a',
-                borderColor: '#d34e4e ',
+                backgroundColor: '#dc3545',
+                borderColor: '#c82333 ',
+                borderWidth: 1,
+            }
+        ],
+    };
+    const chartDataPie = {
+        labels: ['Gastos', 'Ingresos', 'Saldo libre'],
+        datasets: [
+            {
+                label: 'Dinero',
+                data: [1800000, 1400000, 0], // Todos los datos en un solo conjunto
+                backgroundColor: ['#dc3545', '#28a745', '#007bff'], // Colores para cada segmento
+                borderColor: ['#c82333', '#218838', '#0056b3'], // Colores del borde para cada segmento
                 borderWidth: 1,
             }
         ],
     };
 
+
     // Opciones del gráfico
-    const chartOptions = {
+    const chartjsBar = {
         responsive: true, // Hacer que el gráfico se ajuste al tamaño del contenedor
         maintainAspectRatio: false, // Permite que el gráfico se ajuste al tamaño del contenedor
         plugins: {
@@ -58,153 +70,128 @@ export const Initial = () => {
         },
     };
 
+    const chartjsPie = {
+        type: 'pie', // Cambia el tipo de gráfico aquí
+        data: {
+            labels: ['Ingresos', 'Gastos'],
+            datasets: [{
+                data: [300, 150], // Datos del gráfico
+                backgroundColor: ['#FF6384', '#36A2EB'], // Colores de las secciones
+                hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+            }],
+        },
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Distribución mensual de dinero',
+            },
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Gráfico de Ingresos y Gastos',
+                },
+            },
+        },
+    };
+
     return (
-        <div className="container-fluid mt-4 bg-body-tertiary p-3">
-            {/* Dashboard Personalizado */}
-            <div className="mb-4">
-                <h2 className="text-center mb-4">Bienvenido</h2>
-                <div className="row mb-4">
-                    {/* Resumen de Finanzas */}
-                    <div className="col-md-4">
-                        <div className="card bg-success text-white mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title"><i className="bi bi-cash"> Ingresos</i></h5>
-                                <p className="card-text">$1200</p>
+        <div className="container-fluid"> {/* Fondo del contenedor general */}
+            <h2 className="text-center mb-4">Bienvenido, Daniel</h2>
+            <div className="row gx-4"> {/* Margen horizontal entre columnas */}
+                {/* Contenedor Anual */}
+                <div className="col-lg-6 mb-4">
+                    <div className="p-4 bg-body-tertiary rounded shadow-sm"> {/* Fondo interno uniforme */}
+                        <h2 className="text-center mb-4">Anual</h2>
+                        <div className="row mb-4 d-flex align-items-center justify-content-center">
+                            <div className="col-md-4">
+                                <div className="card bg-success text-white mb-3">
+                                    <div className="card-body">
+                                        <h5 className="card-title fs-6"><i className="bi bi-cash"></i> Ingresos Totales</h5>
+                                        <p className="card-text">$1200</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card bg-danger text-white mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title"><i className="bi bi-credit-card"> Gastos</i></h5>
-                                <p className="card-text">$800</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card bg-primary text-white mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title"><i className="bi bi-wallet2"> Saldo Actual</i></h5>
-                                <p className="card-text">$400</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row mb-4">
-                    {/* Gráfico */}
-                    <div className="col-md-6">
-                        <div className="card mb-3">
-                            <div className="card-body" style={{ minHeight: '400px' }}>
-                                <Bar data={chartData} options={chartOptions} />
-                            </div>
-                        </div>
-                    </div>
-                    {/* Tabla */}
-                    <div className="col-md-6" >
-                        <div className="card mb-3" style={{ minHeight: '400px' }}>
-                            <div className="card-header">
-                                Últimas Transacciones
-                            </div>
-                            <div className="card-body">
-                                <div className="table-responsive">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Fecha</th>
-                                                <th>Descripción</th>
-                                                <th>Monto</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2024-08-22</td>
-                                                <td>Compra en Supermercado</td>
-                                                <td>$50</td>
-                                            </tr>
-                                            {/* Más filas aquí */}
-                                        </tbody>
-                                    </table>
+                            <div className="col-md-4">
+                                <div className="card bg-danger text-white mb-3">
+                                    <div className="card-body">
+                                        <h5 className="card-title fs-6"><i className="bi bi-credit-card"></i> Gastos Totales</h5>
+                                        <p className="card-text">$800</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* Alertas y Notificaciones */}
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="alert alert-warning" role="alert">
-                            Presupuesto casi agotado para este mes.
+                        {/* Gráfico */}
+                        <div className="card mb-3">
+                            <div className="card-body d-flex align-items-center justify-content-center" style={{ minHeight: '400px' }}>
+                                <Bar data={chartData} options={chartjsBar} />
+                            </div>
+                        </div>
+
+                        {/* Alertas y Notificaciones */}
+                        <div className="alert alert-success" role="alert">
+                            Felicidades por mantener tus finanzas en verde! <br />
+                            Sigue asegurando tu futuro financiero.
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* Acceso Rápido */}
-            <div>
-                <h2 className="text-center mb-4">Acceso Rápido</h2>
-                <div className="row mb-4">
-                    {/* Registrar Ingreso/Gasto */}
-                    <div className="col-md-12">
-                        <div className="card mb-3">
-                            <div className="card-header">
-                                Registrar Ingreso/Gasto
-                            </div>
-                            <div className="card-body">
-                                <form>
-                                    <div className="mb-3">
-                                        <label htmlFor="amount" className="form-label">Monto</label>
-                                        <input type="number" className="form-control" id="amount" placeholder="Ingrese el monto" />
+                {/* Contenedor Mensual */}
+                <div className="col-lg-6 mb-4">
+                    <div className="p-4 bg-body-tertiary rounded shadow-sm"> {/* Fondo interno uniforme */}
+                        <h2 className="text-center mb-4">Mensual</h2>
+                        <div className="row mb-4">
+                            <div className="col-md-4">
+                                <div className="card bg-success text-white mb-3">
+                                    <div className="card-body">
+                                        <h5 className="card-title fs-6"><i className="bi bi-cash"></i> Ingresos</h5>
+                                        <p className="card-text">$1400000</p>
                                     </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="description" className="form-label">Descripción</label>
-                                        <input type="text" className="form-control" id="description" placeholder="Ingrese una descripción" />
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="type" className="form-label">Tipo</label>
-                                        <select className="form-select" id="type">
-                                            <option value="income">Ingreso</option>
-                                            <option value="expense">Gasto</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary"><i className="bi bi-plus-circle"> Registrar</i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* Ver Transacciones */}
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="card mb-3">
-                            <div className="card-header">
-                                Ver Transacciones
-                            </div>
-                            <div className="card-body">
-                                <div className="table-responsive">
-                                    <table className="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Fecha</th>
-                                                <th>Descripción</th>
-                                                <th>Monto</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2024-08-22</td>
-                                                <td>Pago de Alquiler</td>
-                                                <td>$500</td>
-                                            </tr>
-                                            {/* Más filas aquí */}
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
+                            <div className="col-md-4">
+                                <div className="card bg-danger text-white mb-3">
+                                    <div className="card-body">
+                                        <h5 className="card-title fs-6"><i className="bi bi-credit-card"></i> Gastos</h5>
+                                        <p className="card-text">$1800000</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="card bg-primary text-white mb-3">
+                                    <div className="card-body">
+                                        <h5 className="card-title fs-6"><i className="bi bi-wallet2"></i> Saldo Actual</h5>
+                                        <p className="card-text">$0</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Gráfico */}
+                        <div className="card mb-3">
+                            <div className="card-body d-flex align-items-center justify-content-center" style={{ maxHeight: '400px' }}>
+                                <Pie data={chartDataPie} options={chartjsPie} />
+                            </div>
+                        </div>
+
+                        {/* Alertas y Notificaciones */}
+                        <div className="alert alert-danger" role="alert">
+                            Tu balance esta en negativo!
+                            Considera realizar un plan para reevaluar gastos.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     );
 };

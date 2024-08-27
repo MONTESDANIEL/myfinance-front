@@ -31,14 +31,14 @@ export const Welcome = () => {
                             <div className='vr d-lg-flex m-2 bs-body-color'></div>
                             <div className="dropdown">
                                 <button
-                                    className="btn btn-sm"
+                                    className="btn btn-sm d-flex align-items-center"
                                     type="button"
                                     id="dropdownMenuButton"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
                                     Acceder
-                                    <i className="bi bi-box-arrow-in-right mx-1 fs-6"></i>
+                                    <i className="bi bi-box-arrow-in-right mx-1 fs-6" style={{ lineHeight: '1.2' }}></i>
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end" style={{ minWidth: 'auto' }}>
                                     <li className="text-center">
@@ -48,7 +48,7 @@ export const Welcome = () => {
                                             type="button"
                                         >
                                             <i className="bi bi-key me-2 fs-6"></i>
-                                             Iniciar sesión
+                                            Iniciar sesión
                                         </button>
                                     </li>
                                     <li className="text-center">
@@ -58,7 +58,7 @@ export const Welcome = () => {
                                             type="button"
                                         >
                                             <i className="bi bi-person-plus me-2 fs-6"></i>
-                                             Registrarse
+                                            Registrarse
                                         </button>
                                     </li>
                                 </ul>
