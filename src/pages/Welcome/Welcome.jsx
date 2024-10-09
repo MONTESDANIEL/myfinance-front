@@ -1,54 +1,66 @@
-import { WelcomeMain } from './WelcomeMain'
+import { WelcomeMain } from './WelcomeMain';
 import { ThemeBtn } from '../../components/ThemeBtn';
 
+// Redirecciones
 function handleLoginRedirect() {
     window.location.href = '/login';
 }
-
 function handleCreateAccountRedirect() {
     window.location.href = '/create-account';
 }
-
 function handleWelcomeRedirect() {
     window.location.href = '/';
 }
 
 export const Welcome = () => {
-
     return (
         <div>
             <header>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <button className="btn btn-sm d-flex align-items-center" onClick={handleWelcomeRedirect}>
-                            <img src="src\assets\images\Logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                            MyFinance
+                        <button
+                            className="btn btn-sm d-flex align-items-center"
+                            onClick={handleWelcomeRedirect}
+                        >
+                            <img
+                                src="src\assets\images\Logo.png"
+                                alt="Logo"
+                                width="30"
+                                height="24"
+                                className="d-inline-block align-text-top"
+                            />
+                            <span className="ms-1">MyFinance</span>
                         </button>
                         <div className="d-flex justify-content-end align-items-center">
                             <div className="d-flex flex-lg-none">
                                 <ThemeBtn />
                             </div>
-                            <div className='vr d-lg-flex m-2 bs-body-color'></div>
+                            <div className="vr d-lg-flex m-2 bs-body-color"></div>
                             <div className="dropdown">
                                 <button
-                                    className="btn btn-sm d-flex align-items-center"
+                                    className="btn btn-sm align-items-center"
                                     type="button"
                                     id="dropdownMenuButton"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
-                                    Acceder
-                                    <i className="bi bi-box-arrow-in-right mx-1 fs-6" style={{ lineHeight: '1.2' }}></i>
+                                    <span>Acceder</span>
+                                    <i
+                                        className="bi bi-box-arrow-in-right mx-1 fs-6 align-middle lh-sm"
+                                    ></i>
                                 </button>
-                                <ul className="dropdown-menu dropdown-menu-end" style={{ minWidth: 'auto' }}>
+                                <ul
+                                    className="dropdown-menu dropdown-menu-end"
+                                    style={{ minWidth: 'auto' }}
+                                >
                                     <li className="text-center">
                                         <button
                                             onClick={handleLoginRedirect}
                                             className="dropdown-item btn btn-success btn-sm"
                                             type="button"
                                         >
-                                            <i className="bi bi-key me-2 fs-6"></i>
-                                            Iniciar sesión
+                                            <i className="bi bi-key mx-2 fs-6 align-middle lh-sm"></i>
+                                            <span>Iniciar sesión</span>
                                         </button>
                                     </li>
                                     <li className="text-center">
@@ -57,8 +69,8 @@ export const Welcome = () => {
                                             className="dropdown-item btn btn-primary btn-sm"
                                             type="button"
                                         >
-                                            <i className="bi bi-person-plus me-2 fs-6"></i>
-                                            Registrarse
+                                            <i className="bi bi-person-plus mx-2 fs-6 align-middle lh-sm"></i>
+                                            <span>Crear cuenta</span>
                                         </button>
                                     </li>
                                 </ul>

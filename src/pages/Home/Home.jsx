@@ -6,16 +6,19 @@ import { News } from './HomeNews';
 import { Profile } from './HomeProfile/HomeProfile';
 import { useEffect } from 'react';
 
+
+// Redirecciones
 function handleHomeRedirect() {
     window.location.href = '/home';
 }
-
 function handleWelcomeRedirect() {
     window.location.href = '/';
 }
 
 export const Home = () => {
 
+
+    // Agrega la función de cerrar la barra lateral al seleccionar una opción
     useEffect(() => {
         const buttons = document.querySelectorAll('.close-offcanvas');
         buttons.forEach(button => {
@@ -41,8 +44,15 @@ export const Home = () => {
             <header>
                 <nav className="navbar bg-body-tertiary fixed-top">
                     <div className="container-fluid">
-                        <button className="btn btn-sm d-flex align-items-center" onClick={handleHomeRedirect}>
-                            <img src="src\assets\images\Logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
+                        <button
+                            className="btn btn-sm d-flex align-items-center"
+                            onClick={handleHomeRedirect}>
+                            <img
+                                src="src\assets\images\Logo.png"
+                                alt="Logo"
+                                width="30"
+                                height="24"
+                                className="d-inline-block align-text-top" />
                             MyFinance
                         </button>
                         <ul className="navbar-nav d-flex align-items-center mb-0 flex-row">
@@ -69,8 +79,15 @@ export const Home = () => {
                             aria-labelledby="offcanvasNavbarLabel"
                         >
                             <div className="offcanvas-header">
-                                <img src="src\assets\images\Logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top mx-2" />
-                                <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
+                                <img
+                                    src="src\assets\images\Logo.png"
+                                    alt="Logo"
+                                    width="30"
+                                    height="24"
+                                    className="d-inline-block align-text-top mx-2" />
+                                <h5
+                                    className="offcanvas-title"
+                                    id="offcanvasNavbarLabel">
                                     Bienvenido
                                 </h5>
                                 <button
@@ -81,7 +98,10 @@ export const Home = () => {
                                 ></button>
                             </div>
                             <div className="offcanvas-body">
-                                <ul className="navbar-nav justify-content-end flex-grow-1 pe-3" id="pills-tab" role="tablist">
+                                <ul
+                                    className="navbar-nav justify-content-end flex-grow-1 pe-3"
+                                    id="pills-tab"
+                                    role="tablist">
                                     <li className="nav-item" role="presentation">
                                         <button
                                             className="nav-link active close-offcanvas"
@@ -93,8 +113,8 @@ export const Home = () => {
                                             aria-controls="pills-home"
                                             aria-selected="true"
                                         >
-                                            <i className="bi bi-house-door"> Inicio</i>
-                                             
+                                            <i className="bi bi-house-door"></i>
+                                            <span className="ms-3">Inicio</span>
                                         </button>
                                     </li>
                                     <li className="nav-item" role="presentation">
@@ -108,8 +128,8 @@ export const Home = () => {
                                             aria-controls="pills-management"
                                             aria-selected="true"
                                         >
-                                            <i className="bi bi-graph-up"> Gestión de finanzas</i>
-                                            
+                                            <i className="bi bi-graph-up"></i>
+                                            <span className="ms-3">Gestión de finanzas</span>
                                         </button>
                                     </li>
                                     <li className="nav-item" role="presentation">
@@ -123,8 +143,8 @@ export const Home = () => {
                                             aria-controls="pills-about"
                                             aria-selected="false"
                                         >
-                                            <i className="bi bi-info-circle"> Acerca de</i>
-                                            
+                                            <i className="bi bi-info-circle"></i>
+                                            <span className="ms-3">Acerca de</span>
                                         </button>
                                     </li>
                                     <li className="nav-item dropdown">
@@ -135,7 +155,7 @@ export const Home = () => {
                                             data-bs-toggle="dropdown"
                                             aria-expanded="false"
                                         >
-                                            Daniel Amaya Montes
+                                            <span className="me-2">Daniel Amaya Montes</span>
                                         </a>
                                         <ul className="dropdown-menu">
                                             <li className="nav-item" role="presentation">
@@ -149,8 +169,8 @@ export const Home = () => {
                                                     aria-controls="pills-profile"
                                                     aria-selected="false"
                                                 >
-                                                    <i className="bi bi-person"> Perfil</i>
-                                                    
+                                                    <i className="bi bi-person"></i>
+                                                    <span className="ms-3">Perfil</span>
                                                 </button>
                                             </li>
                                             <li className="nav-item" role="presentation">
@@ -164,8 +184,8 @@ export const Home = () => {
                                                     aria-controls="pills-news"
                                                     aria-selected="false"
                                                 >
-                                                    <i className="bi bi-newspaper"> Novedades</i>
-                                                    
+                                                    <i className="bi bi-newspaper"></i>
+                                                    <span className="ms-3">Novedades</span>
                                                 </button>
                                             </li>
                                             <li><hr className="dropdown-divider" /></li>
@@ -174,7 +194,8 @@ export const Home = () => {
                                                     className="dropdown-item"
                                                     onClick={handleWelcomeRedirect}
                                                 >
-                                                    <i className="bi bi-box-arrow-right"> Cerrar sesión</i> 
+                                                    <i className="bi bi-box-arrow-right"></i>
+                                                    <span className="ms-3">Cerrar sesión</span>
                                                 </button>
                                             </li>
                                         </ul>
@@ -185,8 +206,8 @@ export const Home = () => {
                     </div>
                 </nav>
             </header>
-            <main className="mt-5 p-4">
-                <div className="tab-content mt-2">
+            <main className="pt-5 mt-4 mb-3">
+                <div className="tab-content">
                     <div
                         className="tab-pane show fade active"
                         id="pills-home"
@@ -230,6 +251,5 @@ export const Home = () => {
                 </div>
             </main>
         </div>
-
     )
 }

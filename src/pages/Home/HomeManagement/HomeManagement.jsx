@@ -10,61 +10,61 @@ export const HomeManagement = () => {
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
                         <button className="nav-link active text-secondary" id="v-pills-transactions-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-transactions" type="button" role="tab" aria-controls="v-pills-transactions" aria-selected="true">
-                            <i className="bi bi-person"></i>
+                            <i className="bi bi-arrow-left-right"></i>
                         </button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link text-secondary" id="v-pills-planning-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-planning" type="button" role="tab" aria-controls="v-pills-planning" aria-selected="false">
-                            <i className="bi bi-gear"></i>
+                            <i className="bi bi-calendar-event"></i>
                         </button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link text-secondary" id="v-pills-reports-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-reports" type="button" role="tab" aria-controls="v-pills-reports" aria-selected="false">
-                            <i className="bi bi-tags"></i>
+                            <i className="bi bi-file-earmark-text"></i>
                         </button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link text-secondary" id="v-pills-due-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-due" type="button" role="tab" aria-controls="v-pills-due" aria-selected="false">
-                            <i className="bi bi-wallet"></i>
+                            <i className="bi bi-receipt"></i>
                         </button>
                     </li>
                 </ul>
             </div>
 
-            <div className="d-none d-lg-block fw-bold">
+            <div className="d-none d-lg-block">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
                         <button className="nav-link active text-secondary" id="v-pills-transactions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-transactions" type="button" role="tab" aria-controls="v-pills-transactions" aria-selected="true">
                             <i className="bi bi-arrow-left-right">
-                                <span className='ms-1'>Transacciones</span>
+                                <span className='ms-2'>Transacciones</span>
                             </i>
                         </button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link text-secondary" id="v-pills-planning-tab" data-bs-toggle="pill" data-bs-target="#v-pills-planning" type="button" role="tab" aria-controls="v-pills-planning" aria-selected="false">
                             <i className="bi bi-calendar-event">
-                                <span className='ms-1'>Planificación financiera</span>
+                                <span className='ms-2'>Planificación financiera</span>
                             </i>
                         </button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link text-secondary" id="v-pills-reports-tab" data-bs-toggle="pill" data-bs-target="#v-pills-reports" type="button" role="tab" aria-controls="v-pills-reports" aria-selected="false">
                             <i className="bi bi-file-earmark-text">
-                                <span className='ms-1'>Reportes</span>
+                                <span className='ms-2'>Reportes</span>
                             </i>
                         </button>
                     </li>
                     <li className="nav-item">
                         <button className="nav-link text-secondary" id="v-pills-due-tab" data-bs-toggle="pill" data-bs-target="#v-pills-due" type="button" role="tab" aria-controls="v-pills-due" aria-selected="false">
                             <i className="bi bi-receipt">
-                                <span className='ms-1'>Control de deudas</span>
+                                <span className='ms-2'>Control de deudas</span>
                             </i>
                         </button>
                     </li>
                 </ul>
             </div>
 
-            <div className="tab-content" id="v-pills-tabContent">
+            <div className="tab-content container-fluid py-3" id="v-pills-tabContent">
                 <div className="tab-pane fade show active" id="v-pills-transactions" role="tabpanel" aria-labelledby="v-pills-transactions-tab" tabIndex="0">
                     <ManageTransactions />
                 </div>
