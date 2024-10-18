@@ -1,5 +1,7 @@
 import { WelcomeMain } from './WelcomeMain';
 import { ThemeBtn } from '../../components/ThemeBtn';
+import Logo from '../../assets/images/logos/LogoVerde.png';
+
 
 // Redirecciones
 function handleLoginRedirect() {
@@ -23,29 +25,28 @@ export const Welcome = () => {
                             onClick={handleWelcomeRedirect}
                         >
                             <img
-                                src="src\assets\images\Logo.png"
+                                src={Logo}
                                 alt="Logo"
-                                width="30"
-                                height="24"
+                                width="95"
+                                height="30"
                                 className="d-inline-block align-text-top"
                             />
-                            <span className="ms-1">MyFinance</span>
                         </button>
                         <div className="d-flex justify-content-end align-items-center">
                             <div className="d-flex flex-lg-none">
                                 <ThemeBtn />
                             </div>
-                            <div className="vr d-lg-flex m-2 bs-body-color"></div>
+                            <div className="vr d-lg-flex m-2 me-3 bs-body-color"></div>
                             <div className="dropdown">
                                 <button
-                                    className="btn btn-sm align-items-center"
+                                    className="btn btn-sm btn-success align-items-center"
                                     type="button"
                                     id="dropdownMenuButton"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
-                                    <span>Acceder</span>
-                                    <i className="bi bi-box-arrow-in-right mx-1 fs-6 align-middle lh-sm"></i>
+                                    <span >Acceder</span>
+                                    <i className="bi bi-box-arrow-in-right ms-1 fs-6 lh-sm"></i>
                                 </button>
                                 <ul
                                     className="dropdown-menu dropdown-menu-end"
@@ -54,20 +55,20 @@ export const Welcome = () => {
                                     <li className="text-center">
                                         <button
                                             onClick={handleLoginRedirect}
-                                            className="dropdown-item btn btn-success btn-sm"
+                                            className="dropdown-item btn btn-sm"
                                             type="button"
                                         >
-                                            <i className="bi bi-key mx-2 fs-6 align-middle lh-sm"></i>
+                                            <i className="bi bi-key me-2 fs-6 lh-sm"></i>
                                             <span>Iniciar sesión</span>
                                         </button>
                                     </li>
                                     <li className="text-center">
                                         <button
                                             onClick={handleCreateAccountRedirect}
-                                            className="dropdown-item btn btn-primary btn-sm"
+                                            className="dropdown-item btn btn-sm"
                                             type="button"
                                         >
-                                            <i className="bi bi-person-plus mx-2 fs-6 align-middle lh-sm"></i>
+                                            <i className="bi bi-person-plus me-2 fs-6 lh-sm"></i>
                                             <span>Crear cuenta</span>
                                         </button>
                                     </li>
@@ -82,6 +83,6 @@ export const Welcome = () => {
                     <WelcomeMain />
                 </div>
             </main>
-        </div>
+        </div >
     );
 };

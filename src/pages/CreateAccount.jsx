@@ -1,4 +1,5 @@
 import { NavBar } from '../components/Navbar';
+import LogoLetra from '../assets/images/logos/Letra.png';
 
 // Validación para que la contraseña sea igual a la confirmación ademas de que tengan valores
 function handleRegister(event) {
@@ -50,12 +51,12 @@ export const CreateAccount = () => {
       <main className="container d-flex flex-column justify-content-center align-items-center p-4">
         <figure
           className="d-flex justify-content-center align-items-center"
-          style={{ width: '350px', height: 'auto' }}
+          style={{ width: '300px', height: 'auto' }}
         >
           <img
-            src="src/assets/images/Letra_bg.png"
+            src={LogoLetra}
             alt="Logo"
-            className="img-fluid w-75"
+            className="img-fluid w-100"
           />
         </figure>
         <div

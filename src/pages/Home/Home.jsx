@@ -5,6 +5,7 @@ import { HomeManagement } from "./HomeManagement/HomeManagement";
 import { News } from './HomeNews';
 import { Profile } from './HomeProfile/HomeProfile';
 import { useEffect } from 'react';
+import Logo from '../../assets/images/logos/LogoVerde.png';
 
 
 // Redirecciones
@@ -46,14 +47,15 @@ export const Home = () => {
                     <div className="container-fluid">
                         <button
                             className="btn btn-sm d-flex align-items-center"
-                            onClick={handleHomeRedirect}>
+                            onClick={handleHomeRedirect}
+                        >
                             <img
-                                src="src\assets\images\Logo.png"
+                                src={Logo}
                                 alt="Logo"
-                                width="30"
-                                height="24"
-                                className="d-inline-block align-text-top" />
-                            MyFinance
+                                width="100"
+                                height="30"
+                                className="d-inline-block align-text-top"
+                            />
                         </button>
                         <ul className="navbar-nav d-flex align-items-center mb-0 flex-row">
                             <li className="nav-item mx-2">

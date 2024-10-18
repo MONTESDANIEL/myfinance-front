@@ -1,5 +1,6 @@
 import { NavBar } from '../components/Navbar';
 import { useState } from 'react';
+import LogoLetra from '../assets/images/logos/Letra.png';
 
 // Redirecciones
 function handleHomeRedirect() {
@@ -26,12 +27,12 @@ export const Login = () => {
         <div className="container d-flex flex-column justify-content-center align-items-center p-3 pb-4">
           <figure
             className="d-flex justify-content-center align-items-center"
-            style={{ width: '350px', height: 'auto' }}
+            style={{ width: '300px', height: 'auto' }}
           >
             <img
-              src="src/assets/images/Letra_bg.png"
+              src={LogoLetra}
               alt="Logo"
-              className="img-fluid w-75"
+              className="img-fluid w-100"
             />
           </figure>
           <div
@@ -83,9 +84,8 @@ export const Login = () => {
                   }
                 >
                   <i
-                    className={`bi ${
-                      passwordVisible ? 'bi-eye-slash' : 'bi-eye'
-                    } fs-5 text-success`}
+                    className={`bi ${passwordVisible ? 'bi-eye-slash' : 'bi-eye'
+                      } fs-5 text-success`}
                   ></i>
                 </button>
               </div>
