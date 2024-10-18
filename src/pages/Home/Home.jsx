@@ -1,6 +1,6 @@
 import { ThemeBtn } from "../../components/ThemeBtn"
 import { About } from './HomeAbout';
-import { Initial } from './HomeInitial';
+import { Initial } from './HomeInitial/HomeInitial';
 import { HomeManagement } from "./HomeManagement/HomeManagement";
 import { News } from './HomeNews';
 import { Profile } from './HomeProfile/HomeProfile';

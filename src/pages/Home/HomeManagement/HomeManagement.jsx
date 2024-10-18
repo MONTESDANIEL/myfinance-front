@@ -1,5 +1,5 @@
-import { ManageTransactions } from './ManageTransactions';
-import { ManagePlanning } from './ManagePlanning';
+import { ManageMovements } from './ManageMovements';
+import { ManagePlanning } from './ManagePlanning/ManagePlanning';
 import { ManageReports } from './ManageReports';
 import { ManageDue } from './ManageDue';
 
@@ -9,7 +9,7 @@ export const HomeManagement = () => {
             <div className="d-lg-none navbar container-fluid justify-content-center">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
-                        <button className="nav-link active text-secondary" id="v-pills-transactions-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-transactions" type="button" role="tab" aria-controls="v-pills-transactions" aria-selected="true">
+                        <button className="nav-link active text-secondary" id="v-pills-movements-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-movements" type="button" role="tab" aria-controls="v-pills-movements" aria-selected="true">
                             <i className="bi bi-arrow-left-right"></i>
                         </button>
                     </li>
@@ -34,9 +34,9 @@ export const HomeManagement = () => {
             <div className="d-none d-lg-block">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
-                        <button className="nav-link active text-secondary" id="v-pills-transactions-tab" data-bs-toggle="pill" data-bs-target="#v-pills-transactions" type="button" role="tab" aria-controls="v-pills-transactions" aria-selected="true">
+                        <button className="nav-link active text-secondary" id="v-pills-movements-tab" data-bs-toggle="pill" data-bs-target="#v-pills-movements" type="button" role="tab" aria-controls="v-pills-movements" aria-selected="true">
                             <i className="bi bi-arrow-left-right">
-                                <span className='ms-2'>Transacciones</span>
+                                <span className='ms-2'>Movimientos</span>
                             </i>
                         </button>
                     </li>
@@ -65,17 +65,28 @@ export const HomeManagement = () => {
             </div>
 
             <div className="tab-content container-fluid py-3" id="v-pills-tabContent">
-                <div className="tab-pane fade show active" id="v-pills-transactions" role="tabpanel" aria-labelledby="v-pills-transactions-tab" tabIndex="0">
-                    <ManageTransactions />
+                <div className="tab-pane fade show active" id="v-pills-movements" role="tabpanel" aria-labelledby="v-pills-movements-tab" tabIndex="0">
+                    <div className="container bg-dark-subtle rounded p-3">
+                        <ManageMovements />
+                    </div>
                 </div>
                 <div className="tab-pane fade" id="v-pills-planning" role="tabpanel" aria-labelledby="v-pills-planning-tab" tabIndex="0">
-                    <ManagePlanning />
+                    <div className="container bg-dark-subtle rounded p-3">
+
+                        <ManagePlanning />
+                    </div>
                 </div>
                 <div className="tab-pane fade" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab" tabIndex="0">
-                    <ManageReports />
+                    <div className="container bg-dark-subtle rounded p-3">
+
+                        <ManageReports />
+                    </div>
                 </div>
                 <div className="tab-pane fade" id="v-pills-due" role="tabpanel" aria-labelledby="v-pills-due-tab" tabIndex="0">
-                    <ManageDue />
+                    <div className="container bg-dark-subtle rounded p-3">
+
+                        <ManageDue />
+                    </div>
                 </div>
             </div>
         </div>

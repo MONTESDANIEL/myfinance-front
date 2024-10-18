@@ -7,6 +7,7 @@ import { Welcome } from './pages/Welcome/Welcome';
 import { CreateAccount } from './pages/CreateAccount';
 import { ThemeProvider } from './context/ThemeContext';
 import { Footer } from './components/Footer';
+import '/src/assets/styles/custom-theme.css';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -21,7 +22,7 @@ root.render(
           <Route path="/create-account" element={<CreateAccount />} />
         </Routes>
       </Router>
-      <Footer/>
+      <Footer />
     </ThemeProvider>
   </StrictMode>
 );

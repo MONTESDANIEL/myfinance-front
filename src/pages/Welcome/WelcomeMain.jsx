@@ -9,34 +9,37 @@ export const WelcomeMain = () => {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         <picture>
-                            <source media="(max-width: 768px)" srcSet="src/assets/images/1-small.jpg" />
+                            <source media="(max-width: 576px)" srcSet="src/assets/images/1-small.jpg" />
+                            <source media="(min-width: 577px) and (max-width: 1200px)" srcSet="src/assets/images/1-medium.jpg" />
+                            <source media="(min-width: 1201px)" srcSet="src/assets/images/1-large.jpg" />
                             <img
-                                src="src/assets/images/1.jpg"
+                                src="src/assets/images/1-large.jpg" // Imagen predeterminada para navegadores sin soporte
                                 className="d-block w-100"
                                 alt="..."
-                                style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }}
                             />
                         </picture>
                     </div>
                     <div className="carousel-item">
                         <picture>
-                            <source media="(max-width: 768px)" srcSet="src/assets/images/2-small.jpg" />
+                            <source media="(max-width: 576px)" srcSet="src/assets/images/2-small.jpg" />
+                            <source media="(min-width: 577px) and (max-width: 1200px)" srcSet="src/assets/images/2-medium.jpg" />
+                            <source media="(min-width: 1201px)" srcSet="src/assets/images/2-large.jpg" />
                             <img
-                                src="src/assets/images/2.jpg"
+                                src="src/assets/images/2-large.jpg"
                                 className="d-block w-100"
                                 alt="..."
-                                style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }}
                             />
                         </picture>
                     </div>
                     <div className="carousel-item">
                         <picture>
-                            <source media="(max-width: 768px)" srcSet="src/assets/images/3-small.jpg" />
+                            <source media="(max-width: 576px)" srcSet="src/assets/images/3-small.jpg" />
+                            <source media="(min-width: 577px) and (max-width: 1200px)" srcSet="src/assets/images/3-medium.jpg" />
+                            <source media="(min-width: 1201px)" srcSet="src/assets/images/3-large.jpg" />
                             <img
-                                src="src/assets/images/3.jpg"
+                                src="src/assets/images/3-large.jpg"
                                 className="d-block w-100"
                                 alt="..."
-                                style={{ maxHeight: '400px', width: '100%', objectFit: 'cover' }}
                             />
                         </picture>
                     </div>
@@ -60,6 +63,7 @@ export const WelcomeMain = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
+
 
             <div className="container-fluid pt-3">
                 <div className="row flex-column flex-md-row justify-content-center p-3 mb-2 bg-body-tertiary">

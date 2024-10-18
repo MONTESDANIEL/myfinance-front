@@ -56,58 +56,60 @@ const ListItem = ({ date, description, amount, type, tag }) => {
     );
 };
 
-export const ManageTransactions = () => {
+export const ManageMovements = () => {
     return (
-        <div className="container bg-dark-subtle rounded p-3">
-            <div className="text-center mb-3 text-ligth">
-                <h2>Transacciones</h2>
+        <>
+
+            <div className="text-center text-ligth">
+                <h2>Movimientos</h2>
             </div>
             <hr />
-            <div className="container rounded p-3 bg-body-tertiary">
-                <div className="col-md-12">
-                    <div className="card mb-3">
-                        <div className="card-header text-center text-md-start">
-                            Registrar Movimiento
-                        </div>
-                        <div className="card-body">
-                            <form>
-                                <div className="mb-3">
-                                    <label htmlFor="amount" className="form-label">Monto</label>
-                                    <input type="number" className="form-control" id="amount" placeholder="Ingrese el monto" />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="description" className="form-label">Descripción</label>
-                                    <input type="text" className="form-control" id="description" placeholder="Ingrese una descripción" />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="type" className="form-label">Tipo</label>
-                                    <select className="form-select" id="type">
-                                        <option value="income">Ingreso</option>
-                                        <option value="expense">Gasto</option>
-                                        <option value="expense">Ahorro</option>
-                                    </select>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="tag" className="form-label">Etiquetas</label>
-                                    <select className="form-select" id="tag">
-                                        <option value="GastoMoto">GastoMoto</option>
-                                        <option value="Mercado">Mercado</option>
-                                        <option value="Arriendo">Arriendo</option>
-                                        <option value="Salario">Salario</option>
-                                        <option value="Universidad">Universidad</option>
-                                    </select>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary">
-                                    <i className="bi bi-plus-circle"><span className='ms-2'>Registrar</span></i>
-                                </button>
-                            </form>
-                        </div>
+
+            <div className="container rounded p-2 bg-body-tertiary mb-3">
+                <div className="card">
+                    <div className="card-header text-center text-md-start">
+                        Registrar Movimiento
+                    </div>
+                    <div className="card-body">
+                        <form>
+                            <div className="mb-3">
+                                <label htmlFor="amount" className="form-label">Monto</label>
+                                <input type="number" className="form-control" id="amount" placeholder="Ingrese el monto" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="description" className="form-label">Descripción</label>
+                                <input type="text" className="form-control" id="description" placeholder="Ingrese una descripción" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="type" className="form-label">Tipo</label>
+                                <select className="form-select" id="type">
+                                    <option value="income">Ingreso</option>
+                                    <option value="expense">Gasto</option>
+                                    <option value="expense">Ahorro</option>
+                                </select>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="tag" className="form-label">Etiquetas</label>
+                                <select className="form-select" id="tag">
+                                    <option value="GastoMoto">GastoMoto</option>
+                                    <option value="Mercado">Mercado</option>
+                                    <option value="Arriendo">Arriendo</option>
+                                    <option value="Salario">Salario</option>
+                                    <option value="Universidad">Universidad</option>
+                                </select>
+                            </div>
+                            <button
+                                type="submit"
+                                className="btn btn-primary">
+                                <i className="bi bi-plus-circle"><span className='ms-2'>Registrar</span></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <hr />
-                <div className="card mb-3">
+            </div>
+
+            <div className="container rounded p-2 bg-body-tertiary">
+                <div className="card">
                     <div className="card-header d-flex flex-column flex-md-row justify-content-between align-items-center">
                         <span className="mb-md-0 p-2">Ver Movimientos</span>
                         <form className="d-flex p-2" role="search">
@@ -133,6 +135,7 @@ export const ManageTransactions = () => {
                     </div>
                 </div>
             </div>
-        </div>
+
+        </>
     )
 }

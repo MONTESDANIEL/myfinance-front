@@ -45,9 +45,7 @@ export const Welcome = () => {
                                     aria-expanded="false"
                                 >
                                     <span>Acceder</span>
-                                    <i
-                                        className="bi bi-box-arrow-in-right mx-1 fs-6 align-middle lh-sm"
-                                    ></i>
+                                    <i className="bi bi-box-arrow-in-right mx-1 fs-6 align-middle lh-sm"></i>
                                 </button>
                                 <ul
                                     className="dropdown-menu dropdown-menu-end"
