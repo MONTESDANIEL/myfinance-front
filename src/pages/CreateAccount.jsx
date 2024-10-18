@@ -1,4 +1,5 @@
 import { NavBar } from '../components/Navbar';
+import { FormField } from '../components/FormField';
 import LogoLetra from '../assets/images/logos/Letra.png';
 
 // Validación para que la contraseña sea igual a la confirmación ademas de que tengan valores
@@ -50,8 +51,7 @@ export const CreateAccount = () => {
       </header>
       <main className="container d-flex flex-column justify-content-center align-items-center p-4">
         <figure
-          className="d-flex justify-content-center align-items-center"
-          style={{ width: '300px', height: 'auto' }}
+          className="d-flex justify-content-center align-items-center" style={{ width: '300px' }}
         >
           <img
             src={LogoLetra}
@@ -59,70 +59,45 @@ export const CreateAccount = () => {
             className="img-fluid w-100"
           />
         </figure>
-        <div
-          className="bg-body-tertiary card p-3"
-          style={{ width: '350px', height: 'auto' }}
-        >
-          <div className="text-center">
-            <h3>Crea una cuenta</h3>
-            <hr className="my-2" />
-          </div>
+        <div className="bg-body-tertiary card p-3 w-100 w-lg-auto" style={{ maxWidth: '600px' }}>
+          <h3 className='text-center'>Crea una cuenta</h3>
+          <hr />
           <form onSubmit={handleRegister}>
-            <div className="mb-2">
-              <label htmlFor="name" className="form-label">
-                Nombre completo
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="Ingresa tu nombre completo"
-                required
-              />
-            </div>
-            <div className="mb-2">
-              <label htmlFor="email" className="form-label">
-                Correo electrónico
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Ingresa tu correo electrónico"
-                required
-              />
-            </div>
-            <div className="mb-2">
-              <label htmlFor="password" className="form-label">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Ingresa tu contraseña"
-                required
-              />
-            </div>
-            <div className="mb-2">
-              <label htmlFor="confirmPassword" className="form-label">
-                Confirmar contraseña
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="confirmPassword"
-                placeholder="Confirma tu contraseña"
-                required
-              />
-            </div>
-            <button type="submit" className="btn btn-success w-100 mt-2">
+            <FormField
+              label="Nombre completo"
+              type="text"
+              id="name"
+              placeholder="Ingresa tu nombre completo"
+              required
+            />
+            <FormField
+              label="Correo electrónico"
+              type="email"
+              id="email"
+              placeholder="Ingresa tu correo electrónico"
+              required
+            />
+            <FormField
+              label="Contraseña"
+              type="password"
+              id="password"
+              placeholder="Ingresa tu contraseña"
+              required
+            />
+            <FormField
+              label="Confirmar contraseña"
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirma tu contraseña"
+              required
+            />
+            <button type="submit" className="btn btn-success w-100 my-2">
               Registrar
             </button>
             <div className="d-flex justify-content-center">
               <button
                 type="button"
-                className="btn btn-link text-decoration-none mt-2"
+                className="btn btn-link text-decoration-none my-2"
                 onClick={handleLoginRedirect}
               >
                 Ya tengo una cuenta

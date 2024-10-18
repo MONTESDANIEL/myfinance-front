@@ -1,5 +1,5 @@
 import { ThemeBtn } from "./ThemeBtn"
-import Logo from '../assets/images/logos/LogoVerde.png';
+import Logo from '../assets/images/logos/Logo500.png';
 
 function handleWelcomeRedirect() {
     window.location.href = '/';
@@ -16,8 +16,8 @@ export const NavBar = () => {
                         <img
                             src={Logo}
                             alt="Logo"
-                            width="95"
-                            height="30"
+                            width="25"
+                            height="25"
                             className="d-inline-block align-text-top"
                         />
                     </button>
