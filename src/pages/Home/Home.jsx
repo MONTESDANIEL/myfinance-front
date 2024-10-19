@@ -1,13 +1,12 @@
-import ThemeBtn from "../../components/ThemeBtn"
+import ThemeBtn from "../../components/ThemeBtn";
 import HomeAbout from './HomeAbout';
 import HomeInitial from './HomeInitial/HomeInitial';
 import HomeManagement from "./HomeManagement/HomeManagement";
 import HomeNews from './HomeNews';
 import HomeProfile from './HomeProfile/HomeProfile';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../../assets/images/logos/LogoVerde.png';
 import LogoSimple from '../../assets/images/logos/Logo.png';
-
 
 // Redirecciones
 function handleHomeRedirect() {
@@ -18,7 +17,19 @@ function handleWelcomeRedirect() {
 }
 
 const Home = () => {
+    // Recupera la pestaña activa del localStorage o establece 'home' como valor por defecto
+    const [activeTab, setActiveTab] = useState(() => {
+        return localStorage.getItem('activeTab') || 'home';
+    });
 
+    // Almacena la pestaña activa en localStorage cada vez que cambia
+    useEffect(() => {
+        localStorage.setItem('activeTab', activeTab);
+    }, [activeTab]);
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab); // Actualiza la pestaña activa
+    };
 
     // Agrega la función de cerrar la barra lateral al seleccionar una opción
     useEffect(() => {
@@ -107,14 +118,10 @@ const Home = () => {
                                     role="tablist">
                                     <li className="nav-item" role="presentation">
                                         <button
-                                            className="nav-link active close-offcanvas"
+                                            className={`nav-link ${activeTab === 'home' ? 'active' : ''} close-offcanvas`}
                                             id="pills-home-tab"
-                                            data-bs-toggle="pill"
-                                            data-bs-target="#pills-home"
                                             type="button"
-                                            role="tab"
-                                            aria-controls="pills-home"
-                                            aria-selected="true"
+                                            onClick={() => handleTabClick('home')}
                                         >
                                             <i className="bi bi-house-door"></i>
                                             <span className="ms-3">Inicio</span>
@@ -122,14 +129,10 @@ const Home = () => {
                                     </li>
                                     <li className="nav-item" role="presentation">
                                         <button
-                                            className="nav-link close-offcanvas"
+                                            className={`nav-link ${activeTab === 'management' ? 'active' : ''} close-offcanvas`}
                                             id="pills-management-tab"
-                                            data-bs-toggle="pill"
-                                            data-bs-target="#pills-management"
                                             type="button"
-                                            role="tab"
-                                            aria-controls="pills-management"
-                                            aria-selected="true"
+                                            onClick={() => handleTabClick('management')}
                                         >
                                             <i className="bi bi-graph-up"></i>
                                             <span className="ms-3">Gestión de finanzas</span>
@@ -137,14 +140,10 @@ const Home = () => {
                                     </li>
                                     <li className="nav-item" role="presentation">
                                         <button
-                                            className="nav-link close-offcanvas"
+                                            className={`nav-link ${activeTab === 'about' ? 'active' : ''} close-offcanvas`}
                                             id="pills-about-tab"
-                                            data-bs-toggle="pill"
-                                            data-bs-target="#pills-about"
                                             type="button"
-                                            role="tab"
-                                            aria-controls="pills-about"
-                                            aria-selected="false"
+                                            onClick={() => handleTabClick('about')}
                                         >
                                             <i className="bi bi-info-circle"></i>
                                             <span className="ms-3">Acerca de</span>
@@ -165,12 +164,8 @@ const Home = () => {
                                                 <button
                                                     className="dropdown-item close-offcanvas"
                                                     id="pills-profile-tab"
-                                                    data-bs-toggle="pill"
-                                                    data-bs-target="#pills-profile"
                                                     type="button"
-                                                    role="tab"
-                                                    aria-controls="pills-profile"
-                                                    aria-selected="false"
+                                                    onClick={() => handleTabClick('profile')}
                                                 >
                                                     <i className="bi bi-person"></i>
                                                     <span className="ms-3">Perfil</span>
@@ -180,12 +175,8 @@ const Home = () => {
                                                 <button
                                                     className="dropdown-item close-offcanvas"
                                                     id="pills-news-tab"
-                                                    data-bs-toggle="pill"
-                                                    data-bs-target="#pills-news"
                                                     type="button"
-                                                    role="tab"
-                                                    aria-controls="pills-news"
-                                                    aria-selected="false"
+                                                    onClick={() => handleTabClick('news')}
                                                 >
                                                     <i className="bi bi-newspaper"></i>
                                                     <span className="ms-3">Novedades</span>
@@ -212,7 +203,7 @@ const Home = () => {
             <main className="pt-5 mt-4 mb-3">
                 <div className="tab-content">
                     <div
-                        className="tab-pane show fade active"
+                        className={`tab-pane fade ${activeTab === 'home' ? 'show active' : ''}`}
                         id="pills-home"
                         role="tabpanel"
                         aria-labelledby="pills-home-tab"
@@ -220,7 +211,7 @@ const Home = () => {
                         <HomeInitial />
                     </div>
                     <div
-                        className="tab-pane fade"
+                        className={`tab-pane fade ${activeTab === 'management' ? 'show active' : ''}`}
                         id="pills-management"
                         role="tabpanel"
                         aria-labelledby="pills-management-tab"
@@ -228,7 +219,7 @@ const Home = () => {
                         <HomeManagement />
                     </div>
                     <div
-                        className="tab-pane fade"
+                        className={`tab-pane fade ${activeTab === 'about' ? 'show active' : ''}`}
                         id="pills-about"
                         role="tabpanel"
                         aria-labelledby="pills-about-tab"
@@ -236,7 +227,7 @@ const Home = () => {
                         <HomeAbout />
                     </div>
                     <div
-                        className="tab-pane fade"
+                        className={`tab-pane fade ${activeTab === 'profile' ? 'show active' : ''}`}
                         id="pills-profile"
                         role="tabpanel"
                         aria-labelledby="pills-profile-tab"
@@ -244,7 +235,7 @@ const Home = () => {
                         <HomeProfile />
                     </div>
                     <div
-                        className="tab-pane fade"
+                        className={`tab-pane fade ${activeTab === 'news' ? 'show active' : ''}`}
                         id="pills-news"
                         role="tabpanel"
                         aria-labelledby="pills-news-tab"

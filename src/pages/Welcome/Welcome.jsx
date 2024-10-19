@@ -1,18 +1,7 @@
 import WelcomeMain from './WelcomeMain';
 import ThemeBtn from '../../components/ThemeBtn';
 import Logo from '../../assets/images/logos/LogoVerde.png';
-
-
-// Redirecciones
-function handleLoginRedirect() {
-    window.location.href = '/login';
-}
-function handleCreateAccountRedirect() {
-    window.location.href = '/create-account';
-}
-function handleWelcomeRedirect() {
-    window.location.href = '/';
-}
+import { Link } from 'react-router-dom';
 
 const Welcome = () => {
     return (
@@ -20,18 +9,17 @@ const Welcome = () => {
             <header>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <button
+                        <Link to="/"
                             className="btn btn-sm d-flex align-items-center"
-                            onClick={handleWelcomeRedirect}
-                        >
+                            type="button">
                             <img
                                 src={Logo}
                                 alt="Logo"
-                                width="90"
-                                height="27"
+                                width="100"
+                                height="30"
                                 className="d-inline-block align-text-top"
                             />
-                        </button>
+                        </Link>
                         <div className="d-flex justify-content-end align-items-center">
                             <div className="d-flex flex-lg-none">
                                 <ThemeBtn />
@@ -53,24 +41,20 @@ const Welcome = () => {
                                     style={{ minWidth: 'auto' }}
                                 >
                                     <li className="text-center">
-                                        <button
-                                            onClick={handleLoginRedirect}
+                                        <Link to="/login"
                                             className="dropdown-item btn btn-sm"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i className="bi bi-key me-2 fs-6 lh-sm"></i>
                                             <span>Iniciar sesión</span>
-                                        </button>
+                                        </Link>
                                     </li>
                                     <li className="text-center">
-                                        <button
-                                            onClick={handleCreateAccountRedirect}
+                                        <Link to="/create-account"
                                             className="dropdown-item btn btn-sm"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i className="bi bi-person-plus me-2 fs-6 lh-sm"></i>
                                             <span>Crear cuenta</span>
-                                        </button>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

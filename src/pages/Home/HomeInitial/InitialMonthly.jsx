@@ -45,11 +45,15 @@ const PerformanceMonthly = () => {
     const monthlySavings = monthlyData.savings.reduce((total, amount) => total + amount, 0);
     const monthlyExpense = monthlyData.expense.reduce((total, amount) => total + amount, 0);
 
+
+    // Funcion para dar formato a las cantidades numericas
+    const formatCurrency = (amount) => amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+
     // Datos totales formateados para Texto
-    const formatMonthlyIncome = monthlyIncome.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })
-    const formatMonthlySavings = monthlySavings.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })
-    const formatMonthlyExpense = monthlyExpense.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })
-    const formatMonthlyTotalIncome = (monthlyIncome + monthlySavings + monthlyExpense).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+    const formatMonthlyIncome = formatCurrency(monthlyIncome)
+    const formatMonthlySavings = formatCurrency(monthlySavings)
+    const formatMonthlyExpense = formatCurrency(monthlyExpense)
+    const formatMonthlyTotalIncome = formatCurrency(monthlyIncome + monthlySavings + monthlyExpense)
 
     // Datos configurados para el grafico de barras
     const monthlyPerformance = {

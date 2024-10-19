@@ -1,30 +1,96 @@
+import { useState, useEffect } from 'react';
+
 const HomeProfile = () => {
+    // Recupera la pestaña activa del localStorage o establece 'v-pills-userdata' como valor por defecto
+    const [activeTab, setActiveTab] = useState(() => {
+        return localStorage.getItem('activeTabManagement') || 'v-pills-userdata'; // Cambia 'home' a 'v-pills-userdata' para este contexto
+    });
+
+    // Almacena la pestaña activa en localStorage cada vez que cambia
+    useEffect(() => {
+        localStorage.setItem('activeTabManagement', activeTab);
+    }, [activeTab]);
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab); // Actualiza la pestaña activa
+    };
+
     return (
         <div className="container-fluid">
             <div className="d-lg-none navbar container-fluid justify-content-center">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
-                        <button className="nav-link active text-secondary" id="v-pills-userdata-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-userdata" type="button" role="tab" aria-controls="v-pills-userdata" aria-selected="true">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-userdata' ? 'active' : ''} text-secondary`}
+                            id="v-pills-userdata-tab-i"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-userdata"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-userdata"
+                            aria-selected={activeTab === 'v-pills-userdata'}
+                            onClick={() => handleTabClick('v-pills-userdata')}
+                        >
                             <i className="bi bi-person"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-configuration-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-configuration" type="button" role="tab" aria-controls="v-pills-configuration" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-configuration' ? 'active' : ''} text-secondary`}
+                            id="v-pills-configuration-tab-i"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-configuration"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-configuration"
+                            aria-selected={activeTab === 'v-pills-configuration'}
+                            onClick={() => handleTabClick('v-pills-configuration')}
+                        >
                             <i className="bi bi-gear"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-tags-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-tags" type="button" role="tab" aria-controls="v-pills-tags" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-tags' ? 'active' : ''} text-secondary`}
+                            id="v-pills-tags-tab-i"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-tags"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-tags"
+                            aria-selected={activeTab === 'v-pills-tags'}
+                            onClick={() => handleTabClick('v-pills-tags')}
+                        >
                             <i className="bi bi-tags"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-budget-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-budget" type="button" role="tab" aria-controls="v-pills-budget" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-budget' ? 'active' : ''} text-secondary`}
+                            id="v-pills-budget-tab-i"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-budget"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-budget"
+                            aria-selected={activeTab === 'v-pills-budget'}
+                            onClick={() => handleTabClick('v-pills-budget')}
+                        >
                             <i className="bi bi-wallet"></i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-goals-tab-i" data-bs-toggle="pill" data-bs-target="#v-pills-goals" type="button" role="tab" aria-controls="v-pills-goals" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-goals' ? 'active' : ''} text-secondary`}
+                            id="v-pills-goals-tab-i"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-goals"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-goals"
+                            aria-selected={activeTab === 'v-pills-goals'}
+                            onClick={() => handleTabClick('v-pills-goals')}
+                        >
                             <i className="bi bi-piggy-bank"></i>
                         </button>
                     </li>
@@ -34,27 +100,77 @@ const HomeProfile = () => {
             <div className="d-none d-lg-block">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     <li className="nav-item">
-                        <button className="nav-link active text-secondary" id="v-pills-userdata-tab" data-bs-toggle="pill" data-bs-target="#v-pills-userdata" type="button" role="tab" aria-controls="v-pills-userdata" aria-selected="true">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-userdata' ? 'active' : ''} text-secondary`}
+                            id="v-pills-userdata-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-userdata"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-userdata"
+                            aria-selected={activeTab === 'v-pills-userdata'}
+                            onClick={() => handleTabClick('v-pills-userdata')}
+                        >
                             <i className="bi bi-person"> Datos personales</i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-configuration-tab" data-bs-toggle="pill" data-bs-target="#v-pills-configuration" type="button" role="tab" aria-controls="v-pills-configuration" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-configuration' ? 'active' : ''} text-secondary`}
+                            id="v-pills-configuration-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-configuration"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-configuration"
+                            aria-selected={activeTab === 'v-pills-configuration'}
+                            onClick={() => handleTabClick('v-pills-configuration')}
+                        >
                             <i className="bi bi-gear"> Configuración</i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-tags-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tags" type="button" role="tab" aria-controls="v-pills-tags" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-tags' ? 'active' : ''} text-secondary`}
+                            id="v-pills-tags-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-tags"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-tags"
+                            aria-selected={activeTab === 'v-pills-tags'}
+                            onClick={() => handleTabClick('v-pills-tags')}
+                        >
                             <i className="bi bi-tags"> Categorías y Etiquetas</i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-budget-tab" data-bs-toggle="pill" data-bs-target="#v-pills-budget" type="button" role="tab" aria-controls="v-pills-budget" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-budget' ? 'active' : ''} text-secondary`}
+                            id="v-pills-budget-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-budget"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-budget"
+                            aria-selected={activeTab === 'v-pills-budget'}
+                            onClick={() => handleTabClick('v-pills-budget')}
+                        >
                             <i className="bi bi-wallet"> Presupuesto</i>
                         </button>
                     </li>
                     <li className="nav-item">
-                        <button className="nav-link text-secondary" id="v-pills-goals-tab" data-bs-toggle="pill" data-bs-target="#v-pills-goals" type="button" role="tab" aria-controls="v-pills-goals" aria-selected="false">
+                        <button
+                            className={`nav-link ${activeTab === 'v-pills-goals' ? 'active' : ''} text-secondary`}
+                            id="v-pills-goals-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#v-pills-goals"
+                            type="button"
+                            role="tab"
+                            aria-controls="v-pills-goals"
+                            aria-selected={activeTab === 'v-pills-goals'}
+                            onClick={() => handleTabClick('v-pills-goals')}
+                        >
                             <i className="bi bi-piggy-bank"> Objetivos de Ahorro</i>
                         </button>
                     </li>
@@ -62,7 +178,7 @@ const HomeProfile = () => {
             </div>
 
             <div className="tab-content" id="v-pills-tabContent">
-                <div className="tab-pane fade show active" id="v-pills-userdata" role="tabpanel" aria-labelledby="v-pills-userdata-tab" tabIndex="0">
+                <div className={`tab-pane fade show ${activeTab === 'v-pills-userdata' ? 'active' : ''}`} id="v-pills-userdata" role="tabpanel" aria-labelledby="v-pills-userdata-tab" tabIndex="0">
                     <div className="container p-3">
                         <div className="p-3 bg-body-tertiary">
                             <div className="text-center mb-3 text-success">
@@ -98,7 +214,7 @@ const HomeProfile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade" id="v-pills-configuration" role="tabpanel" aria-labelledby="v-pills-configuration-tab" tabIndex="0">
+                <div className={`tab-pane fade ${activeTab === 'v-pills-configuration' ? 'show active' : ''}`} id="v-pills-configuration" role="tabpanel" aria-labelledby="v-pills-configuration-tab" tabIndex="0">
                     <div className="p-3">
                         <div className="p-3 bg-body-tertiary">
                             <div className="text-center mb-3 text-success">
@@ -152,7 +268,7 @@ const HomeProfile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade" id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab" tabIndex="0">
+                <div className={`tab-pane fade ${activeTab === 'v-pills-tags' ? 'show active' : ''}`} id="v-pills-tags" role="tabpanel" aria-labelledby="v-pills-tags-tab" tabIndex="0">
                     <div className="p-3">
                         <div className="p-3 mb-2 bg-body-tertiary">
                             <div className="text-center mb-3 text-success">
@@ -192,7 +308,7 @@ const HomeProfile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade" id="v-pills-budget" role="tabpanel" aria-labelledby="v-pills-budget-tab" tabIndex="0">
+                <div className={`tab-pane fade ${activeTab === 'v-pills-budget' ? 'show active' : ''}`} id="v-pills-budget" role="tabpanel" aria-labelledby="v-pills-budget-tab" tabIndex="0">
                     <div className="p-3">
                         <div className="p-3 mb-2 bg-body-tertiary">
                             <div className="text-center mb-3 text-success">
@@ -224,7 +340,7 @@ const HomeProfile = () => {
                         </div>
                     </div>
                 </div>
-                <div className="tab-pane fade" id="v-pills-goals" role="tabpanel" aria-labelledby="v-pills-goals-tab" tabIndex="0">
+                <div className={`tab-pane fade ${activeTab === 'v-pills-goals' ? 'show active' : ''}`} id="v-pills-goals" role="tabpanel" aria-labelledby="v-pills-goals-tab" tabIndex="0">
                     <div className="p-3">
                         <div className="p-3 mb-2 bg-body-tertiary">
                             <div className="text-center mb-3 text-success">
@@ -256,7 +372,7 @@ const HomeProfile = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HomeProfile;
