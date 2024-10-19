@@ -1,6 +1,14 @@
-export const WelcomeMain = () => {
+import ResponsiveImage from '../../components/ResponsiveImage';
+
+const images = {
+    carousel: "src/assets/images/carousel",
+    galery: "src/assets/images/galery"
+}
+
+const WelcomeMain = () => {
     return (
         <>
+            {/* Carrusel de imagenes */}
             <div
                 id="carouselExampleFade"
                 className="carousel slide carousel-fade"
@@ -8,40 +16,28 @@ export const WelcomeMain = () => {
             >
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <picture>
-                            <source media="(max-width: 576px)" srcSet="src/assets/images/carousel/1-small.jpg" />
-                            <source media="(min-width: 577px) and (max-width: 1200px)" srcSet="src/assets/images/carousel/1-medium.jpg" />
-                            <source media="(min-width: 1201px)" srcSet="src/assets/images/carousel/1-large.jpg" />
-                            <img
-                                src="src/assets/images/1-large.jpg" // Imagen predeterminada para navegadores sin soporte
-                                className="d-block w-100"
-                                alt="..."
-                            />
-                        </picture>
+                        <ResponsiveImage
+                            basePath={images.carousel}
+                            imageName="first"
+                            alt="Primera imagen del carrusel"
+                            className="d-block w-100"
+                        />
                     </div>
                     <div className="carousel-item">
-                        <picture>
-                            <source media="(max-width: 576px)" srcSet="src/assets/images/carousel/2-small.jpg" />
-                            <source media="(min-width: 577px) and (max-width: 1200px)" srcSet="src/assets/images/carousel/2-medium.jpg" />
-                            <source media="(min-width: 1201px)" srcSet="src/assets/images/carousel/2-large.jpg" />
-                            <img
-                                src="src/assets/images/2-large.jpg"
-                                className="d-block w-100"
-                                alt="..."
-                            />
-                        </picture>
+                        <ResponsiveImage
+                            basePath={images.carousel}
+                            imageName="second"
+                            alt="Primera imagen del carrusel"
+                            className="d-block w-100"
+                        />
                     </div>
                     <div className="carousel-item">
-                        <picture>
-                            <source media="(max-width: 576px)" srcSet="src/assets/images/carousel/3-small.jpg" />
-                            <source media="(min-width: 577px) and (max-width: 1200px)" srcSet="src/assets/images/carousel/3-medium.jpg" />
-                            <source media="(min-width: 1201px)" srcSet="src/assets/images/carousel/3-large.jpg" />
-                            <img
-                                src="src/assets/images/3-large.jpg"
-                                className="d-block w-100"
-                                alt="..."
-                            />
-                        </picture>
+                        <ResponsiveImage
+                            basePath={images.carousel}
+                            imageName="third"
+                            alt="Primera imagen del carrusel"
+                            className="d-block w-100"
+                        />
                     </div>
                 </div>
                 <button
@@ -64,7 +60,7 @@ export const WelcomeMain = () => {
                 </button>
             </div>
 
-
+            {/* Contenedor Principal */}
             <div className="container-fluid pt-3">
                 <div className="row flex-column flex-md-row justify-content-center p-3 mb-2 bg-body-tertiary">
                     <div className="col-lg-6 col-md-12 d-flex align-items-center p-2">
@@ -82,18 +78,22 @@ export const WelcomeMain = () => {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-12 p-3">
-                        <img
-                            src="src\assets\images\Galery\1.jpg"
-                            alt="Gestión de Transacciones y Categorías"
-                            className="img-fluid" />
+                        <ResponsiveImage
+                            basePath={images.galery}
+                            imageName="transactions"
+                            alt="Primera imagen del carrusel"
+                            className="d-block w-100"
+                        />
                     </div>
                 </div>
                 <div className="row flex-column flex-md-row justify-content-center p-3 mb-2 bg-body-tertiary">
                     <div className="col-lg-6 col-md-12 order-2 p-3">
-                        <img
-                            src="src\assets\images\Galery\2.jpg"
-                            alt="Presupuesto, Planificación y Alertas"
-                            className="img-fluid" />
+                        <ResponsiveImage
+                            basePath={images.galery}
+                            imageName="planning"
+                            alt="Primera imagen del carrusel"
+                            className="img-fluid"
+                        />
                     </div>
                     <div className="col-lg-6 col-md-12 d-flex align-items-center order-lg-2 p-2">
                         <div>
@@ -125,18 +125,22 @@ export const WelcomeMain = () => {
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-12 p-3">
-                        <img
-                            src="src\assets\images\Galery\3.jpg"
-                            alt="Reportes y Análisis"
-                            className="img-fluid" />
+                        <ResponsiveImage
+                            basePath={images.galery}
+                            imageName="reporting"
+                            alt="Primera imagen del carrusel"
+                            className="img-fluid"
+                        />
                     </div>
                 </div>
                 <div className="row flex-column flex-md-row justify-content-center p-3 bg-body-tertiary">
                     <div className="col-lg-6 col-md-12 order-2 p-3">
-                        <img
-                            src="src\assets\images\Galery\4.jpg"
-                            alt="Autenticación, Seguridad e Integraciones"
-                            className="img-fluid" />
+                        <ResponsiveImage
+                            basePath={images.galery}
+                            imageName="security"
+                            alt="Primera imagen del carrusel"
+                            className="img-fluid"
+                        />
                     </div>
                     <div className="col-lg-6 col-md-12 d-flex align-items-center order-lg-2 p-2">
                         <div>
@@ -152,7 +156,8 @@ export const WelcomeMain = () => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 };
+
+export default WelcomeMain;

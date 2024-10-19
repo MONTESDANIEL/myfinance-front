@@ -56,7 +56,7 @@ const ListItem = ({ date, description, amount, type, tag }) => {
     );
 };
 
-export const ManageMovements = () => {
+const ManageMovements = () => {
     return (
         <>
 
@@ -139,3 +139,5 @@ export const ManageMovements = () => {
         </>
     )
 }
+
+export default ManageMovements;

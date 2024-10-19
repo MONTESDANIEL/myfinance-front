@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FloatWindow from '../../../../components/FloatWindow';
 
-export const PlanningEvent = ({ selectedDate, events }) => {
+const PlanningEvent = ({ selectedDate, events }) => {
     const [isOpen, setIsOpen] = useState(false); // Estado para manejar la ventana flotante
     const [eventDetails, setEventDetails] = useState([]); // Estado para almacenar detalles de eventos
 
@@ -53,3 +53,5 @@ export const PlanningEvent = ({ selectedDate, events }) => {
         </>
     );
 };
+
+export default PlanningEvent;

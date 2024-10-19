@@ -1,4 +1,4 @@
-export const News = () => {
+const HomeNews = () => {
     return (
         <div className="container-fluid">
             <div className="p-4 bg-body-tertiary">
@@ -56,3 +56,5 @@ export const News = () => {
         </div>
     )
 }
+
+export default HomeNews

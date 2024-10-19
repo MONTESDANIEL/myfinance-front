@@ -1,4 +1,4 @@
-export const FormField = ({ label, type, id, placeholder, required }) => (
+const FormField = ({ label, type, id, placeholder, required }) => (
     <div className="mb-3">
         <label htmlFor={id} className="form-label">
             {label}
@@ -12,3 +12,5 @@ export const FormField = ({ label, type, id, placeholder, required }) => (
         />
     </div>
 );
+
+export default FormField

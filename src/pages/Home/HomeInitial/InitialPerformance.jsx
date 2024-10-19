@@ -9,7 +9,7 @@ const getCSSVariable = (variable) => {
     return getComputedStyle(document.documentElement).getPropertyValue(variable);
 };
 
-export const InitialPerformance = () => {
+const InitialPerformance = () => {
 
     const monthlyPerformance = {
         labels: ['Gastos del mes', 'Saldo Disponible', 'Ahorros del mes'],
@@ -223,3 +223,5 @@ export const InitialPerformance = () => {
     );
 
 }
+
+export default InitialPerformance;

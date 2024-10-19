@@ -1,5 +1,5 @@
-import { WelcomeMain } from './WelcomeMain';
-import { ThemeBtn } from '../../components/ThemeBtn';
+import WelcomeMain from './WelcomeMain';
+import ThemeBtn from '../../components/ThemeBtn';
 import Logo from '../../assets/images/logos/LogoVerde.png';
 
 
@@ -14,7 +14,7 @@ function handleWelcomeRedirect() {
     window.location.href = '/';
 }
 
-export const Welcome = () => {
+const Welcome = () => {
     return (
         <div>
             <header>
@@ -27,8 +27,8 @@ export const Welcome = () => {
                             <img
                                 src={Logo}
                                 alt="Logo"
-                                width="95"
-                                height="30"
+                                width="90"
+                                height="27"
                                 className="d-inline-block align-text-top"
                             />
                         </button>
@@ -86,3 +86,5 @@ export const Welcome = () => {
         </div >
     );
 };
+
+export default Welcome;

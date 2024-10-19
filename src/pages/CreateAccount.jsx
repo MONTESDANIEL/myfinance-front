@@ -1,6 +1,5 @@
-import { NavBar } from '../components/Navbar';
-import { FormField } from '../components/FormField';
-import LogoLetra from '../assets/images/logos/Letra.png';
+import NavBar from '../components/Navbar';
+import FormField from '../components/FormField';
 
 // Validación para que la contraseña sea igual a la confirmación ademas de que tengan valores
 function handleRegister(event) {
@@ -43,22 +42,13 @@ function handleLoginRedirect() {
   window.location.href = '/login';
 }
 
-export const CreateAccount = () => {
+const CreateAccount = () => {
   return (
     <div>
       <header>
         <NavBar />
       </header>
       <main className="container d-flex flex-column justify-content-center align-items-center p-4">
-        <figure
-          className="d-flex justify-content-center align-items-center" style={{ width: '300px' }}
-        >
-          <img
-            src={LogoLetra}
-            alt="Logo"
-            className="img-fluid w-100"
-          />
-        </figure>
         <div className="bg-body-tertiary card p-3 w-100 w-lg-auto" style={{ maxWidth: '600px' }}>
           <h3 className='text-center'>Crea una cuenta</h3>
           <hr />
@@ -109,3 +99,5 @@ export const CreateAccount = () => {
     </div>
   );
 };
+
+export default CreateAccount;

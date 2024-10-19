@@ -1,5 +1,5 @@
-import { NavBar } from '../components/Navbar';
-import { FormField } from '../components/FormField';
+import NavBar from '../components/Navbar';
+import FormField from '../components/FormField';
 import { useState } from 'react';
 import LogoLetra from '../assets/images/logos/Letra.png';
 
@@ -11,7 +11,7 @@ function handleCreateAccountRedirect() {
   window.location.href = '/create-account';
 }
 
-export const Login = () => {
+const Login = () => {
   // Definir función para cambiar estado de contraseña a visible e invisible
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -27,15 +27,6 @@ export const Login = () => {
       </header>
 
       <main className="container d-flex flex-column justify-content-center align-items-center p-3 pb-4">
-        <figure
-          className="d-flex justify-content-center align-items-center" style={{ width: '300px' }}
-        >
-          <img
-            src={LogoLetra}
-            alt="Logo"
-            className="img-fluid w-100"
-          />
-        </figure>
         <div className="bg-body-tertiary card p-3 w-100 w-lg-auto" style={{ maxWidth: '450px' }}>
           <h3 className="text-center">Iniciar sesión</h3>
           <hr />
@@ -117,3 +108,6 @@ export const Login = () => {
     </div >
   );
 };
+
+
+export default Login;

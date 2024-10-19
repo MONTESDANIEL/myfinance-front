@@ -1,4 +1,4 @@
-export const ManageDue = () => {
+const ManageDue = () => {
     return (
         <div className="p-3">
             <div className="container p-3">
@@ -12,3 +12,5 @@ export const ManageDue = () => {
         </div>
     )
 }
+
+export default ManageDue;

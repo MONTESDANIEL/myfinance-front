@@ -1,11 +1,12 @@
-import { ThemeBtn } from "../../components/ThemeBtn"
-import { About } from './HomeAbout';
-import { Initial } from './HomeInitial/HomeInitial';
-import { HomeManagement } from "./HomeManagement/HomeManagement";
-import { News } from './HomeNews';
-import { Profile } from './HomeProfile/HomeProfile';
+import ThemeBtn from "../../components/ThemeBtn"
+import HomeAbout from './HomeAbout';
+import HomeInitial from './HomeInitial/HomeInitial';
+import HomeManagement from "./HomeManagement/HomeManagement";
+import HomeNews from './HomeNews';
+import HomeProfile from './HomeProfile/HomeProfile';
 import { useEffect } from 'react';
 import Logo from '../../assets/images/logos/LogoVerde.png';
+import LogoSimple from '../../assets/images/logos/Logo.png';
 
 
 // Redirecciones
@@ -16,7 +17,7 @@ function handleWelcomeRedirect() {
     window.location.href = '/';
 }
 
-export const Home = () => {
+const Home = () => {
 
 
     // Agrega la función de cerrar la barra lateral al seleccionar una opción
@@ -82,11 +83,11 @@ export const Home = () => {
                         >
                             <div className="offcanvas-header">
                                 <img
-                                    src="src\assets\images\Logo.png"
+                                    src={LogoSimple}
                                     alt="Logo"
-                                    width="30"
-                                    height="24"
-                                    className="d-inline-block align-text-top mx-2" />
+                                    width="25"
+                                    height="25"
+                                    className="d-inline-block align-text-top me-2" />
                                 <h5
                                     className="offcanvas-title"
                                     id="offcanvasNavbarLabel">
@@ -101,7 +102,7 @@ export const Home = () => {
                             </div>
                             <div className="offcanvas-body">
                                 <ul
-                                    className="navbar-nav justify-content-end flex-grow-1 pe-3"
+                                    className="navbar-nav justify-content-end flex-grow-1"
                                     id="pills-tab"
                                     role="tablist">
                                     <li className="nav-item" role="presentation">
@@ -216,7 +217,7 @@ export const Home = () => {
                         role="tabpanel"
                         aria-labelledby="pills-home-tab"
                     >
-                        <Initial />
+                        <HomeInitial />
                     </div>
                     <div
                         className="tab-pane fade"
@@ -232,7 +233,7 @@ export const Home = () => {
                         role="tabpanel"
                         aria-labelledby="pills-about-tab"
                     >
-                        <About />
+                        <HomeAbout />
                     </div>
                     <div
                         className="tab-pane fade"
@@ -240,7 +241,7 @@ export const Home = () => {
                         role="tabpanel"
                         aria-labelledby="pills-profile-tab"
                     >
-                        <Profile />
+                        <HomeProfile />
                     </div>
                     <div
                         className="tab-pane fade"
@@ -248,10 +249,12 @@ export const Home = () => {
                         role="tabpanel"
                         aria-labelledby="pills-news-tab"
                     >
-                        <News />
+                        <HomeNews />
                     </div>
                 </div>
             </main>
         </div>
     )
 }
+
+export default Home;

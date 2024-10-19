@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ManageReports = () => {
+const ManageReports = () => {
     return (
         <div className="container p-3">
             <div className="p-3 bg-body-tertiary">
@@ -25,7 +25,7 @@ export const ManageReports = () => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="reportCategory" className="form-label">Categoría</label>
-                                    <select className="form-select" id="reportCategory"  defaultValue="1">
+                                    <select className="form-select" id="reportCategory" defaultValue="1">
                                         <option value="1">Ingresos</option>
                                         <option value="2">Gastos</option>
                                         <option value="3">Transferencias</option>
@@ -52,3 +52,5 @@ export const ManageReports = () => {
 
     );
 }
+
+export default ManageReports;

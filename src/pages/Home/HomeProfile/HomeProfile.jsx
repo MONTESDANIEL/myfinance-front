@@ -1,4 +1,4 @@
-export const Profile = () => {
+const HomeProfile = () => {
     return (
         <div className="container-fluid">
             <div className="d-lg-none navbar container-fluid justify-content-center">
@@ -258,3 +258,5 @@ export const Profile = () => {
         </div>
     )
 }
+
+export default HomeProfile;

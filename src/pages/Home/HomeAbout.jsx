@@ -1,4 +1,4 @@
-export const About = () => {
+const HomeAbout = () => {
     return (
         <div className="container-fluid">
             <section id="about" className='container p-3 mb-2 bg-body-tertiary text-center'>
@@ -79,3 +79,5 @@ export const About = () => {
         </div>
     )
 }
+
+export default HomeAbout

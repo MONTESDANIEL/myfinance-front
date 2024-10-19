@@ -15,7 +15,7 @@ function theme() {
     }
 }
 
-export const ThemeBtn = () => {
+const ThemeBtn = () => {
 
     return (
         <div>
@@ -25,3 +25,5 @@ export const ThemeBtn = () => {
         </div>
     );
 }
+
+export default ThemeBtn;

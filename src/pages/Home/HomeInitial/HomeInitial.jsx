@@ -1,7 +1,7 @@
-import { InitialPerformance } from './InitialPerformance';
-import { InitialSummary } from './InitialSummary';
+import InitialPerformance from './InitialPerformance';
+import InitialSummary from './InitialSummary';
 
-export const Initial = () => {
+const HomeInitial = () => {
 
     return (
         <div className="container-fluid">
@@ -17,3 +17,5 @@ export const Initial = () => {
         </div >
     );
 };
+
+export default HomeInitial

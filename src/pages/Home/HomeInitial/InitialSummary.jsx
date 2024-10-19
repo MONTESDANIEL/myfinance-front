@@ -9,7 +9,7 @@ const getCSSVariable = (variable) => {
     return getComputedStyle(document.documentElement).getPropertyValue(variable);
 };
 
-export const InitialSummary = () => {
+const InitialSummary = () => {
 
     // Datos grafico ahorros mes en año
     const annualSavingsMonth = {
@@ -94,3 +94,5 @@ export const InitialSummary = () => {
     );
 
 }
+
+export default InitialSummary;

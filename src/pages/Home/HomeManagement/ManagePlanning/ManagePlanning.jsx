@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlanningCalendar } from './PlanningCalendar';
+import PlanningCalendar from './PlanningCalendar';
 import FloatWindow from '../../../../components/FloatWindow';
 
 const financialGoalsData = [
@@ -34,7 +34,7 @@ const financialGoalsData = [
 ];
 
 
-export const ManagePlanning = () => {
+const ManagePlanning = () => {
 
     const [selectedGoal, setSelectedGoal] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -202,3 +202,5 @@ export const ManagePlanning = () => {
         </>
     );
 };
+
+export default ManagePlanning;

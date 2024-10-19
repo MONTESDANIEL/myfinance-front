@@ -1,9 +1,9 @@
-import { ManageMovements } from './ManageMovements';
-import { ManagePlanning } from './ManagePlanning/ManagePlanning';
-import { ManageReports } from './ManageReports';
-import { ManageDue } from './ManageDue';
+import ManageMovements from './ManageMovements';
+import ManagePlanning from './ManagePlanning/ManagePlanning';
+import ManageReports from './ManageReports';
+import ManageDue from './ManageDue';
 
-export const HomeManagement = () => {
+const HomeManagement = () => {
     return (
         <div className="container-fluid">
             <div className="d-lg-none navbar container-fluid justify-content-center">
@@ -93,3 +93,4 @@ export const HomeManagement = () => {
     )
 }
 
+export default HomeManagement;
