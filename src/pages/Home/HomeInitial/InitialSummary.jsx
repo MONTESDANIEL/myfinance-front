@@ -1,12 +1,15 @@
 import React from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import CardInfo from '../../../components/CardInfo';
+
+import CardInfo from '@components/CardInfo';
+import colors from '@components/Colors';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
-const ahorro = getComputedStyle(document.documentElement).getPropertyValue('--cyan-500');
+// Se define el color de la grafica y la tarjeta
+const ahorro = colors.savings[3];
 
 const monthlyData = {
     income: [3200000, 3500000, 4000000, 3000000, 5000000, 4500000, 4700000, 4800000, 5200000, 4000000, 4300000, 4600000],

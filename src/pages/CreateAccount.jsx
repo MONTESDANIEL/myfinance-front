@@ -1,5 +1,5 @@
-import NavBar from '../components/Navbar';
-import FormField from '../components/FormField';
+import NavBar from '@components/Navbar';
+import FormField from '@components/FormField';
 
 // Validación para que la contraseña sea igual a la confirmación ademas de que tengan valores
 function handleRegister(event) {

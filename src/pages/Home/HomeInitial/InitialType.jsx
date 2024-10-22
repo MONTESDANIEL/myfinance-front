@@ -1,30 +1,12 @@
 import { React, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import CardInfo from '../../../components/CardInfo';
+
+import CardInfo from '@components/CardInfo';
+import colors from '@components/Colors';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
-
-const getCSSVariable = (variable) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable);
-};
-
-// Constante de colores que se utilizan
-const colors = {
-    income: {
-        1: getCSSVariable('--green-300'),
-        2: getCSSVariable('--green-500')
-    },
-    savings: {
-        1: getCSSVariable('--cyan-300'),
-        2: getCSSVariable('--cyan-500')
-    },
-    expense: {
-        1: getCSSVariable('--pink-300'),
-        2: getCSSVariable('--pink-500')
-    }
-}
 
 // Constante de datos que debe extraerse de la base
 const monthlyData = {

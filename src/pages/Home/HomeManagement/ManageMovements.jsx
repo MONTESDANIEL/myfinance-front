@@ -60,10 +60,10 @@ const ManageMovements = () => {
     return (
         <>
 
-            <div className="text-center text-ligth">
-                <h2>Movimientos</h2>
+            <div className="text-center text-ligth d-lg-none">
+                <h1>Movimientos</h1>
+                <hr />
             </div>
-            <hr />
 
             <div className="container rounded p-2 bg-body-tertiary mb-3">
                 <div className="card">

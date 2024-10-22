@@ -1,35 +1,12 @@
 import { React } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import CardInfo from '../../../components/CardInfo';
+
+import CardInfo from '@components/CardInfo';
+import colors from '@components/Colors';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
-
-const getCSSVariable = (variable) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable);
-};
-
-const colors = {
-
-    income: {
-        1: getCSSVariable('--green-300'),
-        2: getCSSVariable('--green-400'),
-        3: getCSSVariable('--green-600'),
-    },
-    savings: {
-        1: getCSSVariable('--cyan-300'),
-        2: getCSSVariable('--cyan-400'),
-        3: getCSSVariable('--cyan-600'),
-    },
-    expense: {
-        1: getCSSVariable('--pink-300'),
-        2: getCSSVariable('--pink-400'),
-        3: getCSSVariable('--pink-600'),
-    },
-
-
-}
 
 const monthlyData = {
     income: [32000, 35000, 40000, 30000, 50000, 45000, 47000, 48000, 52000, 40000, 43000, 46000],
@@ -80,7 +57,7 @@ const PerformanceMonthly = () => {
     // Opciones del gráfico de desempeño mensual
     const adjustPieChart = {
         responsive: true,
-        maintainAspectRatio: false, // Cambiar a false para que sea responsivo
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'top',
@@ -134,12 +111,13 @@ const PerformanceMonthly = () => {
                 </div>
 
                 {/** Tarjeta total gastos */}
-                <div className="col-md-4 my-2 text-center"><CardInfo
-                    title="Egresos"
-                    icon="bi-credit-card"
-                    value={formatMonthlyExpense}
-                    backgroundColor={colors.expense[1]}
-                />
+                <div className="col-md-4 my-2 text-center">
+                    <CardInfo
+                        title="Egresos"
+                        icon="bi-credit-card"
+                        value={formatMonthlyExpense}
+                        backgroundColor={colors.expense[1]}
+                    />
                 </div>
 
             </div>

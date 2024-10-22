@@ -1,13 +1,15 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ThemeBtn from "../../components/ThemeBtn";
 import HomeAbout from './HomeAbout';
 import HomeInitial from './HomeInitial/HomeInitial';
 import HomeManagement from "./HomeManagement/HomeManagement";
 import HomeNews from './HomeNews';
 import HomeProfile from './HomeProfile/HomeProfile';
-import { useEffect, useState } from 'react';
+
 import Logo from '../../assets/images/logos/LogoVerde.png';
 import LogoSimple from '../../assets/images/logos/Logo.png';
-import { useNavigate } from 'react-router-dom';
 
 // Redirecciones
 function handleHomeRedirect() {

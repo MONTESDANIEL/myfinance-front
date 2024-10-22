@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import PlanningCalendar from './PlanningCalendar';
-import FloatWindow from '../../../../components/FloatWindow';
+
+import PlanningCalendar from './PlanningCalendar/PlanningCalendar';
+
+import FloatWindow from '@components/FloatWindow';
 
 const financialGoalsData = [
     {
@@ -33,7 +35,6 @@ const financialGoalsData = [
     }
 ];
 
-
 const ManagePlanning = () => {
 
     const [selectedGoal, setSelectedGoal] = useState(null);
@@ -51,65 +52,24 @@ const ManagePlanning = () => {
 
     return (
         <>
-            <div className="text-center text-ligth p-1">
-                <h2>Planificación financiera</h2>
-            </div>
-            <hr />
-
-            <div className="container rounded p-2 my-2 bg-body-tertiary">
-
-                <div className="row d-flex m-3">
-                    {/** Tarjeta total ingresos */}
-                    <div className="col-md-4 text-center my-1">
-                        <div className="card income text-white">
-                            <div className="card-body d-flex align-items-center">
-                                <h5 className="card-title fs-6 d-flex justify-content-center w-100 mb-0">
-                                    <i className="bi bi-graph-up me-2"></i>
-                                    <span className="ms-1">INGRESOS</span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    {/** Tarjeta total ahorro */}
-                    <div className="col-md-4 text-center my-1">
-                        <div className="card savings text-white">
-                            <div className="card-body d-flex align-items-center">
-                                <h5 className="card-title fs-6 d-flex justify-content-center w-100 mb-0">
-                                    <i className="bi bi-piggy-bank me-2"></i>
-                                    <span className="ms-1">AHORRO</span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    {/** Tarjeta total gastos */}
-                    <div className="col-md-4 text-center my-1">
-                        <div className="card expense text-white">
-                            <div className="card-body d-flex align-items-center">
-                                <h5 className="card-title fs-6 d-flex justify-content-center w-100 mb-0">
-                                    <i className="bi bi-graph-down me-2"></i>
-                                    <span className="ms-1">EGRESOS</span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="card">
-                    <PlanningCalendar />
-                </div>
-
+            <div className="text-center text-ligth p-1 d-lg-none">
+                <h1 className='mb-0'>Planificación financiera</h1>
+                <hr />
             </div>
 
-            <div className="container rounded p-3 bg-body-tertiary">
+            <div className="container rounded p-2 mb-2 bg-body-tertiary">
+                <PlanningCalendar />
+            </div>
 
-                <h3 className="mb-3">Metas Financieras</h3>
-                <div className="row">
+            <div className="container rounded p-2 bg-body-tertiary">
+                <h2 className='my-4 text-center'>Metas financieras</h2>
+                <div className="container row">
                     {financialGoalsData.map((goal) => (
-                        <div className="col-xl-6 mb-3" key={goal.id}>
-                            <div className="card shadow-sm">
+                        <div className="col-xl-6 mb-2" key={goal.id}>
+                            <div className="card px-3">
                                 <div className="card-body">
                                     <div className="text-center">
-                                        <h5>{goal.title}: ${goal.targetAmount}</h5>
+                                        <h5 className='my-2'>{goal.title}: ${goal.targetAmount}</h5>
                                     </div>
                                     <div className="progress my-3">
                                         <div

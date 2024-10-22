@@ -1,7 +1,7 @@
-import NavBar from '../components/Navbar';
-import FormField from '../components/FormField';
 import { useState } from 'react';
-import LogoLetra from '../assets/images/logos/Letra.png';
+
+import NavBar from '@components/Navbar';
+import FormField from '@components/FormField';
 
 // Redirecciones
 function handleHomeRedirect() {
