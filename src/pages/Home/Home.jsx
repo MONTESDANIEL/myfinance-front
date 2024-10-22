@@ -7,6 +7,7 @@ import HomeProfile from './HomeProfile/HomeProfile';
 import { useEffect, useState } from 'react';
 import Logo from '../../assets/images/logos/LogoVerde.png';
 import LogoSimple from '../../assets/images/logos/Logo.png';
+import { useNavigate } from 'react-router-dom';
 
 // Redirecciones
 function handleHomeRedirect() {
@@ -30,6 +31,12 @@ const Home = () => {
     const handleTabClick = (tab) => {
         setActiveTab(tab); // Actualiza la pestaña activa
     };
+
+    const handleClick = () => {
+        setActiveTab('home'); // Actualiza la pestaña activa
+    };
+
+    const navigate = useNavigate(); // Hook para navegar
 
     // Agrega la función de cerrar la barra lateral al seleccionar una opción
     useEffect(() => {
@@ -59,7 +66,7 @@ const Home = () => {
                     <div className="container-fluid">
                         <button
                             className="btn btn-sm d-flex align-items-center"
-                            onClick={handleHomeRedirect}
+                            onClick={handleClick}
                         >
                             <img
                                 src={Logo}

@@ -3,15 +3,28 @@ import ThemeBtn from '../../components/ThemeBtn';
 import Logo from '../../assets/images/logos/LogoVerde.png';
 import { Link } from 'react-router-dom';
 
+
+// Redirecciones
+function handleWelcomeRedirect() {
+    window.location.href = '/';
+}
+
+// Redirecciones
+function handleLoginRedirect() {
+    window.location.href = '/login';
+}
+
 const Welcome = () => {
     return (
         <div>
             <header>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <Link to="/"
+                        <button
+                            type="button"
                             className="btn btn-sm d-flex align-items-center"
-                            type="button">
+                            onClick={handleWelcomeRedirect}
+                        >
                             <img
                                 src={Logo}
                                 alt="Logo"
@@ -19,7 +32,7 @@ const Welcome = () => {
                                 height="30"
                                 className="d-inline-block align-text-top"
                             />
-                        </Link>
+                        </button>
                         <div className="d-flex justify-content-end align-items-center">
                             <div className="d-flex flex-lg-none">
                                 <ThemeBtn />
