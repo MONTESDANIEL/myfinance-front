@@ -1,29 +1,48 @@
 import React from 'react';
 
+const report = {
+    start: new Date(2024, 9, 10),
+    finish: new Date(2024, 10, 20),
+    categoria: "Gastos"
+}
+
+const formatDate = (date) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('es-CO', options);
+}
+
 const ManageReports = () => {
     return (
-        <div className="container p-3">
-            <div className="p-3 bg-body-tertiary">
-                <div className="text-center mb-3 text-ligth">
-                    <h2>Reportes</h2>
-                </div>
+        <>
+            <div className="text-center text-ligth p-1 d-lg-none">
+                <h1 className='mb-0'>Reportes</h1>
                 <hr />
-                <div className="container p-3">
-                    <div className="card mb-4">
-                        <div className="card-header">
-                            Reportes Personalizados
-                        </div>
-                        <div className="card-body">
-                            <form>
-                                <div className="mb-3">
+            </div>
+
+            <div className="container rounded p-4 mb-3 bg-body-tertiary">
+                <div className="row align-items-center mb-2">
+                    <div className="col-md-12 text-center">
+                        <h2>Generar Reporte Personalizado</h2>
+                        <p className="text-muted">Selecciona los filtros para generar un reporte.</p>
+                    </div>
+                </div>
+
+                <div className="card">
+                    <div className="card-body">
+                        <form>
+                            <div className="row mb-3">
+                                <div className="col-md-6">
                                     <label htmlFor="reportStartDate" className="form-label">Fecha de Inicio</label>
                                     <input type="date" className="form-control" id="reportStartDate" />
                                 </div>
-                                <div className="mb-3">
+                                <div className="col-md-6">
                                     <label htmlFor="reportEndDate" className="form-label">Fecha de Fin</label>
                                     <input type="date" className="form-control" id="reportEndDate" />
                                 </div>
-                                <div className="mb-3">
+                            </div>
+
+                            <div className="row mb-4">
+                                <div className="col-md-12">
                                     <label htmlFor="reportCategory" className="form-label">Categoría</label>
                                     <select className="form-select" id="reportCategory" defaultValue="1">
                                         <option value="1">Ingresos</option>
@@ -31,25 +50,34 @@ const ManageReports = () => {
                                         <option value="3">Transferencias</option>
                                     </select>
                                 </div>
-                                <button type="button" className="btn btn-info">
-                                    Generar y Descargar Reporte
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
 
-                    <div className="card mb-4">
-                        <div className="card-header">
-                            Balance General
-                        </div>
-                        <div className="card-body">
-                            <p>Estado financiero en tiempo real.</p>
-                        </div>
+                            <div className="text-center">
+                                <button type="button" className="btn btn-success">
+                                    Generar Reporte
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div className="container rounded p-4 bg-body-tertiary">
+                <div className="row align-items-center mb-2">
+                    <div className="col-md-12 text-center">
+                        <h2>Previsualización del reporte</h2>
+                        <p className="text-muted">Reporte de {report.categoria} realizados entre {formatDate(report.start)} y {formatDate(report.finish)}.</p>
+                    </div>
+                </div>
+
+                <div className="card">
+                    <div className="card-body text-center">
+                        <p className="text-muted">Aqui se mostrara una previsualización del reporte solicitado por el cliente antes de la descarga.</p>
+                        <button className="btn btn-primary">Descargar Reporte</button>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 

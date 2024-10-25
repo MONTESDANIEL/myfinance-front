@@ -65,7 +65,8 @@ const ManageMovements = () => {
                 <hr />
             </div>
 
-            <div className="container rounded p-2 bg-body-tertiary mb-3">
+            <div className="container rounded p-2 mb-3 bg-body-tertiary">
+                <h2 className='my-4 mt-3 text-center'>Nuevos Movimientos</h2>
                 <div className="card">
                     <div className="card-header text-center text-md-start">
                         Registrar Movimiento
@@ -109,6 +110,7 @@ const ManageMovements = () => {
             </div>
 
             <div className="container rounded p-2 bg-body-tertiary">
+                <h2 className='my-4 mt-3 text-center'>Historial de Movimientos</h2>
                 <div className="card">
                     <div className="card-header d-flex flex-column flex-md-row justify-content-between align-items-center">
                         <span className="mb-md-0 p-2">Ver Movimientos</span>

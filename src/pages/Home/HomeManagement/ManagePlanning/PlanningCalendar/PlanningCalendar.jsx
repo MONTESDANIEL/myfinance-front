@@ -7,13 +7,13 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import PlanningEvent from './PlanningEvent';
 import CardInfo from '@components/CardInfo';
 
-import colors from '@components/Colors';
+import { movementPalette as colors } from '@components/Colors';
 
 const localizer = momentLocalizer(moment);
 
 const PlanningCalendar = () => {
 
-    const [events, setEvents] = useState([
+    const [events] = useState([
         // Día con múltiples eventos de diferentes tipos
         {
             title: 'Ingreso de sueldo',
@@ -46,6 +46,18 @@ const PlanningCalendar = () => {
             start: new Date(2024, 9, 2), // 2 de octubre
             end: new Date(2024, 9, 2),
             type: 'Ahorro'
+        },
+        {
+            title: 'Inversión en acciones',
+            start: new Date(2024, 9, 2), // 1 de octubre
+            end: new Date(2024, 9, 2),
+            type: 'Ahorro'
+        },
+        {
+            title: 'Gasto de emergencia',
+            start: new Date(2024, 9, 2), // 1 de octubre
+            end: new Date(2024, 9, 2),
+            type: 'Egreso'
         },
 
         // Día con pocos eventos
@@ -146,11 +158,11 @@ const PlanningCalendar = () => {
             type: 'Ingreso'
         },
         {
-            title: 'Inversión en acciones',
-            start: new Date(2024, 9, 28), // 28 de octubre
-            end: new Date(2024, 9, 28),
-            type: 'Ahorro'
-        },
+            title: 'Felipe Come  Monda',
+            start: new Date(2024, 11, 24), // 28 de octubre
+            end: new Date(2024, 11, 24),
+            type: 'Egreso'
+        }
     ]);
 
     // Barra de herramientas/Opciones del calendario
@@ -222,21 +234,6 @@ const PlanningCalendar = () => {
         });
 
     };
-    console.log(complementEvents(events));
-
-    //
-    const handleDateClick = (slotInfo) => {
-        const selectedDateString = slotInfo.start.toISOString().split('T')[0];
-
-        setSelectedDate(null);
-        setTimeout(() => {
-            setSelectedDate(selectedDateString);
-        }, 0);
-
-    };
-
-    // Fecha seleccionada por el usuario
-    const [selectedDate, setSelectedDate] = useState(null);
 
     // Funcion para filtrar los tipos de eventos existentes en cada dia
     const filterEventsByType = (events) => {
@@ -261,12 +258,22 @@ const PlanningCalendar = () => {
         return Object.values(filteredEvents).flatMap(dateEvents => Object.values(dateEvents));
     };
 
+    //
+    const handleDateClick = (slotInfo) => {
+        const selectedDateString = slotInfo.start.toISOString().split('T')[0];
+
+        setSelectedDate(null);
+        setTimeout(() => {
+            setSelectedDate(selectedDateString);
+        }, 0);
+    };
+
+    // Fecha seleccionada por el usuario
+    const [selectedDate, setSelectedDate] = useState(null);
+
     return (
 
         < >
-
-            <h2 className='my-4 text-center'>Calendario de planificación</h2>
-
             <div className="row d-flex m-2">
                 <div className="col-md-4 text-center">
                     <CardInfo

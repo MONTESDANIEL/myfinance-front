@@ -3,7 +3,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import colors from '@components/Colors';
+import { movementPalette as colors } from '@components/Colors';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
@@ -192,16 +192,18 @@ const PerformanceType = () => {
                     </div>
                 </div>
                 {/* Botones para seleccionar el tipo de reporte */}
-                <div className="d-flex flex-wrap justify-content-center m-3">
+                <div className="row justify-content-center m-3">
                     {['anual', 'bimestral', 'trimestral', 'semestral'].map(type => (
-                        <button
-                            key={type}
-                            className={`btn btn-sm ${type === reportType ? 'btn-secondary' : 'btn-outline-secondary'} m-1`}
-                            onClick={() => setReportType(type)}
-                            style={{ flex: '1 0 auto', minWidth: '120px', maxWidth: '100%' }} // Permite que el botón ocupe el espacio necesario
-                        >
-                            {type.charAt(0).toUpperCase() + type.slice(1)}
-                        </button>
+
+                        <div className='col-md-3'>
+                            <button
+                                key={type}
+                                className={`btn btn-sm ${type === reportType ? 'btn-secondary' : 'btn-outline-secondary'} m-1 w-100`}
+                                onClick={() => setReportType(type)}
+                            >
+                                {type.charAt(0).toUpperCase() + type.slice(1)}
+                            </button>
+                        </div>
                     ))}
                 </div>
             </div>

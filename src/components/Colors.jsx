@@ -4,7 +4,7 @@ const getCSSVariable = (variable) => {
     return getComputedStyle(document.documentElement).getPropertyValue(variable);
 };
 
-const movementPalette = {
+export const movementPalette = {
     income: {
         1: getCSSVariable('--green-300'),
         2: getCSSVariable('--green-400'),
@@ -22,4 +22,14 @@ const movementPalette = {
     }
 };
 
-export default movementPalette;
+export const goalsPalette = {
+    blue: getCSSVariable('--blue'),
+    indigo: getCSSVariable('--indigo'),
+    pink: getCSSVariable('--pink'),
+    red: getCSSVariable('--red'),
+    orange: getCSSVariable('--orange'),
+    yellow: getCSSVariable('--yellow'),
+    green: getCSSVariable('--green'),
+    teal: getCSSVariable('--teal'),
+    cyan: getCSSVariable('--cyan')
+}

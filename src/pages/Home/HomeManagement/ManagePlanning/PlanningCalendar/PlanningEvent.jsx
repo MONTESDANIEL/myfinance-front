@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import FloatWindow from '@components/FloatWindow';
 
 const PlanningEvent = ({ selectedDate, events }) => {
@@ -32,9 +31,10 @@ const PlanningEvent = ({ selectedDate, events }) => {
 
             setEventDetails(details); // Establecer detalles de eventos en el estado
             setIsOpen(details.length > 0); // Abrir la ventana flotante solo si hay eventos
+        } else {
+            setIsOpen(false);
         }
-    }, [selectedDate, events]); // Dependencias: cambia cuando selectedDate o events cambian
-
+    }, [selectedDate, events]);
 
     const handleClose = () => {
         setIsOpen(false);
@@ -65,7 +65,7 @@ const PlanningEvent = ({ selectedDate, events }) => {
                         </div>
                     ))
                 }
-            </FloatWindow >
+            </FloatWindow>
         </>
     );
 };
