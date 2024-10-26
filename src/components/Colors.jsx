@@ -24,7 +24,7 @@ export const movementPalette = {
 
 export const goalsPalette = {
     blue: getCSSVariable('--blue'),
-    indigo: getCSSVariable('--indigo'),
+    purple: getCSSVariable('--purple'),
     pink: getCSSVariable('--pink'),
     red: getCSSVariable('--red'),
     orange: getCSSVariable('--orange'),

@@ -19,7 +19,7 @@ const ManageReports = () => {
                 <hr />
             </div>
 
-            <div className="container rounded p-4 mb-3 bg-body-tertiary">
+            <div className="container-fluid rounded p-4 mb-3 bg-body-tertiary">
                 <div className="row align-items-center mb-2">
                     <div className="col-md-12 text-center">
                         <h2>Generar Reporte Personalizado</h2>
@@ -62,7 +62,7 @@ const ManageReports = () => {
                 </div>
             </div>
 
-            <div className="container rounded p-4 bg-body-tertiary">
+            <div className="container-fluid rounded p-4 bg-body-tertiary">
                 <div className="row align-items-center mb-2">
                     <div className="col-md-12 text-center">
                         <h2>Previsualización del reporte</h2>

@@ -1,67 +1,102 @@
 import React, { useState } from 'react';
 import { movementPalette, goalsPalette } from '@components/Colors';
-import FloatWindow from '@components/FloatWindow'
-
+import FloatWindow from '@components/FloatWindow';
 
 const financialGoalsData = [
     {
         "id": 1,
-        "title": "Ahorro para diciembre",
-        "targetAmount": 5000,
-        "savedAmount": 2500,
-        "lastDeposit": "500 el 1 de octubre",
-        "weeklyGoal": 300,
-        "progress": 50,
-        "color": "indigo",
-        "depositHistory": [
-            "Deposito de $500 el 1 de octubre",
-            "Deposito de $300 el 15 de septiembre",
-            "Deposito de $200 el 1 de septiembre"
+        "title": "No gastar tanto en entretenimiento",
+        "targetAmount": 500000,
+        "currentSpending": 300000,
+        "lastExpense": {
+            "description": "Cena en restaurante",
+            "amount": 50000
+        },
+        "remainingBudget": 200000,
+        "progress": 70,
+        "color": "blue",
+        "recentExpenses": [
+            { "description": "Cine", "amount": 15000 },
+            { "description": "Salidas a comer", "amount": 100000 },
+            { "description": "Suscripción a plataforma de streaming", "amount": 15000 }
         ]
     },
     {
         "id": 2,
-        "title": "No gastar más de $500 en entretenimiento",
-        "targetAmount": 500,
-        "currentSpending": 300,
-        "lastExpense": "Cena en restaurante ($50)",
-        "remainingBudget": 200,
-        "progress": 70,
-        "color": "blue",
-        "recentExpenses": [
-            "Cine: $15",
-            "Salidas a comer: $100",
-            "Suscripción a plataforma de streaming: $15"
+        "title": "Ahorro para vacaciones",
+        "targetAmount": 1000000,
+        "currentSpending": 450000,
+        "lastDeposit": {
+            "description": "Depósito inicial",
+            "amount": 150000
+        },
+        "remainingBudget": 550000,
+        "progress": 45,
+        "color": "green",
+        "depositHistory": [
+            { "description": "Depósito de cumpleaños", "amount": 10000 },
+            { "description": "Depósito mensual", "amount": 200000 },
+            { "description": "Regalo familiar", "amount": 5000 },
+            { "description": "Intereses ganados", "amount": 1500 },
+            { "description": "Depósito de sueldo", "amount": 7500 },
+            { "description": "Depósito extra", "amount": 3000 },
+            { "description": "Intereses", "amount": 1000 },
+            { "description": "Depósito de bonificación", "amount": 400000 },
+            { "description": "Venta de artículos", "amount": 5000 },
+            { "description": "Reembolso de gastos", "amount": 1000 }
         ]
     },
     {
         "id": 3,
-        "title": "No gastar más de $500 en entretenimiento",
-        "targetAmount": 500,
-        "currentSpending": 300,
-        "lastExpense": "Cena en restaurante ($50)",
-        "remainingBudget": 200,
-        "progress": 30,
-        "color": "red",
+        "title": "Presupuesto mensual de compras",
+        "targetAmount": 400000,
+        "currentSpending": 200000,
+        "lastExpense": {
+            "description": "Frutas y verduras",
+            "amount": 20000
+        },
+        "remainingBudget": 200000,
+        "progress": 50,
+        "color": "orange",
         "recentExpenses": [
-            "Cine: $15",
-            "Salidas a comer: $100",
-            "Suscripción a plataforma de streaming: $15"
+            { "description": "Supermercado", "amount": 5000 },
+            { "description": "Farmacia", "amount": 3000 },
+            { "description": "Limpieza del hogar", "amount": 2500 },
+            { "description": "Panadería", "amount": 1500 }
         ]
     },
     {
         "id": 4,
-        "title": "Comprar una moto",
-        "targetAmount": 600,
-        "currentSpending": 100,
-        "lastExpense": "Cena en restaurante ($50)",
-        "remainingBudget": 200,
-        "progress": 100,
+        "title": "Ahorro para fondo de emergencia",
+        "targetAmount": 2000000,
+        "currentSpending": 1700000,
+        "lastDeposit": {
+            "description": "Depósito de emergencia",
+            "amount": 200000
+        },
+        "remainingBudget": 300000,
+        "progress": 85,
+        "color": "purple",
+        "depositHistory": [
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Ahorro para fondo de emergencia",
+        "targetAmount": 2000000,
+        "currentSpending": 1700000,
+        "lastDeposit": {
+            "description": "Depósito de emergencia",
+            "amount": 200000
+        },
+        "remainingBudget": 300000,
+        "progress": 85,
         "color": "yellow",
-        "recentExpenses": [
-            "Cine: $15",
-            "Salidas a comer: $100",
-            "Suscripción a plataforma de streaming: $15"
+        "depositHistory": [
+            { "description": "Supermercado", "amount": 5000 },
+            { "description": "Farmacia", "amount": 3000 },
+            { "description": "Limpieza del hogar", "amount": 2500 },
+            { "description": "Panadería", "amount": 1500 }
         ]
     }
 ];
@@ -81,75 +116,91 @@ const PlanningGoals = () => {
     };
 
     return (
-        <div className="row justify-content-center p-3">
-            {financialGoalsData.map((goal) => (
-                <div className="col-lg-6 p-2" key={goal.id}>
-                    <div className="card bg-dark-subtle">
-                        <div className="card-body">
-                            <div className="text-center">
-                                <h5 className='my-2'>{goal.title}: ${goal.targetAmount}</h5>
-                            </div>
-                            <div className="progress my-3">
-                                <div
-                                    className="progress-bar text-black"
-                                    role="progressbar"
-                                    style={{ width: `${goal.progress}%`, backgroundColor: goalsPalette[goal.color] }}
-                                    aria-valuenow={goal.progress}
-                                    aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    {goal.progress}%
+        <>
+
+            <div className='row justify-content-center p-3'>
+                {financialGoalsData.map((goal) => (
+                    <div className="col-lg-6 p-2 d-flex" key={goal.id}>
+                        <div className="card bg-dark-subtle flex-fill">
+                            <div className="card-body d-flex flex-column">
+                                <div className="text-center d-flex flex-grow-1 align-items-center justify-content-center">
+                                    <h5 className='my-1'>{goal.title}</h5>
                                 </div>
+                                <div className="progress my-3">
+                                    <div
+                                        className="progress-bar text-black"
+                                        role="progressbar"
+                                        style={{ width: `${goal.progress}%`, backgroundColor: goalsPalette[goal.color] }}
+                                        aria-valuenow={goal.progress}
+                                        aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        {goal.progress}%
+                                    </div>
+                                </div>
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-secondary"
+                                    onClick={() => handleShowDetails(goal)}
+                                >
+                                    <i className="bi bi-info-circle"><span className="ms-2">Detalles</span></i>
+                                </button>
                             </div>
-                            <button
-                                type="button"
-                                className="btn btn-outline-secondary"
-                                onClick={() => handleShowDetails(goal)}
-                            >
-                                <i className="bi bi-info-circle"><span className="ms-2">Detalles</span></i>
-                            </button>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
+
+
 
             {selectedGoal && (
                 <FloatWindow isOpen={isOpen} onClose={handleClose} title={selectedGoal.title}>
                     <div>
-                        <div className='row justify-content-center p-3'>
-                            <div
-                                className='card col-lg-5 m-1 p-1 text-center justify-content-center'
-                                style={{ backgroundColor: movementPalette.income[2] }}>
-                                <h6 className='m-3'>Cantidad Objetivo: ${selectedGoal.targetAmount}</h6>
+                        <div
+                            className='card mb-1 p-1 text-center justify-content-center'
+                            style={{ backgroundColor: movementPalette.income[2] }}>
+                            <div className="align-items-center">
+                                <h6 className="col-md-12 m-0">Cantidad Objetivo</h6>
+                                <h7 className="col-md-12 m-0">${selectedGoal.targetAmount}</h7>
                             </div>
-
-                            {selectedGoal.savedAmount !== undefined && (
-                                <div
-                                    className='card col-lg-5 m-1 p-1 text-center justify-content-center'
-                                    style={{ backgroundColor: movementPalette.savings[2] }}>
-                                    <h6 className='m-3'>Cantidad Ahorrada: ${selectedGoal.savedAmount}</h6>
-                                </div>
-                            )}
                         </div>
 
+                        {selectedGoal.currentSpending !== undefined && (
+                            <div
+                                className='card mb-2 p-1 text-center justify-content-center'
+                                style={{ backgroundColor: movementPalette.savings[2] }}>
+                                <div className='align-items-center'>
+                                    <h6 className='m-0'>Gasto Actual:</h6>
+                                    <h7 className="m-0">${selectedGoal.currentSpending}</h7>
+                                </div>
+                            </div>
+                        )}
+
                         <div className='card p-3'>
-                            <div className='m-2'>
-                                {selectedGoal.currentSpending !== undefined && (
-                                    <h6>Gasto Actual: ${selectedGoal.currentSpending}</h6>
-                                )}
+                            <h3 className='text-center m-0'>Detalles</h3>
+                            <hr />
+                            <div>
                                 {selectedGoal.remainingBudget !== undefined && (
-                                    <h6>Presupuesto Restante: ${selectedGoal.remainingBudget}</h6>
+                                    <div className='d-flex'>
+                                        <h6 >Presupuesto Restante:</h6>
+                                        <h6 className="text-success ms-3">$ {selectedGoal.remainingBudget}</h6>
+                                    </div>
                                 )}
                                 {selectedGoal.lastDeposit && (
-                                    <h6>Último Depósito: {selectedGoal.lastDeposit}</h6>
+                                    <div className='d-flex'>
+                                        <h6 className='m-0'>Último Depósito:</h6>
+                                        <h6 className="text-info ms-3">{selectedGoal.lastDeposit.description} : $ {selectedGoal.lastDeposit.amount}</h6>
+                                    </div>
                                 )}
                                 {selectedGoal.lastExpense && (
-                                    <h6>Último Gasto: {selectedGoal.lastExpense}</h6>
+                                    <div className='d-flex'>
+                                        <h6 className='m-0'>Último Gasto:</h6>
+                                        <h6 className="text-danger ms-3">{selectedGoal.lastExpense.description} : $ {selectedGoal.lastExpense.amount}</h6>
+                                    </div>
                                 )}
                             </div>
-                            <div className="m-2 my-3">
-                                {/* Barra de progreso */}
+                            <div className="mt-2 mb-3">
                                 <h6>Progreso:</h6>
-                                <div style={{ position: 'relative', width: '100%', height: '20px', backgroundColor: '#e0e0e0', borderRadius: '5px' }}>
+                                <div style={{ position: 'relative', width: '100%', height: '15px', backgroundColor: '#e0e0e0', borderRadius: '5px' }}>
                                     <div
                                         style={{
                                             width: `${selectedGoal.progress}%`,
@@ -165,34 +216,59 @@ const PlanningGoals = () => {
                                 </div>
                             </div>
 
-                            <div className="m-2">
-                                {selectedGoal.depositHistory && (
-                                    <>
-                                        <h6>Historial de Depósitos:</h6>
-                                        <ul className='mb-0'>
+                            {selectedGoal.depositHistory && (
+                                <>
+                                    <h6>Historial de Depósitos:</h6>
+                                    {selectedGoal.depositHistory.length > 0 ? (
+                                        <div
+                                            className="list-group overflow-auto"
+                                            style={{ height: selectedGoal.depositHistory.length > 3 ? '150px' : 'auto' }}
+                                        >
                                             {selectedGoal.depositHistory.map((deposit, index) => (
-                                                <li key={index}>{deposit}</li>
+
+                                                <div className="list-group-item d-flex justify-content-between" key={index}>
+                                                    <span>{deposit.description}</span>
+                                                    <div className="d-flex align-items-center">
+                                                        <span className="text-danger ms-2 text-nowrap">- $ {deposit.amount}</span>
+                                                    </div>
+                                                </div>
                                             ))}
-                                        </ul>
-                                    </>
-                                )}
-                                {selectedGoal.recentExpenses && (
-                                    <>
-                                        <h6>Gastos Recientes:</h6>
-                                        <ul className='mb-0'>
+                                        </div>
+                                    ) : (
+                                        <p className="text-center m-2">No hay nada para mostrar</p>
+                                    )}
+                                </>
+                            )}
+                            {selectedGoal.recentExpenses && (
+                                <>
+                                    <h6>Gastos Recientes:</h6>
+
+
+                                    {selectedGoal.recentExpenses.length > 0 ? (
+                                        <div
+                                            className="list-group overflow-auto"
+                                            style={{ height: selectedGoal.recentExpenses.length > 3 ? '150px' : 'auto' }}
+                                        >
                                             {selectedGoal.recentExpenses.map((expense, index) => (
-                                                <li key={index}>{expense}</li>
+
+                                                <div className="list-group-item d-flex justify-content-between" key={index}>
+                                                    <span>{expense.description}</span>
+                                                    <div className="d-flex align-items-center">
+                                                        <span className="text-danger ms-2 text-nowrap">- $ {expense.amount}</span>
+                                                    </div>
+                                                </div>
                                             ))}
-                                        </ul>
-                                    </>
-                                )}
-                            </div>
+                                        </div>
+                                    ) : (
+                                        <p className="text-center m-2">No hay nada para mostrar</p>
+                                    )}
+                                </>
+                            )}
                         </div>
                     </div>
-                </FloatWindow>
+                </FloatWindow >
             )}
-
-        </div>
+        </>
     );
 };
 
