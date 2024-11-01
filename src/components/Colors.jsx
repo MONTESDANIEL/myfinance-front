@@ -16,9 +16,9 @@ export const movementPalette = {
         3: getCSSVariable('--cyan-600'),
     },
     expense: {
-        1: getCSSVariable('--pink-300'),
-        2: getCSSVariable('--pink-400'),
-        3: getCSSVariable('--pink-600'),
+        1: getCSSVariable('--red-300'),
+        2: getCSSVariable('--red-400'),
+        3: getCSSVariable('--red-600'),
     }
 };
 

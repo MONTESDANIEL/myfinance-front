@@ -166,7 +166,7 @@ const ListItem = ({ date, description, amount, type, tag }) => {
             </div>
             {isOpen && (
                 <div className="m-2">
-                    <span className={`d-block d-sm-none ${amount < 0 ? 'text-danger' : 'text-success'}`}>
+                    <span className={`d-block d-md-none ${amount < 0 ? 'text-danger' : 'text-success'}`}>
                         <strong>Monto:</strong> {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
                     </span>
                     <div><strong>Fecha:</strong> {new Date(date).toLocaleDateString('es-ES')}</div>
