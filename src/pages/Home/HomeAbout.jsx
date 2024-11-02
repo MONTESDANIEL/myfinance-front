@@ -69,11 +69,9 @@ const HomeAbout = () => {
                                 required>
                             </textarea>
                         </div>
-                        <button
-                            type="submit"
-                            className="btn btn-primary">
-                            <i className="bi bi-send"></i>
-                            <span className="ms-2">Enviar</span>
+                        <button type="button" className="btn btn-primary">
+                            <span>Enviar</span>
+                            <i className="bi bi-send ms-2"></i>
                         </button>
                     </form>
                 </section>

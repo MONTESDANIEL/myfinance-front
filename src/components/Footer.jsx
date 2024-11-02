@@ -4,7 +4,7 @@ const Footer = () => {
       <footer className="bg-body-tertiary text-center text-lg-start w-100">
         <div className="container p-3 justify-content-center">
           <div className="text-center p-2">
-            <h5 className="text-uppercase ">Acerca de</h5>
+            <h3>Acerca de</h3>
             <p className="text-muted">
               MyFinance te ayuda a controlar tus finanzas personales de manera sencilla.
               Registra tus ingresos y gastos, establece metas de ahorro, y compara tasas de interés de diferentes
