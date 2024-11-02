@@ -195,9 +195,8 @@ const PerformanceType = () => {
                 <div className="row justify-content-center m-3">
                     {['anual', 'bimestral', 'trimestral', 'semestral'].map(type => (
 
-                        <div className='col-md-3'>
+                        <div className='col-md-3' key={type}>
                             <button
-                                key={type}
                                 className={`btn btn-sm ${type === reportType ? 'btn-secondary' : 'btn-outline-secondary'} m-1 w-100`}
                                 onClick={() => setReportType(type)}
                             >

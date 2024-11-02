@@ -3,7 +3,9 @@ import React from 'react';
 import PlanningCalendar from './PlanningCalendar/PlanningCalendar';
 import PlanningGoals from './PlanningGoals/PlanningGoals';
 
+
 const ManagePlanning = () => {
+
     return (
         <>
 
