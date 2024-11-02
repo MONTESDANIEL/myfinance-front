@@ -6,167 +6,41 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import PlanningEvent from './PlanningEvent';
 import CardInfo from '@components/CardInfo';
-
 import { movementPalette as colors } from '@components/Colors';
+import FloatWindow from '@components/FloatWindow';
+import events from '@data/eventsData.js'
 
 const localizer = momentLocalizer(moment);
 
 const PlanningCalendar = () => {
 
-    const [events] = useState([
-        // Día con múltiples eventos de diferentes tipos
-        {
-            title: 'Ingreso de sueldo',
-            start: new Date(2024, 9, 1), // 1 de octubre
-            end: new Date(2024, 9, 3),
-            type: 'Ingreso'
-        },
-        {
-            title: 'Pago de alquiler',
-            start: new Date(2024, 9, 1), // 1 de octubre
-            end: new Date(2024, 9, 1),
-            type: 'Egreso'
-        },
-        {
-            title: 'Inversión en acciones',
-            start: new Date(2024, 9, 1), // 1 de octubre
-            end: new Date(2024, 9, 1),
-            type: 'Ahorro'
-        },
-        {
-            title: 'Gasto de emergencia',
-            start: new Date(2024, 9, 1), // 1 de octubre
-            end: new Date(2024, 9, 1),
-            type: 'Egreso'
-        },
-
-        // Día con un solo tipo de evento
-        {
-            title: 'Inversión en acciones',
-            start: new Date(2024, 9, 2), // 2 de octubre
-            end: new Date(2024, 9, 2),
-            type: 'Ahorro'
-        },
-        {
-            title: 'Inversión en acciones',
-            start: new Date(2024, 9, 2), // 1 de octubre
-            end: new Date(2024, 9, 2),
-            type: 'Ahorro'
-        },
-        {
-            title: 'Gasto de emergencia',
-            start: new Date(2024, 9, 2), // 1 de octubre
-            end: new Date(2024, 9, 2),
-            type: 'Egreso'
-        },
-
-        // Día con pocos eventos
-        {
-            title: 'Pago de servicios',
-            start: new Date(2024, 9, 4), // 4 de octubre
-            end: new Date(2024, 9, 4),
-            type: 'Egreso'
-        },
-
-        // Día con múltiples eventos de un tipo
-        {
-            title: 'Ingreso de freelance',
-            start: new Date(2024, 9, 5), // 5 de octubre
-            end: new Date(2024, 9, 5),
-            type: 'Ingreso'
-        },
-        {
-            title: 'Ingreso de royalties',
-            start: new Date(2024, 9, 5), // 5 de octubre
-            end: new Date(2024, 9, 5),
-            type: 'Ingreso'
-        },
-        {
-            title: 'Ingreso por venta de artículo',
-            start: new Date(2024, 9, 5), // 5 de octubre
-            end: new Date(2024, 9, 5),
-            type: 'Ingreso'
-        },
-
-        // Otro día con eventos variados
-        {
-            title: 'Inversión en criptomonedas',
-            start: new Date(2024, 9, 6), // 6 de octubre
-            end: new Date(2024, 9, 6),
-            type: 'Ahorro'
-        },
-        {
-            title: 'Pago de gimnasio',
-            start: new Date(2024, 9, 6), // 6 de octubre
-            end: new Date(2024, 9, 6),
-            type: 'Egreso'
-        },
-
-        // Un día con varios eventos de diferentes tipos
-        {
-            title: 'Ingreso de bonificación',
-            start: new Date(2024, 9, 10), // 10 de octubre
-            end: new Date(2024, 9, 10),
-            type: 'Ingreso'
-        },
-        {
-            title: 'Inversión en fondo',
-            start: new Date(2024, 9, 10), // 10 de octubre
-            end: new Date(2024, 9, 10),
-            type: 'Ahorro'
-        },
-        {
-            title: 'Pago de suscripción',
-            start: new Date(2024, 9, 10), // 10 de octubre
-            end: new Date(2024, 9, 10),
-            type: 'Egreso'
-        },
-
-        // Día con solo un evento
-        {
-            title: 'Gasto de salud',
-            start: new Date(2024, 9, 15), // 15 de octubre
-            end: new Date(2024, 9, 15),
-            type: 'Egreso'
-        },
-
-        // Varios eventos en un día
-        {
-            title: 'Ingreso de devolución de impuestos',
-            start: new Date(2024, 9, 20), // 20 de octubre
-            end: new Date(2024, 9, 20),
-            type: 'Ingreso'
-        },
-        {
-            title: 'Ahorro para vacaciones',
-            start: new Date(2024, 9, 20), // 20 de octubre
-            end: new Date(2024, 9, 20),
-            type: 'Ahorro'
-        },
-        {
-            title: 'Pago de seguros',
-            start: new Date(2024, 9, 20), // 20 de octubre
-            end: new Date(2024, 9, 20),
-            type: 'Egreso'
-        },
-
-        // Un día más con varios eventos de diferentes tipos
-        {
-            title: 'Ingreso de regalo de cumpleaños',
-            start: new Date(2024, 9, 28), // 28 de octubre
-            end: new Date(2024, 9, 28),
-            type: 'Ingreso'
-        },
-        {
-            title: 'Felipe Come  Monda',
-            start: new Date(2024, 11, 24), // 28 de octubre
-            end: new Date(2024, 11, 24),
-            type: 'Egreso'
-        }
-    ]);
-
-    // Barra de herramientas/Opciones del calendario
     const renderToolbar = (toolbar) => {
+        const [isOpen, setIsOpen] = useState(false);
+        const [eventDetails, setEventDetails] = useState([]);
+        const [newEvent, setNewEvent] = useState({
+            title: '',
+            start: '',
+            end: '',
+            type: 'Ingreso' // Valor por defecto
+        });
+
+        const handleClose = () => {
+            setIsOpen(false);
+        };
+
+        const handleInputChange = (e) => {
+            const { name, value } = e.target;
+            setNewEvent({ ...newEvent, [name]: value });
+        };
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            // Añadir el nuevo evento a la lista de eventos
+            setEventDetails([...eventDetails, newEvent]);
+            setNewEvent({ title: '', start: '', end: '', type: 'Ingreso' }); // Reiniciar el formulario
+            handleClose();
+        };
+
         return (
             <div className="d-flex align-items-center mb-2">
                 <button
@@ -192,12 +66,74 @@ const PlanningCalendar = () => {
                 </div>
                 <div className="ms-auto">
                     <button
-                        onClick={() => { alert(`No hay eventos para el día.`); }} // Abre la ventana modal
+                        onClick={() => { setIsOpen(true); }}
                         className="btn btn-success btn-sm"
                     >
                         Agregar Evento
                     </button>
                 </div>
+
+                {/* Ventana flotante para agregar eventos */}
+                {isOpen && (
+                    <FloatWindow isOpen={isOpen} onClose={handleClose} title={`Agregar Evento`}>
+                        <form onSubmit={handleSubmit} className="mb-3">
+                            <div className="mb-3">
+                                <label htmlFor="title" className="form-label">Título</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="title"
+                                    name="title"
+                                    value={newEvent.title}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="start" className="form-label">Fecha de Inicio</label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="start"
+                                    name="start"
+                                    value={newEvent.start}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="end" className="form-label">Fecha de Fin</label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="end"
+                                    name="end"
+                                    value={newEvent.end}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="type" className="form-label">Tipo</label>
+                                <select
+                                    className="form-select"
+                                    id="type"
+                                    name="type"
+                                    value={newEvent.type}
+                                    onChange={handleInputChange}
+                                >
+                                    <option value="Ingreso">Ingreso</option>
+                                    <option value="Egreso">Egreso</option>
+                                    <option value="Ahorro">Ahorro</option>
+                                </select>
+                            </div>
+                            <button type="submit" className="btn btn-success">
+                                <span>Agregar Evento</span>
+                                <i className="bi bi-plus-square-dotted ms-2"></i>
+                            </button>
+                        </form>
+                    </FloatWindow>
+                )}
             </div>
         );
     };
@@ -258,7 +194,6 @@ const PlanningCalendar = () => {
         return Object.values(filteredEvents).flatMap(dateEvents => Object.values(dateEvents));
     };
 
-    //
     const handleDateClick = (slotInfo) => {
         const selectedDateString = slotInfo.start.toISOString().split('T')[0];
 
@@ -312,32 +247,26 @@ const PlanningCalendar = () => {
                         startAccessor="start"
                         endAccessor="end"
                         style={{ height: 650 }}
-
                         dayPropGetter={
                             (date) => {
                                 const isToday = date.toDateString() === new Date().toDateString();
                                 return isToday ? { style: { backgroundColor: '#9f9f9f' } } : {};
                             }
                         }
-
-                        // Agregamos una barra de herramientas y unos eventos personalizados en el calendario
                         components={{
                             toolbar: renderToolbar,
                             event: () => (
                                 <div className='p-2'></div>
                             )
                         }}
-
-                        // Aplica un estilo personalizados a los eventos
                         eventPropGetter={(event) => ({
                             style: {
                                 backgroundColor: event.color,
                                 padding: '5px',
                             },
                         })}
-
                         onSelectEvent={handleDateClick}
-                        onDrillDown={{}} // Elimina la funcion por defecto del click en los números
+                        onDrillDown={{}}
                     />
                     <PlanningEvent selectedDate={selectedDate} events={complementEvents(events)} />
                 </div>

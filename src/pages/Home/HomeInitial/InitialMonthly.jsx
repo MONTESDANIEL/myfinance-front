@@ -4,23 +4,18 @@ import { Pie } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
 import { movementPalette as colors } from '@components/Colors';
+import { dataMonth } from '@data/initialData.js'
+
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
-const monthlyData = {
-    income: [32000, 35000, 40000, 30000, 50000, 45000, 47000, 48000, 52000, 40000, 43000, 46000],
-    savings: [15000, 10000, 18000, 16000, 19000, 20000],
-    expense: [28000, 30000, 25000, 30000, 31000, 33000, 29000, 34000, 36000, 30000, 31000, 32000],
-};
-
-
 const PerformanceMonthly = () => {
 
     // Datos totales numericos para graficos
-    const monthlyIncome = monthlyData.income.reduce((total, amount) => total + amount, 0);
-    const monthlySavings = monthlyData.savings.reduce((total, amount) => total + amount, 0);
-    const monthlyExpense = monthlyData.expense.reduce((total, amount) => total + amount, 0);
+    const monthlyIncome = dataMonth.income.reduce((total, amount) => total + amount, 0);
+    const monthlySavings = dataMonth.savings.reduce((total, amount) => total + amount, 0);
+    const monthlyExpense = dataMonth.expense.reduce((total, amount) => total + amount, 0);
 
 
     // Funcion para dar formato a las cantidades numericas

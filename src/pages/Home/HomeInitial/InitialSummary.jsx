@@ -4,18 +4,14 @@ import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
 import { movementPalette as colors } from '@components/Colors';
+import { dataYear } from '@data/initialData.js'
+
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 // Se define el color de la grafica y la tarjeta
 const ahorro = colors.savings[3];
-
-const monthlyData = {
-    income: [3200000, 3500000, 4000000, 3000000, 5000000, 4500000, 4700000, 4800000, 5200000, 4000000, 4300000, 4600000],
-    savings: [15000000, 17000000, 18000000, 16000000, 19000000, 20000000],
-    expense: [2800000, 3000000, 2500000, 3200000, 3100000, 3300000, 2900000, 3400000, 3600000, 3000000, 3100000, 3200000],
-};
 
 const InitialSummary = () => {
 
@@ -25,7 +21,7 @@ const InitialSummary = () => {
         datasets: [
             {
                 label: 'Ahorro Mensual',
-                data: monthlyData.savings,
+                data: dataYear.savings,
                 backgroundColor: ahorro,
                 borderWidth: 1
             }
@@ -62,7 +58,7 @@ const InitialSummary = () => {
     };
 
     // Variable del total de los ahorros
-    const annualSavingsTotal = monthlyData.savings.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+    const annualSavingsTotal = dataYear.savings.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
 
     return (
         <div className="p-4 bg-body-tertiary rounded shadow-sm">

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Datos del form para generar el reporte
 const report = {
     start: new Date(2024, 9, 10),
     finish: new Date(2024, 10, 20),
@@ -54,7 +55,8 @@ const ManageReports = () => {
 
                             <div className="text-center">
                                 <button type="button" className="btn btn-success">
-                                    Generar Reporte
+                                    <span>Generar Reporte</span>
+                                    <i class="bi bi-file-earmark-pdf ms-2"></i>
                                 </button>
                             </div>
                         </form>
@@ -73,7 +75,10 @@ const ManageReports = () => {
                 <div className="card">
                     <div className="card-body text-center">
                         <p className="text-muted">Aqui se mostrara una previsualización del reporte solicitado por el cliente antes de la descarga.</p>
-                        <button className="btn btn-primary">Descargar Reporte</button>
+                        <button type="button" className="btn btn-primary">
+                            <span>Descargar Reporte</span>
+                            <i class="bi bi-download ms-2"></i>
+                        </button>
                     </div>
                 </div>
             </div>

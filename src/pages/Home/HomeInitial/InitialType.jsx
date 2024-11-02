@@ -4,16 +4,11 @@ import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
 import { movementPalette as colors } from '@components/Colors';
+import { dataYear } from '@data/initialData.js'
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
-// Constante de datos que debe extraerse de la base
-const monthlyData = {
-    income: [3200000, 3500000, 4000000, 3000000, 5000000, 4500000, 4700000, 4800000, 5200000, 4000000, 4300000, 4600000],
-    savings: [15000000, 17000000, 18000000, 16000000, 19000000, 20000000],
-    expense: [2800000, 3000000, 2500000, 3200000, 3100000, 3300000, 2900000, 3400000, 3600000, 3000000, 3100000, 3200000],
-};
 
 const calculateData = (dataArray, groups) =>
     groups.map(group => group.reduce((sum, idx) => sum + dataArray[idx], 0));
@@ -35,14 +30,14 @@ const PerformanceType = () => {
                     datasets: [
                         {
                             label: 'Ingresos',
-                            data: calculateData(monthlyData.income, bimestralGroups),
+                            data: calculateData(dataYear.income, bimestralGroups),
                             backgroundColor: colors.income[1],
                             borderColor: colors.income[2],
                             borderWidth: 1,
                         },
                         {
                             label: 'Egresos',
-                            data: calculateData(monthlyData.expense, bimestralGroups),
+                            data: calculateData(dataYear.expense, bimestralGroups),
                             backgroundColor: colors.expense[1],
                             borderColor: colors.expense[2],
                             borderWidth: 1,
@@ -58,14 +53,14 @@ const PerformanceType = () => {
                     datasets: [
                         {
                             label: 'Ingresos',
-                            data: calculateData(monthlyData.income, trimestralGroups),
+                            data: calculateData(dataYear.income, trimestralGroups),
                             backgroundColor: colors.income[1],
                             borderColor: colors.income[2],
                             borderWidth: 1,
                         },
                         {
                             label: 'Egresos',
-                            data: calculateData(monthlyData.expense, trimestralGroups),
+                            data: calculateData(dataYear.expense, trimestralGroups),
                             backgroundColor: colors.expense[1],
                             borderColor: colors.expense[2],
                             borderWidth: 1,
@@ -78,14 +73,14 @@ const PerformanceType = () => {
                     datasets: [
                         {
                             label: 'Ingresos',
-                            data: calculateData(monthlyData.income, [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]),
+                            data: calculateData(dataYear.income, [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]),
                             backgroundColor: colors.income[1],
                             borderColor: colors.income[2],
                             borderWidth: 1,
                         },
                         {
                             label: 'Egresos',
-                            data: calculateData(monthlyData.expense, [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]),
+                            data: calculateData(dataYear.expense, [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11]]),
                             backgroundColor: colors.expense[1],
                             borderColor: colors.expense[2],
                             borderWidth: 1,
@@ -99,14 +94,14 @@ const PerformanceType = () => {
                     datasets: [
                         {
                             label: 'Ingresos',
-                            data: monthlyData.income,
+                            data: dataYear.income,
                             backgroundColor: colors.income[1],
                             borderColor: colors.income[2],
                             borderWidth: 1,
                         },
                         {
                             label: 'Egresos',
-                            data: monthlyData.expense,
+                            data: dataYear.expense,
                             backgroundColor: colors.expense[1],
                             borderColor: colors.expense[2],
                             borderWidth: 1,
@@ -152,8 +147,8 @@ const PerformanceType = () => {
     const dataPerformance = getReportData();
 
 
-    const annualIncome = monthlyData.income.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
-    const annualExpense = monthlyData.expense.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+    const annualIncome = dataYear.income.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+    const annualExpense = dataYear.expense.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
 
     return (
         <div className="p-4 bg-body-tertiary rounded shadow-sm">

@@ -24,7 +24,7 @@ const PlanningGoals = () => {
         'Todos': 'Todos',
         'Reductivo': 'Reducción de Gastos',
         'Incremental': 'Ahorro Progresivo',
-        'Fijo': 'Meta Única'
+        'Fijo': 'Objetivo a Plazo Fijo'
     };
 
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
