@@ -27,7 +27,7 @@ const goalsData = [
             "amount": 150000
         },
         "remainingBudget": 550000,
-        "progress": 60,
+        "progress": 40,
         "type": "Incremental",
         "depositHistory": [
             { "description": "Depósito de cumpleaños", "amount": 10000 },

@@ -48,7 +48,7 @@ const ManageReports = () => {
                                     <select className="form-select" id="reportCategory" defaultValue="1">
                                         <option value="1">Ingresos</option>
                                         <option value="2">Gastos</option>
-                                        <option value="3">Transferencias</option>
+                                        <option value="3">Movimientos</option>
                                     </select>
                                 </div>
                             </div>

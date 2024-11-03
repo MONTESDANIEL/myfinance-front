@@ -2,27 +2,52 @@ const HomeAbout = () => {
     return (
         <div className="container">
             <div className="container-fluid bg-dark-subtle p-3 rounded">
-                <section id="about" className='container-fluid p-3 mb-2 bg-body-tertiary text-center rounded'>
-                    <h2>Sobre Mí</h2>
+
+                <div className="text-center text-light">
+                    <h1>Acerca de</h1>
+                    <hr />
+                </div>
+
+                <section id="about" className='container-fluid p-3 mb-3 bg-body-tertiary text-center rounded'>
+                    <h2 className="mb-3">Sobre mí</h2>
                     <div className="m-4">
                         <p>
-                            Soy Daniel Amaya Montes, un desarrollador apasionado por la tecnología y el desarrollo de software.
-                            Me enfoco en mejorar mis habilidades en desarrollo Frontend y Backend, especialmente con Java utilizando Spring Boot,
-                            y JavaScript con React. También estoy trabajando con MySQL para bases de datos en una aplicación que desarrollo para
-                            seguir perfeccionando mis habilidades.
-                        </p>
-                        <p>
-                            Mi objetivo es mantenerme actualizado con las últimas tendencias y tecnologías en el mundo del desarrollo,
-                            lo que me impulsa a aprender y adoptar nuevas herramientas y metodologías. Mi enfoque en
-                            la calidad y la eficiencia me lleva a seguir buscando soluciones innovadoras para los problemas que enfrento.
-                        </p>
-                        <p>
-                            Además, disfruto colaborando con equipos multidisciplinarios y aportando mis conocimientos para crear
-                            productos de alta calidad que marcan la diferencia. Siempre estoy abierto a recibir retroalimentación y
-                            utilizarla para mejorar mis habilidades y procesos de desarrollo.
+                            Soy Daniel Amaya Montes, un desarrollador de software dedicado y apasionado por mi trabajo.
+                            Mi compromiso con la calidad es una de mis principales prioridades, ya que creo que cada línea de código
+                            debe reflejar un alto estándar de excelencia. Estoy impulsado por la curiosidad y el deseo de aprender,
+                            lo que me lleva a estar siempre en la búsqueda de nuevas estrategias y herramientas para abordar los desafíos
+                            que se presentan. Me encanta colaborar con otros, compartir conocimientos y descubrir soluciones creativas
+                            que marquen la diferencia. Estoy convencido de que el aprendizaje continuo y la adaptabilidad son esenciales
+                            en este campo en constante evolución.
                         </p>
                     </div>
                 </section>
+
+                <section id="about" className='container-fluid p-3 mb-3 bg-body-tertiary text-center rounded'>
+                    <h2 className="mb-3">Sobre el Proyecto</h2>
+                    <div className="m-4">
+                        <p>
+                            Este proyecto es una iniciativa que busca transformar la manera en que las personas gestionan sus finanzas personales.
+                            A través de una interfaz intuitiva y herramientas prácticas, el objetivo es empoderar a los usuarios para que tomen
+                            decisiones financieras informadas y efectivas. Con el uso de tecnologías modernas como Java con Spring Boot y JavaScript
+                            con React, se crea una experiencia de usuario fluida y agradable.
+                        </p>
+                        <p>
+                            La necesidad de una herramienta accesible y funcional surge de la creciente complejidad del entorno financiero actual.
+                            Muchas personas luchan por mantener un control adecuado de sus gastos, ahorros y metas financieras.
+                            Este proyecto tiene como misión facilitar este proceso, ofreciendo funcionalidades que permiten a los usuarios establecer
+                            y seguir sus objetivos financieros, así como optimizar su presupuesto de manera efectiva.
+                        </p>
+                        <p>
+                            Además, el compromiso con la calidad y la innovación es fundamental en el desarrollo de esta aplicación.
+                            Se implementan las mejores prácticas de programación y se integran metodologías ágiles para asegurar un proceso de
+                            desarrollo eficiente. En definitiva, este proyecto no solo se trata de tecnología, sino de crear un impacto positivo
+                            en la vida financiera de cada usuario.
+                        </p>
+
+                    </div>
+                </section>
+
                 <section
                     id="contact"
                     className='container-fluid p-3 bg-body-tertiary text-center rounded'>
@@ -75,6 +100,7 @@ const HomeAbout = () => {
                         </button>
                     </form>
                 </section>
+
             </div>
         </div>
     )

@@ -6,7 +6,8 @@ import HomeAbout from './HomeAbout';
 import HomeInitial from './HomeInitial/HomeInitial';
 import HomeManagement from "./HomeManagement/HomeManagement";
 import HomeNews from './HomeNews';
-import HomeProfile from './HomeProfile/HomeProfile';
+import HomeProfile from './HomeProfile';
+import HomeSettings from './HomeSettings'
 
 import Logo from '../../assets/images/logos/LogoVerde.png';
 import LogoSimple from '../../assets/images/logos/Logo.png';
@@ -183,6 +184,17 @@ const Home = () => {
                                             <li className="nav-item" role="presentation">
                                                 <button
                                                     className="dropdown-item close-offcanvas"
+                                                    id="pills-settings-tab"
+                                                    type="button"
+                                                    onClick={() => handleTabClick('settings')}
+                                                >
+                                                    <i className="bi bi-gear"></i>
+                                                    <span className="ms-3">Configuración</span>
+                                                </button>
+                                            </li>
+                                            <li className="nav-item" role="presentation">
+                                                <button
+                                                    className="dropdown-item close-offcanvas"
                                                     id="pills-news-tab"
                                                     type="button"
                                                     onClick={() => handleTabClick('news')}
@@ -242,6 +254,14 @@ const Home = () => {
                         aria-labelledby="pills-profile-tab"
                     >
                         <HomeProfile />
+                    </div>
+                    <div
+                        className={`tab-pane fade ${activeTab === 'settings' ? 'show active' : ''}`}
+                        id="pills-settings"
+                        role="tabpanel"
+                        aria-labelledby="pills-settings-tab"
+                    >
+                        <HomeSettings />
                     </div>
                     <div
                         className={`tab-pane fade ${activeTab === 'news' ? 'show active' : ''}`}
