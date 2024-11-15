@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 
 import { ThemeProvider } from './context/ThemeContext';
 import { AppProvider } from './context/AppContext';
+import { MovementPaletteProvider } from './context/ColorContext';
 
 import '/src/assets/styles/custom-theme.css';
 
@@ -19,19 +20,21 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <StrictMode>
-    <ThemeProvider>
-      <AppProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/create-account" element={<CreateAccount />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-        <Footer />
-      </AppProvider>
-    </ThemeProvider>
+    <MovementPaletteProvider>
+      <ThemeProvider>
+        <AppProvider>
+          <Router>
+            <Routes>
+              <Route path="/" element={<Welcome />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/create-account" element={<CreateAccount />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Router>
+          <Footer />
+        </AppProvider>
+      </ThemeProvider>
+    </MovementPaletteProvider>
   </StrictMode>
 );

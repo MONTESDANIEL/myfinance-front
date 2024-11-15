@@ -3,17 +3,20 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { movementPalette as colors } from '@components/Colors';
 import { dataYear } from '@data/initialData.js'
 
+import { useMovementPalette } from '../../../context/ColorContext';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
-// Se define el color de la grafica y la tarjeta
-const ahorro = colors.savings[3];
-
 const InitialSummary = () => {
+
+    const { colors } = useMovementPalette();
+
+    if (!colors) {
+        return <p>Cargando colores...</p>;
+    }
 
     // Datos grafico ahorros mes en año
     const annualSavingsMonth = {
@@ -22,7 +25,7 @@ const InitialSummary = () => {
             {
                 label: 'Ahorro Mensual',
                 data: dataYear.savings,
-                backgroundColor: ahorro,
+                backgroundColor: colors.savings[3],
                 borderWidth: 1
             }
         ]
@@ -68,7 +71,7 @@ const InitialSummary = () => {
                     title='Ahorro Total'
                     icon='bi bi-piggy-bank'
                     value={annualSavingsTotal}
-                    backgroundColor={ahorro}
+                    backgroundColor={colors.savings[3]}
                 />
             </div>
 

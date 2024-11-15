@@ -56,7 +56,7 @@ const ManageReports = () => {
                             <div className="text-center">
                                 <button type="button" className="btn btn-success">
                                     <span>Generar Reporte</span>
-                                    <i class="bi bi-file-earmark-pdf ms-2"></i>
+                                    <i className="bi bi-file-earmark-pdf ms-2"></i>
                                 </button>
                             </div>
                         </form>
@@ -77,7 +77,7 @@ const ManageReports = () => {
                         <p className="text-muted">Aqui se mostrara una previsualización del reporte solicitado por el cliente antes de la descarga.</p>
                         <button type="button" className="btn btn-primary">
                             <span>Descargar Reporte</span>
-                            <i class="bi bi-download ms-2"></i>
+                            <i className="bi bi-download ms-2"></i>
                         </button>
                     </div>
                 </div>

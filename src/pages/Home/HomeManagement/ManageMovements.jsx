@@ -70,7 +70,7 @@ const ManageMovements = () => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="tag" className="form-label">Etiquetas</label>
-                                <select className="form-control">
+                                <select className="form-select">
                                     {tags.map((tags) => (
                                         <option key={tags.value} value={tags.value}>
                                             {tags.label}

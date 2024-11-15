@@ -3,8 +3,10 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { movementPalette as colors } from '@components/Colors';
 import { dataYear } from '@data/initialData.js'
+
+import { useMovementPalette } from '../../../context/ColorContext';
+
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
@@ -14,6 +16,12 @@ const calculateData = (dataArray, groups) =>
     groups.map(group => group.reduce((sum, idx) => sum + dataArray[idx], 0));
 
 const PerformanceType = () => {
+
+    const { colors } = useMovementPalette();
+
+    if (!colors) {
+        return <p>Cargando colores...</p>;
+    }
 
     // Estado para manejar el tipo de reporte seleccionado
     const [reportType, setReportType] = useState('anual');

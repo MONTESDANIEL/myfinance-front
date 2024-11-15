@@ -1,6 +1,6 @@
 const HomeNews = () => {
     return (
-        <div className="container-fluid">
+        <div className="container">
             <div className="p-4 bg-body-tertiary">
                 <div className="container">
                     <h2 className="text-center mb-3 text-success">Novedades</h2>

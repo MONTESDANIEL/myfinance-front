@@ -1,99 +1,93 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const HomeProfile = () => {
-    // Estado para controlar la visibilidad de los textos pequeños
-    const [smallVisible, setSmallVisible] = useState(true);
 
-    // Función para alternar la visibilidad de los textos pequeños
-    const toggleSmallVisibility = () => {
-        setSmallVisible(!smallVisible);
-    };
+
+const HomeSettings = () => {
 
     return (
         <div className="container">
             <div className="bg-dark-subtle rounded p-3 m-2">
-                <div className="text-center text-ligth">
-                    <h1 className="text-center mb-3">Información del Usuario</h1>
-                    <p className="text-muted text-center">Visualiza y gestiona la información del usuario, realizando ediciones según sea necesario.</p>
+
+                <div className="text-center mb-4">
+                    <h2>Configuración de la Aplicación</h2>
+                    <p className="text-muted">Personaliza tus preferencias para mejorar tu experiencia</p>
                     <hr />
                 </div>
 
-                <div className="container-fluid rounded p-4 bg-body-tertiary">
-                    <div className="d-flex justify-content-end">
-                        <button
-                            className="btn btn-link"
-                            onClick={toggleSmallVisibility}
-                        >
-                            <i className="bi-question-circle text-muted"></i>
-                        </button>
+                {/* Sección de Seguridad */}
+                <div className="bg-body-tertiary rounded p-4 mb-4">
+                    <h3>Seguridad</h3>
+                    <p className="text-muted">Configura y protege tu cuenta</p>
+                    <hr />
+                    <ul>
+                        <li>Contraseña y Autenticación de Dos Factores (2FA)</li>
+                        <li>Recuperación de Contraseña</li>
+                        <li>Cambio de Contraseña</li>
+                    </ul>
+                    <hr />
+                    {/* Configuración de Autenticación de Dos Factores */}
+                    <div className="container-fluid mt-5">
                     </div>
-                    <form>
-                        <div className="row">
-                            <div className="col-md-12 mb-3">
-                                <label htmlFor="name" className="form-label mb-0">Nombre completo</label>
-                                <input type="text" className="form-control" id="name" />
-                                {!smallVisible && (
-                                    <small className="text-muted d-block ms-1">
-                                        <i className="bi bi-info-circle">
-                                            <span className="ms-1">Tal como aparece en tu identificación.</span>
-                                        </i>
-                                    </small>
-                                )}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="email" className="form-label mb-0">Correo electrónico</label>
-                                <input type="email" className="form-control" id="email" />
-                                {!smallVisible && (
-                                    <small className="text-muted d-block ms-1">
-                                        <i className="bi bi-info-circle">
-                                            <span className="ms-1">Se utilizará para notificaciones importantes.</span>
-                                        </i>
-                                    </small>
-                                )}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="phone" className="form-label mb-0">Número de teléfono</label>
-                                <input type="tel" className="form-control" id="phone" />
-                                {!smallVisible && (
-                                    <small className="text-muted d-block ms-1">
-                                        <i className="bi bi-info-circle">
-                                            <span className="ms-1">Incluye el código de país.</span>
-                                        </i>
-                                    </small>
-                                )}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="id" className="form-label mb-0">Número de identificación</label>
-                                <input type="text" className="form-control" id="id" />
-                                {!smallVisible && (
-                                    <small className="text-muted d-block ms-1">
-                                        <i className="bi bi-info-circle">
-                                            <span className="ms-1">Número de identificación personal.</span>
-                                        </i>
-                                    </small>
-                                )}
-                            </div>
-                            <div className="col-md-6 mb-3">
-                                <label htmlFor="birthdate" className="form-label mb-0">Fecha de nacimiento</label>
-                                <input type="date" className="form-control" id="birthdate" />
-                                {!smallVisible && (
-                                    <small className="text-muted d-block ms-1">
-                                        <i className="bi bi-info-circle">
-                                            <span className="ms-1">Usado para verificaciones de seguridad.</span>
-                                        </i>
-                                    </small>
-                                )}
-                            </div>
-                        </div>
+                    <div className="container mt-5">
 
-                        <div className="mt-4 d-flex justify-content-end">
-                            <button type="button" className="btn btn-warning me-2"><i className="bi bi-pencil-square"> Editar</i></button>
-                        </div>
-                    </form>
+                    </div>
+                </div>
+
+                {/* Sección de Presupuesto */}
+                <div className="bg-body-tertiary rounded p-4 mb-4">
+                    <h3>Personalización</h3>
+                    <p className="text-muted">Configura tu presupuesto mensual y controla tus gastos</p>
+                    <hr />
+
+                    <ul>
+                        <li>Etiquetas y Subcategorías</li>
+                        <li>Personalización Visual</li>
+                    </ul>
+                </div>
+
+                {/* Sección de Personalización de Etiquetas */}
+                <div className="bg-body-tertiary rounded p-4 mb-4">
+                    <h3>Administración de Presupuesto e Ingresos</h3>
+                    <p className="text-muted">Crea y organiza tus etiquetas personalizadas</p>
+                    <hr />
+
+                    <h6>Registro de Ingresos</h6>
+                    <ul>
+                        <li>Ingreso Fijo y Variable</li>
+                        <li>Frecuencia de Ingresos</li>
+                        <li>Fecha de Ingreso</li>
+                    </ul>
+
+                    <h6>Gestión de Gastos</h6>
+                    <ul>
+                        <li>Clasificación de Gastos</li>
+                        <li>Gastos Fijos y Variables</li>
+                    </ul>
+
+                    <h6>Ajustes de Presupuesto</h6>
+                    <ul>
+                        <li>Presupuesto por Categoría</li>
+                        <li>Ajustes Automáticos</li>
+                        <li>Objetivos de Ahorro y Sobrantes</li>
+                        <li>Recordatorios de Gastos Futuros</li>
+                        <li>Alertas de Riesgo Financiero</li>
+                    </ul>
+                </div>
+
+                {/* Sección de Simulador de Escenarios */}
+                <div className="bg-body-tertiary rounded p-4">
+                    <h3>Simulador de Escenarios Financieros</h3>
+                    <p className="text-muted">Proyecta diferentes escenarios y visualiza su impacto en tus finanzas</p>
+                    <hr />
+
+                    <ul>
+                        <li>Escenarios "¿Qué pasaría si...?"</li>
+                        <li>Comparación de Escenarios</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default HomeProfile;
+export default HomeSettings;

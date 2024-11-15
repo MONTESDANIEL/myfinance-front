@@ -3,14 +3,18 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Pie } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { movementPalette as colors } from '@components/Colors';
 import { dataMonth } from '@data/initialData.js'
+
+import { useMovementPalette } from '../../../context/ColorContext';
+
 
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 const PerformanceMonthly = () => {
+
+    const { colors } = useMovementPalette();
 
     // Datos totales numericos para graficos
     const monthlyIncome = dataMonth.income.reduce((total, amount) => total + amount, 0);

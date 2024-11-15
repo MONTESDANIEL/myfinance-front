@@ -6,13 +6,15 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import PlanningEvent from './PlanningEvent';
 import CardInfo from '@components/CardInfo';
-import { movementPalette as colors } from '@components/Colors';
+import { useMovementPalette } from '../../../../../context/ColorContext';
 import FloatWindow from '@components/FloatWindow';
 import events from '@data/eventsData.js'
 
 const localizer = momentLocalizer(moment);
 
 const PlanningCalendar = () => {
+
+    const { colors } = useMovementPalette();
 
     const renderToolbar = (toolbar) => {
         const [isOpen, setIsOpen] = useState(false);

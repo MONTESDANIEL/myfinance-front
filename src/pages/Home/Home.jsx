@@ -7,7 +7,7 @@ import HomeInitial from './HomeInitial/HomeInitial';
 import HomeManagement from "./HomeManagement/HomeManagement";
 import HomeNews from './HomeNews';
 import HomeProfile from './HomeProfile';
-import HomeSettings from './HomeSettings'
+import HomeSettings from './HomeSettings/HomeSettings'
 
 import Logo from '../../assets/images/logos/LogoVerde.png';
 import LogoSimple from '../../assets/images/logos/Logo.png';
