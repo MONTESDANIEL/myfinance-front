@@ -12,25 +12,24 @@ function handleCreateAccountRedirect() {
 }
 
 const Login = () => {
-  // Definir función para cambiar estado de contraseña a visible e invisible
-  const [passwordVisible, setPasswordVisible] = useState(false);
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   return (
-    <div>
-
+    <>
       <header>
         <NavBar />
       </header>
 
-      <main className="container d-flex flex-column justify-content-center align-items-center p-3 pb-4">
-        <div className="bg-body-tertiary card p-3 w-100 w-lg-auto" style={{ maxWidth: '450px' }}>
-          <h3 className="text-center">Iniciar sesión</h3>
+      <main className="d-flex justify-content-center align-items-center p-3">
+        <div className="card bg-body-tertiary p-3 w-100" style={{ maxWidth: '500px' }}>
+          <h3 className="text-center mb-0">Iniciar sesión</h3>
           <hr />
           <form>
+
             <FormField
               label="Correo electrónico o usuario"
               type="email"
@@ -38,6 +37,7 @@ const Login = () => {
               placeholder="Ingresa tu correo o usuario"
               required
             />
+
             <div className="position-relative">
               <FormField
                 label="Contraseña"
@@ -67,16 +67,16 @@ const Login = () => {
                 ></i>
               </button>
             </div>
-            <div className="mb-3 form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="rememberMe"
-              />
-              <label className="form-check-label" htmlFor="rememberMe">
-                Recuérdame
-              </label>
-            </div>
+
+            <input
+              type="checkbox"
+              className="form-check-input mb-3"
+              id="rememberMe"
+            />
+            <label className="form-check-label" htmlFor="rememberMe">
+              Recuérdame
+            </label>
+
             <button
               onClick={handleHomeRedirect}
               type="submit"
@@ -84,7 +84,8 @@ const Login = () => {
             >
               Iniciar sesión
             </button>
-            <div className="d-flex justify-content-center">
+
+            <div className="d-flex flex-column align-items-center">
               <button
                 onClick={handleCreateAccountRedirect}
                 type="button"
@@ -92,8 +93,6 @@ const Login = () => {
               >
                 Registrarse
               </button>
-            </div>
-            <div className="d-flex justify-content-center">
               <button
                 onClick={handleCreateAccountRedirect}
                 type="button"
@@ -105,9 +104,8 @@ const Login = () => {
           </form>
         </div>
       </main >
-    </div >
+    </>
   );
 };
-
 
 export default Login;

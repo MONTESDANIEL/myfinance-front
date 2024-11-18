@@ -7,9 +7,10 @@ import Login from './pages/Login';
 import Home from './pages/Home/Home';
 import Welcome from './pages/Welcome/Welcome';
 import CreateAccount from './pages/CreateAccount';
-import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
 
+import Footer from './components/Footer'
+  ;
 import { ThemeProvider } from './context/ThemeContext';
 import { AppProvider } from './context/AppContext';
 import { MovementPaletteProvider } from './context/ColorContext';

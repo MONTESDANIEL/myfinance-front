@@ -8,7 +8,6 @@ const images = {
 const WelcomeMain = () => {
     return (
         <>
-            {/* Carrusel de imagenes */}
             <div
                 id="carouselExampleFade"
                 className="carousel slide carousel-fade"
@@ -60,15 +59,15 @@ const WelcomeMain = () => {
                 </button>
             </div>
 
-            {/* Contenedor Principal */}
             <div className="container-fluid pt-3">
-                <div className="row flex-column flex-md-row justify-content-center p-3 mb-2 bg-body-tertiary">
-                    <div className="col-lg-6 col-md-12 d-flex align-items-center p-2">
+                <div className="row p-3 mb-2 bg-body-tertiary d-flex align-items-center">
+                    <div className="col-lg-6 col-md-12 p-4">
                         <div>
-                            <h3>Gestión de Transacciones y Categorías</h3><br />
+                            <h3>Gestión de transacciones y categorías</h3>
+                            <hr />
                             <p>
-                                La aplicación permite a los usuarios registrar ingresos, gastos y transferencias entre sus cuentas,
-                                proporcionando un registro detallado de las finanzas personales.
+                                La aplicación permite a los usuarios registrar ingresos, gastos y transferencias entre sus cuentas.
+                                Proporcionando un registro detallado de las finanzas personales.
                             </p>
                             <p>
                                 Los usuarios pueden categorizar
@@ -82,7 +81,7 @@ const WelcomeMain = () => {
                             basePath={images.galery}
                             imageName="transactions"
                             alt="Primera imagen del carrusel"
-                            className="d-block w-100"
+                            className="w-100"
                         />
                     </div>
                 </div>
@@ -97,14 +96,15 @@ const WelcomeMain = () => {
                     </div>
                     <div className="col-lg-6 col-md-12 d-flex align-items-center order-lg-2 p-2">
                         <div>
-                            <h3>Presupuesto, Planificación y Alertas</h3><br />
+                            <h3>Presupuesto, planificación y alertas</h3>
+                            <hr />
                             <p>
                                 Los usuarios pueden crear y gestionar presupuestos mensuales para diversas categorías de gastos.
                             </p>
                             <p>
-                                La aplicación ofrece alertas y notificaciones para mantener a los usuarios informados cuando sus
-                                gastos se acercan o exceden sus presupuestos establecidos, ayudándoles a planificar y controlar su
-                                gasto de manera eficiente.
+                                La aplicación ofrece alertas y notificaciones para mantener a los usuarios informados
+                                cuando sus gastos se acercan o exceden sus presupuestos establecidos, ayudándoles a
+                                planificar y controlar su gasto de manera eficiente.
                             </p>
                         </div>
                     </div>
@@ -112,7 +112,8 @@ const WelcomeMain = () => {
                 <div className="row flex-column flex-md-row justify-content-center p-3 mb-2 bg-body-tertiary">
                     <div className="col-lg-6 col-md-12 d-flex align-items-center p-2">
                         <div>
-                            <h3>Reportes y Análisis</h3><br />
+                            <h3>Reportes y análisis</h3>
+                            <hr />
                             <p>
                                 La aplicación proporciona herramientas para visualizar los ingresos, gastos y balances a través
                                 de gráficos y tablas.
@@ -144,7 +145,8 @@ const WelcomeMain = () => {
                     </div>
                     <div className="col-lg-6 col-md-12 d-flex align-items-center order-lg-2 p-2">
                         <div>
-                            <h3>Autenticación, Seguridad e Integraciones</h3><br />
+                            <h3>Autenticación, seguridad e integraciones</h3>
+                            <hr />
                             <p>Implementa un sistema de autenticación seguro con soporte para OAuth2/JWT,
                                 protección de datos mediante encriptación, y opciones para autenticación multifactor.
                             </p>

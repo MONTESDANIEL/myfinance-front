@@ -8,10 +8,11 @@ import { Link } from 'react-router-dom';
 function handleWelcomeRedirect() {
     window.location.href = '/';
 }
-
-// Redirecciones
 function handleLoginRedirect() {
     window.location.href = '/login';
+}
+function handleCreateAccountRedirect() {
+    window.location.href = '/create-account';
 }
 
 const Welcome = () => {
@@ -54,20 +55,22 @@ const Welcome = () => {
                                     style={{ minWidth: 'auto' }}
                                 >
                                     <li className="text-center">
-                                        <Link to="/login"
+                                        <button
+                                            onClick={handleLoginRedirect}
                                             className="dropdown-item btn btn-sm"
                                             type="button">
                                             <i className="bi bi-key me-2 fs-6 lh-sm"></i>
                                             <span>Iniciar sesión</span>
-                                        </Link>
+                                        </button>
                                     </li>
                                     <li className="text-center">
-                                        <Link to="/create-account"
+                                        <button
+                                            onClick={handleCreateAccountRedirect}
                                             className="dropdown-item btn btn-sm"
                                             type="button">
                                             <i className="bi bi-person-plus me-2 fs-6 lh-sm"></i>
                                             <span>Crear cuenta</span>
-                                        </Link>
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
@@ -75,7 +78,7 @@ const Welcome = () => {
                     </div>
                 </nav>
             </header>
-            <main className="d-flex flex-column justify-content-center align-items-center p-4">
+            <main className="d-flex flex-column justify-content-center align-items-center py-4">
                 <div className="container-fluid text-center">
                     <WelcomeMain />
                 </div>
