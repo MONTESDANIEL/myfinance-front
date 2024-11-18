@@ -1,15 +1,14 @@
 const HomeAbout = () => {
     return (
         <div className="container">
-            <div className="container-fluid bg-dark-subtle p-3 rounded">
-
-                <div className="text-center text-light">
+            <div className="bg-dark-subtle p-3 rounded">
+                <div className="text-center p-3">
                     <h1>Acerca de</h1>
-                    <hr />
                 </div>
 
                 <section id="about" className='container-fluid p-3 mb-3 bg-body-tertiary text-center rounded'>
                     <h2 className="mb-3">Sobre mí</h2>
+                    <hr />
                     <div className="m-4">
                         <p>
                             Soy Daniel Amaya Montes, un desarrollador de software dedicado y apasionado por mi trabajo.
@@ -25,6 +24,7 @@ const HomeAbout = () => {
 
                 <section id="about" className='container-fluid p-3 mb-3 bg-body-tertiary text-center rounded'>
                     <h2 className="mb-3">Sobre el Proyecto</h2>
+                    <hr />
                     <div className="m-4">
                         <p>
                             Este proyecto es una iniciativa que busca transformar la manera en que las personas gestionan sus finanzas personales.
@@ -44,7 +44,6 @@ const HomeAbout = () => {
                             desarrollo eficiente. En definitiva, este proyecto no solo se trata de tecnología, sino de crear un impacto positivo
                             en la vida financiera de cada usuario.
                         </p>
-
                     </div>
                 </section>
 
@@ -52,6 +51,7 @@ const HomeAbout = () => {
                     id="contact"
                     className='container-fluid p-3 bg-body-tertiary text-center rounded'>
                     <h2 className="text-center mb-4">Contáctame</h2>
+                    <hr />
                     <form
                         action="mailto:tuemail@ejemplo.com"
                         method="post"
@@ -100,7 +100,6 @@ const HomeAbout = () => {
                         </button>
                     </form>
                 </section>
-
             </div>
         </div>
     )

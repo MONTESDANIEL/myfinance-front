@@ -8,6 +8,18 @@ const categoryMapping = {
     'EGRESOS': 'expense'
 };
 
+const colorsMapping = {
+    'blue': 'Azul',
+    'purple': 'Morado',
+    'pink': 'Rosado',
+    'red': 'Rojo',
+    'orange': 'Naranja',
+    'yellow': 'Amarillo',
+    'green': 'Verde',
+    'teal': 'Turquesa',
+    'cyan': 'Cian',
+};
+
 const ColorCategory = ({ label, optionsPalette }) => {
     const { mainColors, updateMainColors } = useMovementPalette();
     const englishLabel = categoryMapping[label];
@@ -22,7 +34,7 @@ const ColorCategory = ({ label, optionsPalette }) => {
         <div className="col-lg-4 text-center mb-3">
             <div className="dropdown">
                 <button
-                    className="btn btn-secondary w-100"
+                    className="btn btn-secondary dropdown-toggle w-100"
                     type="button"
                     id={`${label}-dropdown`}
                     data-bs-toggle="dropdown"
@@ -33,22 +45,21 @@ const ColorCategory = ({ label, optionsPalette }) => {
                         height: '60px'
                     }}
                 >
-                    {label}
+                    <span>{label}</span>
                 </button>
 
                 <ul className="dropdown-menu w-100 overflow-hidden" aria-labelledby={`${label}-dropdown`}>
                     {Object.keys(optionsPalette).map((color) => (
-                        <li key={color} className="m-1">
+                        <li key={color}>
                             <button
                                 className="dropdown-item"
                                 onClick={() => handleColorSelection(color, englishLabel)}
                                 style={{
-                                    backgroundColor: optionsPalette[color],
-                                    color: '#fff',
+                                    color: optionsPalette[color],
                                     height: '40px'
                                 }}
                             >
-                                {color}
+                                {colorsMapping[color]}
                             </button>
                         </li>
                     ))}
@@ -89,77 +100,94 @@ const SettingsCustomization = () => {
     };
 
     return (
-        <div className="bg-dark-subtle rounded p-3">
+        <>
             <div className="text-center">
                 <h1>Personalización</h1>
                 <p className="text-muted">Personaliza tus preferencias para mejorar tu experiencia</p>
+            </div>
 
-                <div className="bg-body-tertiary rounded p-3 mb-3">
-                    <h3 className="text-center mb-3 mb-md-0">Ajustes de Finanzas</h3>
+            <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="text-center">
+                    <h3 className="mb-3 mb-md-1">Ajustes de Finanzas</h3>
                     <p className="text-muted d-none d-md-block">Personaliza los colores para las categorías según tus gustos</p>
                     <hr />
-                    <div className="row">
-                        <ColorCategory
-                            label="INGRESOS"
-                            selectedColor={mainColors.income}
-                            optionsPalette={optionsPalette}
-                            handleColorSelection={handleColorSelection}
+                </div>
+                <div className="row mb-2">
+                    <ColorCategory
+                        label="INGRESOS"
+                        selectedColor={mainColors.income}
+                        optionsPalette={optionsPalette}
+                        handleColorSelection={handleColorSelection}
+                    />
+                    <ColorCategory
+                        label="AHORROS"
+                        selectedColor={mainColors.savings}
+                        optionsPalette={optionsPalette}
+                        handleColorSelection={handleColorSelection}
+                    />
+                    <ColorCategory
+                        label="EGRESOS"
+                        selectedColor={mainColors.expense}
+                        optionsPalette={optionsPalette}
+                        handleColorSelection={handleColorSelection}
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary w-100">
+                    <span>Guardar cambios</span>
+                    <i class="bi bi-palette2 ms-2"></i>
+                </button>
+            </div>
+
+            <div className="bg-body-tertiary rounded-3 p-3 shadow-sm">
+                <div className="text-center">
+                    <h3 className="mb-3 m-md-1">Etiquetas personalizadas</h3>
+                    <p className="text-muted d-none d-md-block">Agrega tus etiquetas personalizadas y organiza mejor tus movimientos.</p>
+                    <hr />
+                </div>
+                <div className="row mb-3">
+                    <div className="col-12 col-md-8 p-2">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Nueva etiqueta"
+                            value={newLabel}
+                            onChange={(e) => setNewLabel(e.target.value)}
                         />
-                        <ColorCategory
-                            label="AHORROS"
-                            selectedColor={mainColors.savings}
-                            optionsPalette={optionsPalette}
-                            handleColorSelection={handleColorSelection}
-                        />
-                        <ColorCategory
-                            label="EGRESOS"
-                            selectedColor={mainColors.expense}
-                            optionsPalette={optionsPalette}
-                            handleColorSelection={handleColorSelection}
-                        />
+                    </div>
+                    <div className="col-12 col-md-4 p-2">
+                        <button
+                            className="btn btn-primary w-100"
+                            onClick={addNewLabel}
+                            disabled={!newLabel.trim()}
+                        >
+                            <span>Agregar Etiqueta</span>
+                            <i className="bi bi-plus-circle ms-2"></i>
+                        </button>
                     </div>
                 </div>
 
-                {/* Agregar Etiquetas Personalizadas */}
-                <div className="bg-body-tertiary rounded-3 p-3 shadow-sm">
-                    <h3 className="text-center mb-3 m-md-0">Etiquetas personalizadas</h3>
-                    <p className="text-muted d-none d-md-block">Agrega tus etiquetas personalizadas y organiza mejor tus movimientos.</p>
-                    <hr />
-                    <div className="row mb-3">
-                        <div className="col-12 col-md-8 p-2">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Nueva etiqueta"
-                                value={newLabel}
-                                onChange={(e) => setNewLabel(e.target.value)}
-                            />
-                        </div>
-                        <div className="col-12 col-md-4 p-2">
-                            <button
-                                className="btn btn-primary w-100"
-                                onClick={addNewLabel}
-                                disabled={!newLabel.trim()}
-                            >
-                                <span>Agregar Etiqueta</span>
-                                <i className="bi bi-plus-circle ms-2"></i>
-                            </button>
-                        </div>
-                    </div>
 
-
-                    <h5 className="text-secondary">Etiquetas Existentes:</h5>
+                <h5 className="text-secondary">Etiquetas Existentes:</h5>
+                <div className="card-body p-0" style={{ maxHeight: '300px', overflowY: 'auto' }}>
                     <ul className="list-group">
                         {labels.length > 0 ? (
                             labels.map((label, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                     {label}
-                                    <button
-                                        className="btn btn-sm btn-danger"
-                                        onClick={() => removeLabel(index)}
-                                    >
-                                        <i className="bi bi-trash-fill"></i>
-                                    </button>
+                                    <div>
+                                        <button
+                                            className="btn btn-sm btn-outline-warning"
+                                            onClick={() => removeLabel(index)}
+                                        >
+                                            <i className="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button
+                                            className="btn btn-sm btn-outline-danger ms-2"
+                                            onClick={() => removeLabel(index)}
+                                        >
+                                            <i className="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </li>
                             ))
                         ) : (
@@ -168,7 +196,7 @@ const SettingsCustomization = () => {
                     </ul>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

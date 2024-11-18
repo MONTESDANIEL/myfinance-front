@@ -131,14 +131,14 @@ const HomeManagement = () => {
                 </ul>
             </div>
 
-            <div className="tab-content container-fluid py-3" id="v-pills-tabContent">
+            <div className="tab-content container py-3" id="v-pills-tabContent">
                 <div
                     className="tab-pane fade show active"
                     id="v-pills-movements"
                     role="tabpanel"
                     aria-labelledby="v-pills-movements-tab"
                     tabIndex="0">
-                    <div className="container bg-dark-subtle rounded p-3">
+                    <div className="bg-dark-subtle rounded p-3">
                         <ManageMovements />
                     </div>
                 </div>
@@ -148,7 +148,7 @@ const HomeManagement = () => {
                     role="tabpanel"
                     aria-labelledby="v-pills-planning-tab"
                     tabIndex="0">
-                    <div className="container bg-dark-subtle rounded p-3">
+                    <div className="bg-dark-subtle rounded p-3">
                         <ManagePlanning />
                     </div>
                 </div>
@@ -158,7 +158,7 @@ const HomeManagement = () => {
                     role="tabpanel"
                     aria-labelledby="v-pills-reports-tab"
                     tabIndex="0">
-                    <div className="container bg-dark-subtle rounded p-3">
+                    <div className="bg-dark-subtle rounded p-3">
                         <ManageReports />
                     </div>
                 </div>
@@ -168,7 +168,7 @@ const HomeManagement = () => {
                     role="tabpanel"
                     aria-labelledby="v-pills-due-tab"
                     tabIndex="0">
-                    <div className="container bg-dark-subtle rounded p-3">
+                    <div className="bg-dark-subtle rounded p-3">
                         <ManageDue />
                     </div>
                 </div>

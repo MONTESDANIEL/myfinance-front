@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { movementsData, tags } from '@data/movementsData'
+import InputCash from "@components/inputCash";
 
 const ListItem = ({ date, description, amount, type, tag }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,16 +37,23 @@ const ListItem = ({ date, description, amount, type, tag }) => {
 };
 
 const ManageMovements = () => {
+
+    const [amount, setAmount] = useState("");
+
     return (
         <>
-
-            <div className="text-center text-ligth d-lg-none">
+            <div className="text-center">
                 <h1>Movimientos</h1>
-                <hr />
+                <p className="text-muted">Registra y revisa todos tus movimientos financieros</p>
             </div>
 
-            <div className="container-fluid rounded p-2 mb-3 bg-body-tertiary">
-                <h2 className='my-4 mt-3 text-center'>Nuevos Movimientos</h2>
+
+            <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="text-center">
+                    <h3 className="mb-md-1">Nuevos Movimientos</h3>
+                    <p className="text-muted d-none d-md-block">Añade nuevos movimientos financieros</p>
+                    <hr />
+                </div>
                 <div className="card">
                     <div className="card-header text-center text-md-start">
                         Registrar Movimiento
@@ -54,7 +62,11 @@ const ManageMovements = () => {
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="amount" className="form-label">Monto</label>
-                                <input type="number" className="form-control" id="amount" placeholder="Ingrese el monto" />
+                                <InputCash
+                                    value={amount}
+                                    placeholder="Ingrese el monto"
+                                    onChange={(value) => setAmount(value)}
+                                />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="description" className="form-label">Descripción</label>
@@ -90,7 +102,11 @@ const ManageMovements = () => {
             </div >
 
             <div className="container-fluid rounded p-2 bg-body-tertiary">
-                <h2 className='my-4 mt-3 text-center'>Historial de Movimientos</h2>
+                <div className="text-center">
+                    <h3 className="mb-md-1">Historial de Movimientos</h3>
+                    <p className="text-muted d-none d-md-block">Revisa el registro completo de tus movimientos financieros</p>
+                    <hr />
+                </div>
                 <div className="card">
                     <div className="card-header d-flex flex-column flex-md-row justify-content-between align-items-center">
                         <span className="mb-md-0 p-2">Ver Movimientos</span>

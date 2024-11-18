@@ -15,19 +15,16 @@ const formatDate = (date) => {
 const ManageReports = () => {
     return (
         <>
-            <div className="text-center text-ligth p-1 d-lg-none">
-                <h1 className='mb-0'>Reportes</h1>
-                <hr />
+            <div className="text-center">
+                <h1>Reportes</h1>
+                <p className="text-muted text-center">Gestiona tus reportes personalizados</p>
             </div>
-
-            <div className="container-fluid rounded p-4 mb-3 bg-body-tertiary">
-                <div className="row align-items-center mb-2">
-                    <div className="col-md-12 text-center">
-                        <h2>Generar Reporte Personalizado</h2>
-                        <p className="text-muted">Selecciona los filtros para generar un reporte.</p>
-                    </div>
+            <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="text-center">
+                    <h3 className="mb-md-1">Generar Reporte Personalizado</h3>
+                    <p className="text-muted d-none d-md-block">Selecciona los filtros para generar un reporte</p>
+                    <hr />
                 </div>
-
                 <div className="card">
                     <div className="card-body">
                         <form>
@@ -66,9 +63,10 @@ const ManageReports = () => {
 
             <div className="container-fluid rounded p-4 bg-body-tertiary">
                 <div className="row align-items-center mb-2">
-                    <div className="col-md-12 text-center">
-                        <h2>Previsualización del reporte</h2>
-                        <p className="text-muted">Reporte de {report.categoria} realizados entre {formatDate(report.start)} y {formatDate(report.finish)}.</p>
+                    <div className="text-center">
+                        <h3 className="mb-md-1">Previsualización del reporte</h3>
+                        <p className="text-muted d-none d-md-block">Reporte de {report.categoria} realizados entre {formatDate(report.start)} y {formatDate(report.finish)}</p>
+                        <hr />
                     </div>
                 </div>
 

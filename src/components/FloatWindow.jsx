@@ -6,7 +6,6 @@ const FloatWindow = ({ isOpen, onClose, title, children, size }) => {
         <>
             {isOpen && (
                 <>
-                    {/* Fondo oscuro */}
                     <div className="modal-backdrop fade show"></div>
                     <div
                         className={`modal fade show`}

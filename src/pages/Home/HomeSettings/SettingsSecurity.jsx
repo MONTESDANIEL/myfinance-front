@@ -23,18 +23,19 @@ const SettingsSecurity = () => {
     };
 
     return (
-        <div className="bg-dark-subtle rounded p-3">
-
+        <>
             <div className="text-center">
                 <h1>Seguridad</h1>
-                <p className="text-secondary">Configura y protege tu cuenta</p>
+                <p className="text-muted">Configura y protege tu cuenta</p>
             </div>
 
             <form>
                 <div className="bg-body-tertiary rounded p-3 mb-3">
-                    <h3 className="text-center mb-3 mb-md-2">Autenticación de Dos Factores</h3>
-                    <p className="text-center d-none d-md-block">Protege tu cuenta añadiendo una capa extra de seguridad mediante la autenticación de dos factores.</p>
-                    <hr />
+                    <div className="text-center">
+                        <h3 className="mb-3 mb-md-1">Autenticación de Dos Factores</h3>
+                        <p className="d-none d-md-block">Protege tu cuenta añadiendo una capa extra de seguridad mediante la autenticación de dos factores.</p>
+                        <hr />
+                    </div>
                     <div className="form-check form-switch mb-3">
                         <input
                             type="checkbox"
@@ -60,9 +61,11 @@ const SettingsSecurity = () => {
                 </div>
 
                 <div className="bg-body-tertiary rounded p-3 mb-3">
-                    <h3 className="text-center mb-3 mb-md-2">Recuperación de Contraseña</h3>
-                    <p className="text-center d-none d-md-block">Recupera el acceso a tu cuenta de manera segura si has olvidado tu contraseña.</p>
-                    <hr />
+                    <div className="text-center">
+                        <h3 className="mb-3 mb-md-1">Recuperación de Contraseña</h3>
+                        <p className="d-none d-md-block">Recupera el acceso a tu cuenta de manera segura si has olvidado tu contraseña.</p>
+                        <hr />
+                    </div>
                     <div className="mb-3">
                         <label htmlFor="recoveryMethod" className="form-label">Método de Recuperación Favorito</label>
                         <select
@@ -78,10 +81,12 @@ const SettingsSecurity = () => {
                 </div >
 
                 <div className="bg-body-tertiary rounded p-3 mb-3">
-                    <h3 className="text-center mb-3 mb-md-2">Preguntas de Recuperación</h3>
-                    <p className="text-center d-none d-md-block m-0">Configura preguntas de seguridad para recuperar tu cuenta en caso de olvidar tu contraseña.</p>
-                    <p className="text-center d-none d-md-block">Asegúrese de elegir respuestas que solo usted pueda recordar.</p>
-                    <hr />
+                    <div className="text-center">
+                        <h3 className="mb-3 mb-md-1">Preguntas de Recuperación</h3>
+                        <p className="d-none d-md-block m-0">Configura preguntas de seguridad para recuperar tu cuenta en caso de olvidar tu contraseña.</p>
+                        <p className="d-none d-md-block">Asegúrese de elegir respuestas que solo usted pueda recordar.</p>
+                        <hr />
+                    </div>
                     {Array.from({ length: 3 }).map((_, i) => (
                         <div className="mb-3" key={i}>
                             <label htmlFor={`recoveryQuestion${i + 1}`} className="form-label">
@@ -106,10 +111,10 @@ const SettingsSecurity = () => {
             </form >
 
             <button type="submit" className="btn btn-primary w-100">
-                <span>Guardar</span>
+                <span>Guardar Cambios</span>
                 <i className="bi bi-save ms-2"></i>
             </button>
-        </div >
+        </ >
     );
 };
 

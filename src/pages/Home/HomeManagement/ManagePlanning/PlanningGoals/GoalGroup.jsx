@@ -43,12 +43,17 @@ const GoalGroup = ({ type, goals, getProgressColor, handleShowDetails }) => {
                                 {/* Contenedor de cada elemento de la lista */}
                                 <div className="list-group-item d-flex justify-content-between align-items-center p-2 border">
                                     <div>
-                                        <h6 className="ms-1">{goal.title}</h6>
-                                        <span className="ms-3">{goal.endDate}</span>
+                                        <h6>{goal.title}</h6>
+                                        <span className="ms-1">{goal.endDate}</span>
                                     </div>
-                                    <button className="btn btn-outline-success btn-sm ms-4">
-                                        <i className="bi bi-check-circle"></i>
-                                    </button>
+                                    <div className="w-25 d-flex justify-content-end">
+                                        <button className="btn btn-outline-danger btn-sm">
+                                            <i className="bi bi-trash"></i>
+                                        </button>
+                                        <button className="btn btn-outline-success btn-sm ms-2">
+                                            <i className="bi bi-check-circle"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 

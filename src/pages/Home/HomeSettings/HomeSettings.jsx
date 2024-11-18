@@ -101,15 +101,15 @@ const HomeProfile = () => {
                 </ul>
             </div>
 
-            <div className="tab-content" id="v-pills-tabContent">
+            <div className="tab-content container py-3" id="v-pills-tabContent">
                 <div
                     className="tab-pane fade show active"
                     id="v-pills-security"
                     role="tabpanel"
                     aria-labelledby="v-pills-security-tab"
                     tabIndex="0">
-                    <div className="container p-3">
-                        <SettingsSecurity></SettingsSecurity>
+                    <div className="bg-dark-subtle rounded p-3">
+                        <SettingsSecurity />
                     </div>
                 </div>
                 <div
@@ -118,8 +118,8 @@ const HomeProfile = () => {
                     role="tabpanel"
                     aria-labelledby="v-pills-customization-tab"
                     tabIndex="0">
-                    <div className="container p-3">
-                        <SettingsCustomization></SettingsCustomization>
+                    <div className="bg-dark-subtle rounded p-3">
+                        <SettingsCustomization />
                     </div>
                 </div>
                 <div
@@ -128,12 +128,12 @@ const HomeProfile = () => {
                     role="tabpanel"
                     aria-labelledby="v-pills-financial-tab"
                     tabIndex="0">
-                    <div className="container p-3">
-                        <SettingsFinancial></SettingsFinancial>
+                    <div className="bg-dark-subtle rounded p-3">
+                        <SettingsFinancial />
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -8,22 +8,28 @@ const ManagePlanning = () => {
 
     return (
         <>
-
-            <div className="text-center text-ligth p-1 d-lg-none">
-                <h1 className='mb-0'>Planificación financiera</h1>
-                <hr />
+            <div className="text-center">
+                <h1>Planificación</h1>
+                <p className="text-muted">Organiza tus eventos financieros y define tus objetivos para un mejor control.</p>
             </div>
 
-            <div className="container-fluid rounded p-2 mb-3 bg-body-tertiary">
-                <h2 className='my-4 mt-3 text-center'>Calendario de planificación</h2>
+            <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="text-center">
+                    <h3 className="mb-md-1">Calendario de planificación</h3>
+                    <p className="text-muted d-none d-md-block">Consulta todos tus eventos financieros y sus fechas importantes.</p>
+                    <hr />
+                </div>
                 <PlanningCalendar />
             </div>
 
             <div className="container-fluid rounded p-2 bg-body-tertiary">
-                <h2 className='mt-3 text-center'>Metas financieras</h2>
+                <div className="text-center">
+                    <h3 className="mb-md-1">Metas financieras</h3>
+                    <p className="text-muted d-none d-md-block">Establece y realiza un seguimiento de tus objetivos financieros.</p>
+                    <hr />
+                </div>
                 <PlanningGoals />
             </div>
-
         </>
     );
 };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { dueData, debtTypes } from '@data/dueData.js'
-
+import InputCash from "@components/inputCash";
+import FloatWindow from '@components/FloatWindow';
 
 const ManageDue = () => {
     const [amount, setAmount] = useState('');
@@ -11,27 +12,33 @@ const ManageDue = () => {
     const [dueDate, setDueDate] = useState('');
     const [totalInstallments, setTotalInstallments] = useState('');
     const [currentInstallment, setCurrentInstallment] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentOpenDebt, setCurrentOpenDebt] = useState(null); // Estado inicializado
 
-    const [openDebtIds, setOpenDebtIds] = useState([]);
+    // Abrir el modal para detalles específicos
+    const handleOpen = (id) => {
+        setIsOpen(true);
+        setCurrentOpenDebt(id);
+    };
 
-    const toggleDetails = (id) => {
-        if (openDebtIds.includes(id)) {
-            setOpenDebtIds(openDebtIds.filter((debtId) => debtId !== id));
-        } else {
-            setOpenDebtIds([...openDebtIds, id]);
-        }
+    // Cerrar el modal
+    const handleClose = () => {
+        setIsOpen(false);
+        setCurrentOpenDebt(null);
     };
 
     return (
         <>
-            <div className="text-center text-ligth d-lg-none">
+            <div className="text-center">
                 <h1>Control de deudas</h1>
-                <hr />
+                <p className="text-muted text-center">Gestiona tus deudas y pagos pendientes de manera eficiente</p>
             </div>
-
-            <div className="container-fluid rounded p-4 mb-3 bg-body-tertiary">
-                <h2 className="text-center">Agregar nueva deuda</h2>
-                <p className="text-muted text-center">Ingresa los detalles de la deuda.</p>
+            <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="text-center">
+                    <h3 className="mb-md-1">Agregar nueva deuda</h3>
+                    <p className="text-muted d-none d-md-block">Ingresa los detalles de la deuda</p>
+                    <hr />
+                </div>
                 <form className="row g-3">
                     <div className="col-md-12">
                         <label className="form-label">Título de la deuda</label>
@@ -44,12 +51,10 @@ const ManageDue = () => {
                     </div>
                     <div className="col-md-6">
                         <label className="form-label">Monto de la deuda</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            min="0"
+                        <InputCash
                             value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
+                            placeholder="Ingrese el monto"
+                            onChange={(value) => setAmount(value)}
                         />
                     </div>
                     <div className="col-md-6">
@@ -113,41 +118,58 @@ const ManageDue = () => {
             </div>
 
             <div className="container-fluid rounded py-4 px-2 bg-body-tertiary" >
-                <h2 className="text-center">Lista de Deudas</h2>
-                <p className="text-muted text-center">Deudas actuales con pagos pendientes</p>
+                <div className="text-center">
+                    <h3 className="mb-md-1">Lista de Deudas</h3>
+                    <p className="text-muted d-none d-md-block">Deudas actuales con pagos pendientes</p>
+                    <hr />
+                </div>
                 <ul className="card list-group" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     {dueData.map((debt) => (
-                        <li key={debt.id} className="list-group-item" onClick={() => toggleDetails(debt.id)}>
-                            <div className="d-flex justify-content-between align-items-center">
+                        <li key={debt.id} className="list-group-item">
+                            <div
+                                className="d-flex justify-content-between align-items-center"
+                            >
                                 <span className="my-1">{debt.title}</span>
-                                <i className={`ms-4 bi ${openDebtIds.includes(debt.id) ? 'bi-chevron-up' : 'bi-chevron-down'}`}></i>
+                                <button
+                                    className="btn btn-sm btn-secondary"
+                                    onClick={() => handleOpen(debt.id)}
+                                    style={{ backgroundColor: "transparent" }}>
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
                             </div>
-
-                            {openDebtIds.includes(debt.id) && (
-                                <>
-                                    <hr />
-                                    <p className="mb-1">
-                                        <strong>Monto:</strong> ${debt.amount}
-                                    </p>
-                                    <p className="mb-1">
-                                        <strong>Tipo de Deuda:</strong> {debt.type === 'custom' ? debt.customAmountType : debt.type}
-                                    </p>
-                                    <p className="mb-1">
-                                        <strong>Fecha Límite:</strong> {debt.dueDate}
-                                    </p>
-                                    <p className="mb-1">
-                                        <strong>Cuota Actual:</strong> {debt.currentInstallment} de {debt.totalInstallments}
-                                    </p>
-                                    <div className="d-flex justify-content-end align-items-center">
-                                        <button className="btn btn-sm btn-danger">
-                                            <i className="bi bi-trash-fill"></i>
-                                        </button>
-                                    </div>
-                                </>
-                            )}
+                            <FloatWindow
+                                isOpen={isOpen && currentOpenDebt === debt.id}
+                                onClose={handleClose}
+                                title={debt.title}>
+                                <p className="mb-1">
+                                    <strong className='me-2'>Monto:</strong>
+                                    ${debt.amount}
+                                </p>
+                                <p className="mb-1">
+                                    <strong className='me-2'>Tipo de Deuda:</strong>
+                                    {debt.type === 'custom' ? debt.customAmountType : debt.type}
+                                </p>
+                                <p className="mb-1">
+                                    <strong className='me-2'>Fecha Límite:</strong>
+                                    {debt.dueDate}
+                                </p>
+                                <p className="mb-1">
+                                    <strong className='me-2'>Cuota Actual:</strong>
+                                    {debt.currentInstallment} de {debt.totalInstallments}
+                                </p>
+                                <div className="d-flex justify-content-end align-items-center">
+                                    <button className="btn btn-sm btn-outline-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button className="btn btn-sm btn-outline-danger ms-3">
+                                        <i className="bi bi-trash-fill"></i>
+                                    </button>
+                                </div>
+                            </FloatWindow>
                         </li>
                     ))}
                 </ul>
+
             </div>
         </>
     );
