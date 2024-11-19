@@ -40,7 +40,6 @@ const GoalGroup = ({ type, goals, getProgressColor, handleShowDetails }) => {
                             </div>
                         ) : (
                             <div key={goal.id}>
-                                {/* Contenedor de cada elemento de la lista */}
                                 <div className="list-group-item d-flex justify-content-between align-items-center p-2 border">
                                     <div>
                                         <h6>{goal.title}</h6>

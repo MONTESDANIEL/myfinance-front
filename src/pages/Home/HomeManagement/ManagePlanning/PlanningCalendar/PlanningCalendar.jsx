@@ -23,7 +23,7 @@ const PlanningCalendar = () => {
             title: '',
             start: '',
             end: '',
-            type: 'Ingreso' // Valor por defecto
+            type: 'Ingreso'
         });
 
         const handleClose = () => {
@@ -39,7 +39,7 @@ const PlanningCalendar = () => {
             e.preventDefault();
             // Añadir el nuevo evento a la lista de eventos
             setEventDetails([...eventDetails, newEvent]);
-            setNewEvent({ title: '', start: '', end: '', type: 'Ingreso' }); // Reiniciar el formulario
+            setNewEvent({ title: '', start: '', end: '', type: 'Ingreso' });
             handleClose();
         };
 

@@ -12,7 +12,7 @@ const ManageDue = () => {
     const [totalInstallments, setTotalInstallments] = useState('');
     const [currentInstallment, setCurrentInstallment] = useState('');
     const [isOpen, setIsOpen] = useState(false);
-    const [currentOpenDebt, setCurrentOpenDebt] = useState(null); // Estado inicializado
+    const [currentOpenDebt, setCurrentOpenDebt] = useState(null);
 
     // Abrir el modal para detalles específicos
     const handleOpen = (id) => {
@@ -32,12 +32,15 @@ const ManageDue = () => {
                 <h1>Control de deudas</h1>
                 <p className="text-muted text-center">Gestiona tus deudas y pagos pendientes de manera eficiente</p>
             </div>
+
             <div className="bg-body-tertiary rounded p-3 mb-3">
+
                 <div className="text-center">
                     <h3 className="mb-md-1">Agregar nueva deuda</h3>
                     <p className="text-muted d-none d-md-block">Ingresa los detalles de la deuda</p>
                     <hr />
                 </div>
+
                 <form className="row g-3">
                     <div className="col-md-12">
                         <label className="form-label">Título de la deuda</label>
@@ -114,14 +117,17 @@ const ManageDue = () => {
                         </button>
                     </div>
                 </form>
+
             </div>
 
             <div className="container-fluid rounded py-4 px-2 bg-body-tertiary" >
+
                 <div className="text-center">
                     <h3 className="mb-md-1">Lista de Deudas</h3>
                     <p className="text-muted d-none d-md-block">Deudas actuales con pagos pendientes</p>
                     <hr />
                 </div>
+
                 <ul className="card list-group" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                     {dueData.map((debt) => (
                         <li key={debt.id} className="list-group-item">

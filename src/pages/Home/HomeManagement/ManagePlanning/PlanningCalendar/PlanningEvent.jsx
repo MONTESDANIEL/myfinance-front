@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import FloatWindow from '@components/FloatWindow';
 
 const PlanningEvent = ({ selectedDate, events }) => {
-    const [isOpen, setIsOpen] = useState(false); // Estado para manejar la ventana flotante
-    const [eventDetails, setEventDetails] = useState([]); // Estado para almacenar detalles de eventos
+    const [isOpen, setIsOpen] = useState(false);
+    const [eventDetails, setEventDetails] = useState([]);
 
-    // Filtrar eventos para la fecha seleccionada
     useEffect(() => {
         if (selectedDate) {
             const eventsForDate = events.filter(event =>
@@ -25,12 +24,12 @@ const PlanningEvent = ({ selectedDate, events }) => {
                         : new Date(event.end).toLocaleDateString('es-ES'),
                     type: event.type,
                     color: event.color,
-                    message: isSingleDayEvent ? 'Este evento es solo de un día.' : '' // Mensaje condicional
+                    message: isSingleDayEvent ? 'Este evento es solo de un día.' : ''
                 };
             });
 
-            setEventDetails(details); // Establecer detalles de eventos en el estado
-            setIsOpen(details.length > 0); // Abrir la ventana flotante solo si hay eventos
+            setEventDetails(details);
+            setIsOpen(details.length > 0);
         } else {
             setIsOpen(false);
         }

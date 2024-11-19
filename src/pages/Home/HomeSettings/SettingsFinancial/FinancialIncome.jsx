@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import InputCash from "@components/inputCash";
 
-const IncomeSection = ({
-    income,
-    setIncome,
-    incomeType,
-    handleIncomeTypeChange,
-    incomeFrequency,
-    handleIncomeFrequencyChange,
-    firstBiweeklyIncomeDate,
-    setFirstBiweeklyIncomeDate,
-    secondBiweeklyIncomeDate,
-    setSecondBiweeklyIncomeDate,
-    monthlyIncomeDate,
-    setMonthlyIncomeDate,
-    weeklyIncomeDay,
-    setWeeklyIncomeDay
-}) => {
+const FinancialIncome = () => {
+
+    const [income, setIncome] = useState("");
+    const [incomeType, setIncomeType] = useState("");
+    const [incomeFrequency, setIncomeFrequency] = useState("");
+    const [firstBiweeklyIncomeDate, setFirstBiweeklyIncomeDate] = useState("");
+    const [secondBiweeklyIncomeDate, setSecondBiweeklyIncomeDate] = useState("");
+    const [monthlyIncomeDate, setMonthlyIncomeDate] = useState("");
+    const [weeklyIncomeDay, setWeeklyIncomeDay] = useState("");
+
     const handleIncomeDayChange = (e, type) => {
         const value = parseInt(e.target.value, 10);
 
@@ -30,6 +24,15 @@ const IncomeSection = ({
             }
         }
     };
+
+    const handleIncomeTypeChange = (e) => {
+        setIncomeType(e.target.value);
+    };
+
+    const handleIncomeFrequencyChange = (e) => {
+        setIncomeFrequency(e.target.value);
+    };
+
     return (
         <div className="bg-body-tertiary rounded p-3 shadow-sm mb-4">
             <div className="text-center">
@@ -175,159 +178,4 @@ const IncomeSection = ({
     );
 };
 
-const ExpenseSection = ({ expenseCategory, setExpenseCategory, fixedExpense, setFixedExpense, expenseDate, setExpenseDate, expenseList, setExpenseList, handleFormSubmit }) => {
-    const handleExpenseDateChange = (e) => {
-        const value = parseInt(e.target.value, 10);
-        if (value < 1 || value > 31) {
-            alert("Por favor ingresa un día entre 1 y 31");
-        } else {
-            setExpenseDate(value);
-        }
-    };
-
-    return (
-        <div className="bg-body-tertiary rounded p-3 shadow-sm">
-            <div className="text-center">
-                <h3 className="mb-1">Gestión de Gastos Frecuentes</h3>
-                <p className="text-muted mb-4">Clasifica tus gastos y define los fijos y variables, como arriendos o gastos de mercado.</p>
-                <hr />
-            </div>
-
-            <form onSubmit={handleFormSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="expenseCategory" className="form-label">Clasificación de Gastos</label>
-                    <select
-                        className="form-select"
-                        id="expenseCategory"
-                        value={expenseCategory}
-                        onChange={(e) => setExpenseCategory(e.target.value)}
-                        required
-                    >
-                        <option value="" disabled>Selecciona una categoría</option>
-                        <option value="vivienda">Vivienda</option>
-                        <option value="alimentacion">Alimentación</option>
-                        <option value="transporte">Transporte</option>
-                        <option value="otros">Otros</option>
-                    </select>
-                </div>
-
-                <div className="row mb-3">
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="fixedExpense" className="form-label">Monto del gasto</label>
-                        <InputCash
-                            value={fixedExpense}
-                            onChange={(value) => setFixedExpense(value)}
-                        />
-                        <small className="ms-1">Indica el monto aproximado del gasto.</small>
-                    </div>
-
-                    <div className="col-md-6 mb-3">
-                        <label htmlFor="expenseDate" className="form-label">Día del Gasto</label>
-                        <input
-                            type="number"
-                            className="form-control"
-                            id="expenseDate"
-                            value={expenseDate}
-                            onChange={handleExpenseDateChange}
-                            min="1"
-                            max="31"
-                            required
-                        />
-                        <small className="ms-1">Indica el día del mes en que realizas el gasto.</small>
-                    </div>
-                </div>
-                <button type="submit" className="btn btn-primary w-100">
-                    <span>Agregar Gasto</span>
-                    <i className="bi bi-cash-coin ms-2"></i>
-                </button>
-            </form>
-
-            {expenseList.length > 0 && (
-                <div className="mt-4">
-                    <h4 className="text-center">Lista de Gastos</h4>
-                    <ul className="list-group">
-                        {expenseList.map((expense, index) => (
-                            <li key={index} className="list-group-item">
-                                <strong>{expense.category.charAt(0).toUpperCase() + expense.category.slice(1).toLowerCase()}</strong><br />
-                                Gasto Fijo: {expense.fixedExpense} - Día: {expense.expenseDate}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
-    );
-};
-
-const SettingsFinancial = () => {
-    const [income, setIncome] = useState("");
-    const [incomeType, setIncomeType] = useState("");
-    const [incomeFrequency, setIncomeFrequency] = useState("");
-    const [firstBiweeklyIncomeDate, setFirstBiweeklyIncomeDate] = useState("");
-    const [secondBiweeklyIncomeDate, setSecondBiweeklyIncomeDate] = useState("");
-    const [monthlyIncomeDate, setMonthlyIncomeDate] = useState("");
-    const [weeklyIncomeDay, setWeeklyIncomeDay] = useState("");
-
-    const [expenseCategory, setExpenseCategory] = useState("");
-    const [fixedExpense, setFixedExpense] = useState("");
-    const [expenseDate, setExpenseDate] = useState("");
-    const [expenseList, setExpenseList] = useState([]);
-
-    const handleIncomeTypeChange = (e) => {
-        setIncomeType(e.target.value);
-    };
-
-    const handleIncomeFrequencyChange = (e) => {
-        setIncomeFrequency(e.target.value);
-    };
-
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        const expense = {
-            category: expenseCategory,
-            fixedExpense,
-            expenseDate
-        };
-        setExpenseList([...expenseList, expense]);
-    };
-
-    return (
-        <>
-            <div className="text-center">
-                <h1>Financiero</h1>
-                <p className="text-muted">Configure sus gastos e ingresos</p>
-            </div>
-
-            <IncomeSection
-                income={income}
-                setIncome={setIncome}
-                incomeType={incomeType}
-                handleIncomeTypeChange={handleIncomeTypeChange}
-                incomeFrequency={incomeFrequency}
-                handleIncomeFrequencyChange={handleIncomeFrequencyChange}
-                firstBiweeklyIncomeDate={firstBiweeklyIncomeDate}
-                setFirstBiweeklyIncomeDate={setFirstBiweeklyIncomeDate}
-                secondBiweeklyIncomeDate={secondBiweeklyIncomeDate}
-                setSecondBiweeklyIncomeDate={setSecondBiweeklyIncomeDate}
-                monthlyIncomeDate={monthlyIncomeDate}
-                setMonthlyIncomeDate={setMonthlyIncomeDate}
-                weeklyIncomeDay={weeklyIncomeDay}
-                setWeeklyIncomeDay={setWeeklyIncomeDay}
-            />
-
-            <ExpenseSection
-                expenseCategory={expenseCategory}
-                setExpenseCategory={setExpenseCategory}
-                fixedExpense={fixedExpense}
-                setFixedExpense={setFixedExpense}
-                expenseDate={expenseDate}
-                setExpenseDate={setExpenseDate}
-                expenseList={expenseList}
-                setExpenseList={setExpenseList}
-                handleFormSubmit={handleFormSubmit}
-            />
-        </>
-    );
-};
-
-export default SettingsFinancial;
+export default FinancialIncome;

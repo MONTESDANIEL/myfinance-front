@@ -33,20 +33,19 @@ const tabs = [
 ];
 
 const HomeManagement = () => {
-    const { state, dispatch } = useAppContext(); // Acceder al estado global del contexto
-    const { tabs: { management } } = state; // Extraemos la pestaña activa para la página 'management'
+    const { state, dispatch } = useAppContext();
+    const managementTab = state.tabs ? state.tabs.management : 'movements';
 
-    // Manejar el cambio de pestaña
+    // Función para manejar el cambio de pestaña
     const handleTabClick = (tabId) => {
         dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'management', tab: tabId } });
     };
 
     useEffect(() => {
-        if (!management) {
+        if (!managementTab) {
             dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'management', tab: 'movements' } });
         }
-    }, [management, dispatch]);
-
+    }, [managementTab, dispatch]);
     return (
         <div className="container-fluid">
             {/* Navbar para dispositivos pequeños */}
@@ -55,10 +54,10 @@ const HomeManagement = () => {
                     {tabs.map((tab) => (
                         <li className="nav-item" key={tab.id}>
                             <button
-                                className={`nav-link ${management === tab.id ? 'active' : ''} text-secondary`}
+                                className={`nav-link ${managementTab === tab.id ? 'active' : ''} text-secondary`}
                                 type="button"
                                 role="tab"
-                                onClick={() => handleTabClick(tab.id)} // Cambiar la pestaña activa al hacer clic
+                                onClick={() => handleTabClick(tab.id)}
                             >
                                 <i className={`bi ${tab.icon}`}></i>
                             </button>
@@ -73,10 +72,10 @@ const HomeManagement = () => {
                     {tabs.map((tab) => (
                         <li className="nav-item" key={tab.id}>
                             <button
-                                className={`nav-link ${management === tab.id ? 'active' : ''} text-secondary`}
+                                className={`nav-link ${managementTab === tab.id ? 'active' : ''} text-secondary`}
                                 type="button"
                                 role="tab"
-                                onClick={() => handleTabClick(tab.id)} // Cambiar la pestaña activa al hacer clic
+                                onClick={() => handleTabClick(tab.id)}
                             >
                                 <i className={`bi ${tab.icon}`}></i>
                                 <span className="ms-2">{tab.label}</span>
@@ -91,7 +90,7 @@ const HomeManagement = () => {
                 {tabs.map((tab) => (
                     <div
                         key={tab.id}
-                        className={`tab-pane fade ${management === tab.id ? 'show active' : ''}`}
+                        className={`tab-pane fade ${managementTab === tab.id ? 'show active' : ''}`}
                         role="tabpanel"
                         aria-labelledby={`v-pills-${tab.id}-tab`}
                         tabIndex="0"

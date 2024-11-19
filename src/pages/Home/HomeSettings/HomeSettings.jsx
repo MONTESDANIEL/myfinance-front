@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { useAppContext } from '@context/AppContext'; // Usamos el contexto
 import SettingsSecurity from './SettingsSecurity';
 import SettingsCustomization from './SettingsCustomization';
-import SettingsFinancial from './SettingsFinancial';
+import SettingsFinancial from './SettingsFinancial/SettingsFinancial';
+
+import { useAppContext } from '@context/AppContext';
 
 const tabs = [
     {
@@ -26,24 +27,25 @@ const tabs = [
 ];
 
 const HomeProfile = () => {
-    const { state, dispatch } = useAppContext(); // Usamos el contexto
-    const { tabs: { settings } } = state; // Extraemos la pestaña activa para la página 'settings'
+    const { state, dispatch } = useAppContext();
+    const settingsTab = state.tabs ? state.tabs.settings : 'security';
 
     // Función para manejar el cambio de pestaña
     const handleTabChange = (tabId) => {
         dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'settings', tab: tabId } });
-        localStorage.setItem('activeSettingsTab', tabId); // Guardar el cambio en el localStorage
+        localStorage.setItem('activeSettingsTab', tabId);
     };
 
     // Usar useEffect para restaurar la pestaña activa del localStorage al cargar el componente
     useEffect(() => {
         const savedTab = localStorage.getItem('activeSettingsTab');
-        if (savedTab && savedTab !== settings) {
-            dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'settings', tab: savedTab } }); // Restaurar la pestaña
+        if (savedTab && savedTab !== settingsTab) {
+            dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'settings', tab: savedTab } });
         } else if (!savedTab) {
-            dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'settings', tab: 'security' } }); // Valor predeterminado
+            dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'settings', tab: 'security' } });
         }
-    }, [settings, dispatch]);
+    }, [settingsTab, dispatch]);
+
 
     return (
         <div className="container-fluid">
@@ -53,10 +55,10 @@ const HomeProfile = () => {
                     {tabs.map((tab) => (
                         <li className="nav-item" key={tab.id}>
                             <button
-                                className={`nav-link ${settings === tab.id ? 'active' : ''} text-secondary`}
+                                className={`nav-link ${settingsTab === tab.id ? 'active' : ''} text-secondary`}
                                 type="button"
                                 role="tab"
-                                onClick={() => handleTabChange(tab.id)} // Cambiar la pestaña activa al hacer clic
+                                onClick={() => handleTabChange(tab.id)}
                             >
                                 <i className={`bi ${tab.icon}`}></i>
                             </button>
@@ -71,10 +73,10 @@ const HomeProfile = () => {
                     {tabs.map((tab) => (
                         <li className="nav-item" key={tab.id}>
                             <button
-                                className={`nav-link ${settings === tab.id ? 'active' : ''} text-secondary`}
+                                className={`nav-link ${settingsTab === tab.id ? 'active' : ''} text-secondary`}
                                 type="button"
                                 role="tab"
-                                onClick={() => handleTabChange(tab.id)} // Cambiar la pestaña activa al hacer clic
+                                onClick={() => handleTabChange(tab.id)}
                             >
                                 <i className={`bi ${tab.icon}`}></i>
                                 <span className="ms-2">{tab.label}</span>
@@ -89,7 +91,7 @@ const HomeProfile = () => {
                 {tabs.map((tab) => (
                     <div
                         key={tab.id}
-                        className={`tab-pane fade ${settings === tab.id ? 'show active' : ''}`}
+                        className={`tab-pane fade ${settingsTab === tab.id ? 'show active' : ''}`}
                         role="tabpanel"
                         aria-labelledby={`v-pills-${tab.id}-tab`}
                         tabIndex="0"

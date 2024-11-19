@@ -21,9 +21,9 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <StrictMode>
-    <MovementPaletteProvider>
-      <ThemeProvider>
-        <AppProvider>
+    <AppProvider>
+      <MovementPaletteProvider>
+        <ThemeProvider>
           <Router>
             <Routes>
               <Route path="/" element={<Welcome />} />
@@ -34,8 +34,8 @@ root.render(
             </Routes>
           </Router>
           <Footer />
-        </AppProvider>
-      </ThemeProvider>
-    </MovementPaletteProvider>
+        </ThemeProvider>
+      </MovementPaletteProvider>
+    </AppProvider>
   </StrictMode>
 );
