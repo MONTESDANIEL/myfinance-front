@@ -1,8 +1,6 @@
 import WelcomeMain from './WelcomeMain';
-import ThemeBtn from '../../components/ThemeBtn';
-import Logo from '../../assets/images/logos/LogoVerde.png';
-import { Link } from 'react-router-dom';
-
+import ThemeBtn from '@components/ThemeBtn';
+import Logo from '@assets/images/logos/LogoVerde.png';
 
 // Redirecciones
 function handleWelcomeRedirect() {

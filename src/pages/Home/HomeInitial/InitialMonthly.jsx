@@ -5,7 +5,7 @@ import { Pie } from 'react-chartjs-2';
 import CardInfo from '@components/CardInfo';
 import { dataMonth } from '@data/initialData.js'
 
-import { useMovementPalette } from '../../../context/ColorContext';
+import { useMovementPalette } from '@context/ColorContext';
 
 
 

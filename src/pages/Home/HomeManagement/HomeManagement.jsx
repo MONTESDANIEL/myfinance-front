@@ -1,180 +1,109 @@
+import React, { useEffect } from 'react';
+import { useAppContext } from '@context/AppContext'; // Importar el contexto
 import ManageMovements from './ManageMovements';
 import ManagePlanning from './ManagePlanning/ManagePlanning';
 import ManageReports from './ManageReports';
 import ManageDue from './ManageDue';
 
+const tabs = [
+    {
+        id: 'movements',
+        label: 'Movimientos',
+        icon: 'bi-arrow-left-right',
+        component: <ManageMovements />
+    },
+    {
+        id: 'planning',
+        label: 'Planificación financiera',
+        icon: 'bi-calendar-event',
+        component: <ManagePlanning />
+    },
+    {
+        id: 'reports',
+        label: 'Reportes',
+        icon: 'bi-file-earmark-text',
+        component: <ManageReports />
+    },
+    {
+        id: 'due',
+        label: 'Control de deudas',
+        icon: 'bi-receipt',
+        component: <ManageDue />
+    }
+];
+
 const HomeManagement = () => {
+    const { state, dispatch } = useAppContext(); // Acceder al estado global del contexto
+    const { tabs: { management } } = state; // Extraemos la pestaña activa para la página 'management'
+
+    // Manejar el cambio de pestaña
+    const handleTabClick = (tabId) => {
+        dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'management', tab: tabId } });
+    };
+
+    useEffect(() => {
+        if (!management) {
+            dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'management', tab: 'movements' } });
+        }
+    }, [management, dispatch]);
+
     return (
         <div className="container-fluid">
+            {/* Navbar para dispositivos pequeños */}
             <div className="d-lg-none navbar container-fluid justify-content-center">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
-                    <li className="nav-item">
-                        <button
-                            className="nav-link active text-secondary"
-                            id="v-pills-movements-tab-i"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-movements"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-movements"
-                            aria-selected="true">
-                            <i className="bi bi-arrow-left-right"></i>
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button
-                            className="nav-link text-secondary"
-                            id="v-pills-planning-tab-i"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-planning"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-planning"
-                            aria-selected="false">
-                            <i className="bi bi-calendar-event"></i>
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button
-                            className="nav-link text-secondary"
-                            id="v-pills-reports-tab-i"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-reports"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-reports"
-                            aria-selected="false">
-                            <i className="bi bi-file-earmark-text"></i>
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button
-                            className="nav-link text-secondary"
-                            id="v-pills-due-tab-i"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-due"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-due"
-                            aria-selected="false">
-                            <i className="bi bi-receipt"></i>
-                        </button>
-                    </li>
+                    {tabs.map((tab) => (
+                        <li className="nav-item" key={tab.id}>
+                            <button
+                                className={`nav-link ${management === tab.id ? 'active' : ''} text-secondary`}
+                                type="button"
+                                role="tab"
+                                onClick={() => handleTabClick(tab.id)} // Cambiar la pestaña activa al hacer clic
+                            >
+                                <i className={`bi ${tab.icon}`}></i>
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             </div>
 
+            {/* Navbar para dispositivos grandes */}
             <div className="d-none d-lg-block">
-                <ul
-                    className="nav nav-tabs justify-content-center"
-                    id="v-pills-tab"
-                    role="tablist">
-                    <li className="nav-item">
-                        <button
-                            className="nav-link active text-secondary"
-                            id="v-pills-movements-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-movements"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-movements"
-                            aria-selected="true">
-                            <i className="bi bi-arrow-left-right">
-                                <span className='ms-2'>Movimientos</span>
-                            </i>
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button
-                            className="nav-link text-secondary"
-                            id="v-pills-planning-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-planning"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-planning"
-                            aria-selected="false">
-                            <i className="bi bi-calendar-event">
-                                <span className='ms-2'>Planificación financiera</span>
-                            </i>
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button
-                            className="nav-link text-secondary"
-                            id="v-pills-reports-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-reports"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-reports"
-                            aria-selected="false">
-                            <i className="bi bi-file-earmark-text">
-                                <span className='ms-2'>Reportes</span>
-                            </i>
-                        </button>
-                    </li>
-                    <li className="nav-item">
-                        <button
-                            className="nav-link text-secondary"
-                            id="v-pills-due-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-due"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-due"
-                            aria-selected="false">
-                            <i className="bi bi-receipt">
-                                <span className='ms-2'>Control de deudas</span>
-                            </i>
-                        </button>
-                    </li>
+                <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
+                    {tabs.map((tab) => (
+                        <li className="nav-item" key={tab.id}>
+                            <button
+                                className={`nav-link ${management === tab.id ? 'active' : ''} text-secondary`}
+                                type="button"
+                                role="tab"
+                                onClick={() => handleTabClick(tab.id)} // Cambiar la pestaña activa al hacer clic
+                            >
+                                <i className={`bi ${tab.icon}`}></i>
+                                <span className="ms-2">{tab.label}</span>
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             </div>
 
+            {/* Contenido de las pestañas */}
             <div className="tab-content container py-3" id="v-pills-tabContent">
-                <div
-                    className="tab-pane fade show active"
-                    id="v-pills-movements"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-movements-tab"
-                    tabIndex="0">
-                    <div className="bg-dark-subtle rounded p-3">
-                        <ManageMovements />
+                {tabs.map((tab) => (
+                    <div
+                        key={tab.id}
+                        className={`tab-pane fade ${management === tab.id ? 'show active' : ''}`}
+                        role="tabpanel"
+                        aria-labelledby={`v-pills-${tab.id}-tab`}
+                        tabIndex="0"
+                    >
+                        <div className="bg-dark-subtle rounded p-3">
+                            {tab.component}
+                        </div>
                     </div>
-                </div>
-                <div
-                    className="tab-pane fade"
-                    id="v-pills-planning"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-planning-tab"
-                    tabIndex="0">
-                    <div className="bg-dark-subtle rounded p-3">
-                        <ManagePlanning />
-                    </div>
-                </div>
-                <div
-                    className="tab-pane fade"
-                    id="v-pills-reports"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-reports-tab"
-                    tabIndex="0">
-                    <div className="bg-dark-subtle rounded p-3">
-                        <ManageReports />
-                    </div>
-                </div>
-                <div
-                    className="tab-pane fade"
-                    id="v-pills-due"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-due-tab"
-                    tabIndex="0">
-                    <div className="bg-dark-subtle rounded p-3">
-                        <ManageDue />
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HomeManagement;

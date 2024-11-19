@@ -5,7 +5,7 @@ import { Bar } from 'react-chartjs-2';
 import CardInfo from '@components/CardInfo';
 import { dataYear } from '@data/initialData.js'
 
-import { useMovementPalette } from '../../../context/ColorContext';
+import { useMovementPalette } from '@context/ColorContext';
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);

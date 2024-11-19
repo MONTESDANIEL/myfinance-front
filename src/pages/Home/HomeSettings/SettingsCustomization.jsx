@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { optionsPalette } from '@components/colors.jsx';
-import { useMovementPalette } from '../../../context/ColorContext';
+import { useMovementPalette } from '@context/ColorContext';
 
 const categoryMapping = {
     'INGRESOS': 'income',
@@ -134,7 +134,7 @@ const SettingsCustomization = () => {
                 </div>
                 <button type="submit" className="btn btn-primary w-100">
                     <span>Guardar cambios</span>
-                    <i class="bi bi-palette2 ms-2"></i>
+                    <i className="bi bi-palette2 ms-2"></i>
                 </button>
             </div>
 

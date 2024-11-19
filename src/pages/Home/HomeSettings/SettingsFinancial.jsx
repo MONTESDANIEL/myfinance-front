@@ -169,7 +169,7 @@ const IncomeSection = ({
 
             <button type="submit" className="btn btn-primary w-100">
                 <span>Agregar Ingresos</span>
-                <i class="bi bi-currency-dollar ms-2"></i>
+                <i className="bi bi-currency-dollar ms-2"></i>
             </button>
         </div>
     );

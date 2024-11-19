@@ -7,8 +7,10 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            '@components': path.resolve(__dirname, './src/components'), // Ajusta la ruta según tu estructura de carpetas
-            '@data': path.resolve(__dirname, './src/data'), // Ajusta la ruta según tu estructura de carpetas
+            '@components': path.resolve(__dirname, './src/components'),
+            '@data': path.resolve(__dirname, './src/data'),
+            '@assets': path.resolve(__dirname, './src/assets'),
+            '@context': path.resolve(__dirname, './src/context')
         },
     },
 });

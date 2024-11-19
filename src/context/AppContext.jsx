@@ -1,13 +1,34 @@
-// AppContext.js
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 const AppContext = createContext();
 
-const initialState = {};
+const initialState = {
+    currentPage: 'management', // Página activa por defecto
+    tabs: {
+        management: 'movements', // Pestaña activa por defecto en 'management'
+        settings: 'security',    // Pestaña activa por defecto en 'settings'
+    },
+    availableTabs: {
+        management: ['movements', 'planning', 'reports', 'due'],
+        settings: ['security', 'customization', 'financial'],
+    },
+};
 
 const appReducer = (state, action) => {
     switch (action.type) {
-        // Define tus acciones aquí
+        case 'SET_CURRENT_PAGE':
+            return { ...state, currentPage: action.payload };
+
+        case 'SET_CURRENT_TAB':
+            const { page, tab } = action.payload;
+            return {
+                ...state,
+                tabs: {
+                    ...state.tabs,
+                    [page]: tab,
+                },
+            };
+
         default:
             return state;
     }
@@ -20,7 +41,7 @@ export const AppProvider = ({ children }) => {
     });
 
     useEffect(() => {
-        localStorage.setItem('appState', JSON.stringify(state));
+        localStorage.setItem('appState', JSON.stringify(state)); // Guardar el estado cada vez que cambie
     }, [state]);
 
     return (

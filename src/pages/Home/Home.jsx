@@ -9,8 +9,8 @@ import HomeSettings from './HomeSettings/HomeSettings';
 
 import ThemeBtn from '@components/ThemeBtn';
 
-import Logo from '../../assets/images/logos/LogoVerde.png';
-import LogoSimple from '../../assets/images/logos/Logo.png';
+import Logo from '@assets/images/logos/LogoVerde.png';
+import LogoSimple from '@assets/images/logos/Logo.png';
 
 function handleWelcomeRedirect() {
     window.location.href = '/';

@@ -1,8 +1,8 @@
-import ResponsiveImage from '../../components/ResponsiveImage';
+import ResponsiveImage from '@components/ResponsiveImage';
 
 const images = {
-    carousel: "src/assets/images/carousel",
-    galery: "src/assets/images/galery"
+    carousel: "@assets/images/carousel",
+    galery: "@assets/images/galery"
 }
 
 const WelcomeMain = () => {

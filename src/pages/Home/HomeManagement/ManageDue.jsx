@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { dueData, debtTypes } from '@data/dueData.js'
 import InputCash from "@components/inputCash";
 import FloatWindow from '@components/FloatWindow';
@@ -134,7 +133,7 @@ const ManageDue = () => {
                                     className="btn btn-sm btn-secondary"
                                     onClick={() => handleOpen(debt.id)}
                                     style={{ backgroundColor: "transparent" }}>
-                                    <i class="bi bi-three-dots"></i>
+                                    <i className="bi bi-three-dots"></i>
                                 </button>
                             </div>
                             <FloatWindow
@@ -159,7 +158,7 @@ const ManageDue = () => {
                                 </p>
                                 <div className="d-flex justify-content-end align-items-center">
                                     <button className="btn btn-sm btn-outline-warning">
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i className="bi bi-pencil-square"></i>
                                     </button>
                                     <button className="btn btn-sm btn-outline-danger ms-3">
                                         <i className="bi bi-trash-fill"></i>
