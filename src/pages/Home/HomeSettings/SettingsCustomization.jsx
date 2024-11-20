@@ -75,7 +75,7 @@ const CustomLabels = ({ labels, onAddLabel, onRemoveLabel }) => {
     };
 
     return (
-        <div className="bg-body-tertiary rounded-3 p-3 shadow-sm">
+        <div className="bg-body-tertiary rounded px-2 py-3 shadow-sm">
             <div className="text-center">
                 <h3 className="mb-3 m-md-1">Etiquetas personalizadas</h3>
                 <p className="text-muted d-none d-md-block">
@@ -83,7 +83,7 @@ const CustomLabels = ({ labels, onAddLabel, onRemoveLabel }) => {
                 </p>
                 <hr />
             </div>
-            <div className="row mb-3">
+            <div className="row m-3">
                 <div className="col-12 col-md-8 p-2">
                     <input
                         type="text"
@@ -169,7 +169,7 @@ const SettingsCustomization = () => {
                 <p className="text-muted">Personaliza tus preferencias para mejorar tu experiencia</p>
             </div>
 
-            <div className="bg-body-tertiary rounded p-3 mb-3">
+            <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
                 <div className="text-center">
                     <h3 className="mb-3 mb-md-1">Ajustes de Finanzas</h3>
                     <p className="text-muted d-none d-md-block">

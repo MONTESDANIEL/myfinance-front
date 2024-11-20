@@ -29,10 +29,10 @@ const FinancialExpense = () => {
     };
 
     return (
-        <div className="bg-body-tertiary rounded p-3 shadow-sm">
+        <div className="bg-body-tertiary rounded px-2 py-3 shadow-sm">
             <div className="text-center">
                 <h3 className="mb-1">Gestión de Gastos Frecuentes</h3>
-                <p className="text-muted mb-4">Clasifica tus gastos y define los fijos y variables, como arriendos o gastos de mercado.</p>
+                <p className="text-muted d-none d-md-block">Clasifica tus gastos y define los fijos y variables, como arriendos o gastos de mercado.</p>
                 <hr />
             </div>
 

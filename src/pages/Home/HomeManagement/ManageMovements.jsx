@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { movementsData, tags } from '@data/movementsData'
 import InputCash from "@components/inputCash";
+import { useMovementPalette } from '@context/ColorContext';
 
 const ListItem = ({ date, description, amount, type, tag }) => {
+    const { colors } = useMovementPalette();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDetails = () => {
@@ -15,21 +17,36 @@ const ListItem = ({ date, description, amount, type, tag }) => {
         egress: 'Egreso'
     };
 
+    const typeMovement = {
+        income: 'income',
+        saving: 'savings',
+        egress: 'expense'
+    };
+
     return (
         <div className="border p-3" style={{ cursor: 'pointer' }} onClick={toggleDetails} key={amount.id}>
             <div className="d-flex justify-content-between align-items-center">
                 <span className="fw-bold">{description}</span>
                 <div className="d-flex align-items-center">
 
-                    <span className={`d-none d-md-block  ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}>
+                    <span
+                        className={`d-none d-md-block`}
+                        style={{ color: colors[typeMovement[type]][1] }}>
                         {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
                     </span>
-                    <span><i className={isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"}></i></span>
+                    <span><i className={`d-none d-md-block ${isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"}`}></i></span>
+                    <span>
+                        <i
+                            className={`d-block d-md-none ${isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"}`}
+                            style={{ color: colors[typeMovement[type]][2] }}>
+                        </i>
+                    </span>
                 </div>
             </div>
             {isOpen && (
                 <div className="m-2">
-                    <span className={`d-block d-md-none ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}>
+                    <span className={`d-block d-md-none`}
+                        style={{ color: colors[typeMovement[type]][1] }}>
                         <strong>Monto:</strong> {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
                     </span>
                     <div><strong>Fecha:</strong> {new Date(date).toLocaleDateString('es-ES')}</div>
@@ -54,7 +71,7 @@ const ManageMovements = () => {
             </div>
 
 
-            <div className="bg-body-tertiary rounded p-3 mb-3">
+            <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
                 <div className="text-center">
                     <h3 className="mb-md-1">Nuevos Movimientos</h3>
                     <p className="text-muted d-none d-md-block">Añade nuevos movimientos financieros</p>
@@ -107,7 +124,7 @@ const ManageMovements = () => {
                 </div>
             </div >
 
-            <div className="container-fluid rounded p-2 bg-body-tertiary">
+            <div className="container-fluid rounded px-2 py-3 bg-body-tertiary">
                 <div className="text-center">
                     <h3 className="mb-md-1">Historial de Movimientos</h3>
                     <p className="text-muted d-none d-md-block">Revisa el registro completo de tus movimientos financieros</p>

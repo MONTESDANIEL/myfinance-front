@@ -89,6 +89,11 @@ const PerformanceMonthly = () => {
         setSelectedTitle(""); // Limpiar el título
     };
 
+    const monthNames = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ];
+
 
     return (
         <div className="p-4 bg-body-tertiary rounded shadow-sm"> {/* Fondo interno uniforme */}
@@ -97,9 +102,12 @@ const PerformanceMonthly = () => {
 
             <div className="row">
                 {/** Tarjeta total ingresos */}
-                <div className="col-md-12 text-center">
+                <div
+                    className="col-md-12 text-center"
+                    onClick={() => handleOpen('Todos')}
+                    style={{ cursor: 'pointer' }}>
                     <CardInfo
-                        title='Ingresos Octubre'
+                        title={`Ingresos ${monthNames[new Date().getMonth()]}`}
                         icon='bi bi-cash'
                         value={formatMonthlyTotalIncome}
                         backgroundColor={colors.income[3]}
@@ -155,6 +163,7 @@ const PerformanceMonthly = () => {
                     isOpen={isOpen}
                     onClose={handleClose}
                     month={new Date()}
+                    showAll={selectedTitle === 'Todos'}
                 />
 
             </div>

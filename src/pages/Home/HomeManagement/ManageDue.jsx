@@ -33,7 +33,7 @@ const ManageDue = () => {
                 <p className="text-muted text-center">Gestiona tus deudas y pagos pendientes de manera eficiente</p>
             </div>
 
-            <div className="bg-body-tertiary rounded p-3 mb-3">
+            <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
 
                 <div className="text-center">
                     <h3 className="mb-md-1">Agregar nueva deuda</h3>
@@ -120,7 +120,7 @@ const ManageDue = () => {
 
             </div>
 
-            <div className="container-fluid rounded py-4 px-2 bg-body-tertiary" >
+            <div className="bg-body-tertiary rounded px-2 py-3" >
 
                 <div className="text-center">
                     <h3 className="mb-md-1">Lista de Deudas</h3>

@@ -130,7 +130,7 @@ const PerformanceType = () => {
             },
             title: {
                 display: true,
-                text: 'Gráfico de Ingresos y Gastos',
+                text: 'Gráfico de Ingresos y Egresos',
             },
         },
         scales: {

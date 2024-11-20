@@ -34,10 +34,10 @@ const FinancialIncome = () => {
     };
 
     return (
-        <div className="bg-body-tertiary rounded p-3 shadow-sm mb-4">
+        <div className="bg-body-tertiary rounded px-2 py-3 shadow-sm mb-4">
             <div className="text-center">
                 <h3 className="mb-1">Ajustes de Ingresos</h3>
-                <p className="text-muted mb-4">Registra tus ingresos, establece la frecuencia y fecha de ingreso.</p>
+                <p className="text-muted d-none d-md-block">Registra tus ingresos, establece la frecuencia y fecha de ingreso.</p>
                 <hr />
             </div>
 

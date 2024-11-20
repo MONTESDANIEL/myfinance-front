@@ -30,7 +30,7 @@ const SettingsSecurity = () => {
             </div>
 
             <form>
-                <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
 
                     <div className="text-center">
                         <h3 className="mb-3 mb-md-1">Autenticación de Dos Factores</h3>
@@ -63,8 +63,7 @@ const SettingsSecurity = () => {
                     </div>
 
                 </div>
-
-                <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
 
                     <div className="text-center">
                         <h3 className="mb-3 mb-md-1">Recuperación de Contraseña</h3>
@@ -87,7 +86,7 @@ const SettingsSecurity = () => {
 
                 </div >
 
-                <div className="bg-body-tertiary rounded p-3 mb-3">
+                <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
 
                     <div className="text-center">
                         <h3 className="mb-3 mb-md-1">Preguntas de Recuperación</h3>

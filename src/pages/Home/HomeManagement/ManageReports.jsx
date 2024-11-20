@@ -19,7 +19,8 @@ const ManageReports = () => {
                 <h1>Reportes</h1>
                 <p className="text-muted text-center">Gestiona tus reportes personalizados</p>
             </div>
-            <div className="bg-body-tertiary rounded p-3 mb-3">
+
+            <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
                 <div className="text-center">
                     <h3 className="mb-md-1">Generar Reporte Personalizado</h3>
                     <p className="text-muted d-none d-md-block">Selecciona los filtros para generar un reporte</p>
@@ -61,7 +62,7 @@ const ManageReports = () => {
                 </div>
             </div>
 
-            <div className="container-fluid rounded p-4 bg-body-tertiary">
+            <div className="container-fluid rounded px-2 py-3 bg-body-tertiary">
                 <div className="row align-items-center mb-2">
                     <div className="text-center">
                         <h3 className="mb-md-1">Previsualización del reporte</h3>

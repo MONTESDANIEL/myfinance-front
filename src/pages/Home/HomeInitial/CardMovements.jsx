@@ -1,8 +1,11 @@
 import { React, useState } from 'react';
 import { movementsData } from '@data/movementsData.js';
 import FloatWindow from '@components/FloatWindow';
+import { useMovementPalette } from '@context/ColorContext';
 
 const ListItem = ({ date, description, amount, type, tag }) => {
+    const { colors } = useMovementPalette();
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDetails = () => {
@@ -15,33 +18,50 @@ const ListItem = ({ date, description, amount, type, tag }) => {
         egress: 'Egreso'
     };
 
+    const typeMovement = {
+        income: 'income',
+        saving: 'savings',
+        egress: 'expense'
+    };
+
     return (
         <div className="border p-3" style={{ cursor: 'pointer' }} onClick={toggleDetails} key={amount.id}>
             <div className="d-flex justify-content-between align-items-center">
                 <span className="fw-bold">{description}</span>
                 <div className="d-flex align-items-center">
-                    <span className={`d-none d-md-block  ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}>
+                    <span
+                        className={`d-none d-md-block`}
+                        style={{ color: colors[typeMovement[type]][1] }}>
                         {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
                     </span>
                     <span><i className={`d-none d-md-block ${isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"}`}></i></span>
-                    <span><i className={`d-block d-md-none ${isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"} ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}></i></span>
+                    <span>
+                        <i
+                            className={`d-block d-md-none ${isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"}`}
+                            style={{ color: colors[typeMovement[type]][2] }}>
+                        </i>
+                    </span>
                 </div>
             </div>
-            {isOpen && (
-                <div className="m-2">
-                    <span className={`d-block d-md-none ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}>
-                        <strong>Monto:</strong> {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
-                    </span>
-                    <div><strong>Fecha:</strong> {new Date(date).toLocaleDateString('es-ES')}</div>
-                    <div><strong>Tipo:</strong> {typeTranslation[type]}</div>
-                    <div><strong>Etiqueta:</strong> {tag}</div>
-                </div>
-            )}
-        </div>
+            {
+                isOpen && (
+                    <div className="m-2">
+                        <span
+                            className={`d-block d-md-none`}
+                            style={{ color: colors[typeMovement[type]][1] }}>
+                            <strong>Monto:</strong> {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
+                        </span>
+                        <div><strong>Fecha:</strong> {new Date(date).toLocaleDateString('es-ES')}</div>
+                        <div><strong>Tipo:</strong> {typeTranslation[type]}</div>
+                        <div><strong>Etiqueta:</strong> {tag}</div>
+                    </div>
+                )
+            }
+        </div >
     );
 };
 
-export const CardMovements = ({ title, isOpen, onClose, month, year }) => {
+export const CardMovements = ({ title, isOpen, onClose, month, year, showAll }) => {
     // Traducción del título a tipo en inglés
     const typeTranslation = {
         'Disponible': 'income',
@@ -53,8 +73,13 @@ export const CardMovements = ({ title, isOpen, onClose, month, year }) => {
     // Traducir el título a tipo en inglés
     const typeInEnglish = typeTranslation[title];
 
-    // Filtrar los movimientos de acuerdo al tipo
-    let filteredMovements = movementsData.filter(movement => movement.type === typeInEnglish);
+    // Filtrar los movimientos de acuerdo al tipo si no se solicita "ver todos"
+    let filteredMovements = movementsData;
+
+    if (!showAll) {
+        // Filtrar solo los movimientos del tipo especificado si no es 'showAll'
+        filteredMovements = movementsData.filter(movement => movement.type === typeInEnglish);
+    }
 
     // Si se pasa el mes, filtrar los movimientos de ese mes
     if (month) {
@@ -84,9 +109,8 @@ export const CardMovements = ({ title, isOpen, onClose, month, year }) => {
         });
     }
 
-
     return (
-        <FloatWindow isOpen={isOpen} onClose={onClose} title={title}>
+        <FloatWindow isOpen={isOpen} onClose={() => onClose()} title={title} size='lg'>
             <div className="card-body p-0" style={{ maxHeight: '500px', overflowY: 'auto' }}>
                 <div className="list-responsive">
                     {filteredMovements.length > 0 ? (

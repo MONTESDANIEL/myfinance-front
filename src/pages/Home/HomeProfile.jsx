@@ -9,7 +9,7 @@ const HomeProfile = () => {
                     <hr />
                 </div>
 
-                <main className="container-fluid rounded p-4 bg-body-tertiary">
+                <main className="container-fluid rounded p-3 bg-body-tertiary">
                     <form>
                         <div className="row">
                             <div className="col-md-12 mb-3">

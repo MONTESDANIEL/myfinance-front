@@ -17,9 +17,9 @@ const getCSSVariable = (variable) => {
 // Función para obtener los tonos de un color
 const getColorShades = (color) => {
     return {
-        1: getCSSVariable(`--${color}-300`),
-        2: getCSSVariable(`--${color}-400`),
-        3: getCSSVariable(`--${color}-500`),
+        1: getCSSVariable(`--${color}-1`),
+        2: getCSSVariable(`--${color}-2`),
+        3: getCSSVariable(`--${color}-3`),
     };
 };
 

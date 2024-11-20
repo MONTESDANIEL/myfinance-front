@@ -48,9 +48,9 @@ const HomeProfile = () => {
 
 
     return (
-        <div className="container-fluid">
+        <>
             {/* Navbar para dispositivos pequeños */}
-            <div className="d-lg-none navbar container-fluid justify-content-center">
+            <div className="d-lg-none navbar justify-content-center">
                 <ul className="nav nav-tabs justify-content-center" id="v-pills-tab" role="tablist">
                     {tabs.map((tab) => (
                         <li className="nav-item" key={tab.id}>
@@ -87,7 +87,7 @@ const HomeProfile = () => {
             </div>
 
             {/* Contenido de las pestañas */}
-            <div className="tab-content container py-3" id="v-pills-tabContent">
+            <div className="tab-content container px-2 py-3" id="v-pills-tabContent">
                 {tabs.map((tab) => (
                     <div
                         key={tab.id}
@@ -102,7 +102,7 @@ const HomeProfile = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </>
     );
 };
 
