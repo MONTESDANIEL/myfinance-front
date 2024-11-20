@@ -1,7 +1,6 @@
-const CardInfo = ({ title, icon, value, backgroundColor, mb }) => {
+const CardInfo = ({ title, icon, value, backgroundColor, mb, className = "" }) => {
     return (
-
-        <div className="card text-white mb-3" style={{ background: backgroundColor }}>
+        <div className={`card text-white mb-3 ${className}`} style={{ background: backgroundColor }}>
             <div className="card-body">
                 <h5 className={`card-title fs-6 d-flex justify-content-center ${mb}`}>
                     <i className={`bi ${icon} me-2`}></i>

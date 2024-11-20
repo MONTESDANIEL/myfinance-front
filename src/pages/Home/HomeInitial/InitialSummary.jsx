@@ -3,10 +3,40 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { dataYear } from '@data/initialData.js'
+import { movementsData } from '@data/movementsData';
 import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
+
+const processMonthlyMovements = (movements) => {
+    // Inicializar el objeto data con arrays para cada tipo de movimiento, con 12 meses (de enero a diciembre)
+    const data = {
+        income: new Array(12).fill(0), // Inicializar todos los valores en 0
+        expense: new Array(12).fill(0),
+        savings: new Array(12).fill(0)
+    };
+
+    // Procesar los movimientos
+    movements.forEach(movement => {
+        const movementDate = new Date(movement.date);
+        const movementMonth = movementDate.getMonth(); // El mes es un valor entre 0 y 11
+        const amount = movement.type === 'egress' ? Math.abs(movement.amount) : movement.amount;
+
+        // Asignar el valor al mes correspondiente
+        if (movement.type === 'income') {
+            data.income[movementMonth] += amount;
+        } else if (movement.type === 'saving') {
+            data.savings[movementMonth] += amount;
+        } else if (movement.type === 'egress') {
+            data.expense[movementMonth] += amount;
+        }
+    });
+
+    return data;
+};
+
+
+const dataYear = processMonthlyMovements(movementsData);
 
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);

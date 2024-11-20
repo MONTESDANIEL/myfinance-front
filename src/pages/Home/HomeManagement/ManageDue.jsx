@@ -136,7 +136,7 @@ const ManageDue = () => {
                             >
                                 <span className="my-1">{debt.title}</span>
                                 <button
-                                    className="btn btn-sm btn-secondary"
+                                    className="btn btn-sm btn-muted"
                                     onClick={() => handleOpen(debt.id)}
                                     style={{ backgroundColor: "transparent" }}>
                                     <i className="bi bi-three-dots"></i>

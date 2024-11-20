@@ -3,12 +3,54 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Pie } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { dataMonth } from '@data/initialData.js'
+import { movementsData } from '@data/movementsData';
 import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
+
+const processDailyMovements = (movements) => {
+
+    // Obtener el mes y año actual
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1; // Los meses en JavaScript empiezan desde 0
+    const currentYear = currentDate.getFullYear();
+
+    // Inicializar el objeto data con arrays vacíos para cada tipo de movimiento
+    const data = {
+        income: [],
+        expense: [],
+        savings: []
+    };
+
+    // Filtrar y procesar los movimientos
+    movements.forEach(movement => {
+        const movementDate = new Date(movement.date);
+        const movementMonth = movementDate.getMonth() + 1;
+        const movementYear = movementDate.getFullYear();
+
+        // Filtrar por el mes y año actual
+        if (movementMonth === currentMonth && movementYear === currentYear) {
+            const amount = movement.type === 'egress' ? Math.abs(movement.amount) : movement.amount;
+
+            if (movement.type === 'income') {
+                data.income.push(amount);
+            } else if (movement.type === 'saving') {
+                data.savings.push(amount);
+            } else if (movement.type === 'egress') {
+                data.expense.push(amount);
+            }
+        }
+    });
+
+    return data;
+};
+
+// Llamada a la función con la data
+const dataMonth = processDailyMovements(movementsData);
+
+
 
 const PerformanceMonthly = () => {
 
@@ -18,7 +60,8 @@ const PerformanceMonthly = () => {
     const monthlyIncome = dataMonth.income.reduce((total, amount) => total + amount, 0);
     const monthlySavings = dataMonth.savings.reduce((total, amount) => total + amount, 0);
     const monthlyExpense = dataMonth.expense.reduce((total, amount) => total + amount, 0);
-
+    const negativeBalance = (monthlyIncome - (monthlyExpense + monthlySavings)) < 0;
+    const monthlyAvailable = (monthlyIncome - (monthlyExpense + monthlySavings));
 
     // Funcion para dar formato a las cantidades numericas
     const formatCurrency = (amount) => amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
@@ -27,29 +70,30 @@ const PerformanceMonthly = () => {
     const formatMonthlyIncome = formatCurrency(monthlyIncome)
     const formatMonthlySavings = formatCurrency(monthlySavings)
     const formatMonthlyExpense = formatCurrency(monthlyExpense)
-    const formatMonthlyTotalIncome = formatCurrency(monthlyIncome + monthlySavings + monthlyExpense)
+    const formatMonthlyAvailable = formatCurrency(Math.abs(monthlyAvailable))
 
     // Datos configurados para el grafico de barras
     const monthlyPerformance = {
-        labels: ['Disponible', 'Ahorros', 'Egresos'],
+        labels: negativeBalance
+            ? ['Ahorros', 'Egresos']
+            : ['Disponible', 'Ahorros', 'Egresos'],
         datasets: [
             {
                 label: 'Dinero',
-                data: [monthlyIncome, monthlySavings, monthlyExpense],
-                backgroundColor: [
-                    colors.income[1],
-                    colors.savings[1],
-                    colors.expense[1],
-                ],
-                borderColor: [
-                    colors.income[2],
-                    colors.savings[2],
-                    colors.expense[2],
-                ],
+                data: negativeBalance
+                    ? [monthlySavings, monthlyExpense]
+                    : [monthlyAvailable, monthlySavings, monthlyExpense],
+                backgroundColor: negativeBalance
+                    ? [colors.savings[1], colors.expense[1]]
+                    : [colors.income[1], colors.savings[1], colors.expense[1]],
+                borderColor: negativeBalance
+                    ? [colors.savings[2], colors.expense[2]]
+                    : [colors.income[2], colors.savings[2], colors.expense[2]],
                 borderWidth: 1,
             }
         ],
     };
+
 
     const adjustPieChart = {
         responsive: true,
@@ -60,15 +104,20 @@ const PerformanceMonthly = () => {
             },
             title: {
                 display: true,
-                text: 'Distribución mensual de dinero',
+                text: `Distribución mensual de dinero (Total ${negativeBalance ? 'gastado' : 'ingresos'} en el mes) `
             },
             tooltip: {
                 callbacks: {
                     label: function (tooltipItem) {
-                        const total = tooltipItem.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        const data = tooltipItem.chart.data.datasets[0].data;
+                        const total = data.reduce((a, b) => a + b, 0);
                         const value = tooltipItem.raw;
-                        const percentage = ((value / total) * 100).toFixed(2);
-                        return `${tooltipItem.label}: ${percentage}%`;  // Mostrar porcentaje en el tooltip
+                        const percentage = (total === 0) ? 0 : ((value / total) * 100).toFixed(2); // Evitar división por cero
+                        if (total < 0) {
+                            // Si el total es negativo, ajustar la visualización
+                            return `${tooltipItem.label}: -${Math.abs(percentage)}% (Balance negativo)`;
+                        }
+                        return `${tooltipItem.label}: ${percentage}%`;
                     }
                 }
             }
@@ -94,22 +143,21 @@ const PerformanceMonthly = () => {
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
     ];
 
-
     return (
-        <div className="p-4 bg-body-tertiary rounded shadow-sm"> {/* Fondo interno uniforme */}
+        <div className="p-2 bg-body-tertiary rounded h-100 align-content-center"> {/* Fondo interno uniforme */}
 
-            <h2 className="text-center mb-4">Mensual</h2>
+            <h2 className="text-center mb-4">Mensual - {monthNames[new Date().getMonth()]}</h2>
 
             <div className="row">
                 {/** Tarjeta total ingresos */}
                 <div
                     className="col-md-12 text-center"
-                    onClick={() => handleOpen('Todos')}
+                    onClick={() => handleOpen('Ingresos')}
                     style={{ cursor: 'pointer' }}>
                     <CardInfo
-                        title={`Ingresos ${monthNames[new Date().getMonth()]}`}
+                        title={`Ingresos`}
                         icon='bi bi-cash'
-                        value={formatMonthlyTotalIncome}
+                        value={formatMonthlyIncome}
                         backgroundColor={colors.income[3]}
                     />
                 </div>
@@ -119,15 +167,13 @@ const PerformanceMonthly = () => {
 
             <div className="row d-flex">
 
-                {/** Tarjeta total ingresos */}
-                <div
-                    className="col-md-4 my-2 text-center"
-                    onClick={() => handleOpen('Disponible')}
-                    style={{ cursor: 'pointer' }}>
+                {/** Tarjeta total Disponible */}
+                <div className="col-md-4 my-2 text-center">
                     <CardInfo
-                        title="Disponible"
-                        icon="bi-cash"
-                        value={formatMonthlyIncome}
+                        title={(negativeBalance ? 'Desbalance' : 'Disponible')}
+                        icon={(negativeBalance ? 'bi-graph-down-arrow' : 'bi-wallet2')}
+                        value={formatMonthlyAvailable}
+                        className={(negativeBalance ? 'bg-danger' : '')}
                         backgroundColor={colors.income[1]}
                     />
                 </div>
@@ -158,6 +204,19 @@ const PerformanceMonthly = () => {
                     />
                 </div>
 
+                {
+                    negativeBalance && (
+                        <div className="col-md-12">
+                            <div className="alert alert-danger text-center">
+                                <i className="bi bi-exclamation-diamond"></i>
+                                <span className="ms-2">
+                                    Has excedido tus ingresos mensuales.
+                                </span>
+                            </div>
+                        </div>
+                    )
+                }
+
                 <CardMovements
                     title={selectedTitle}
                     isOpen={isOpen}
@@ -169,7 +228,7 @@ const PerformanceMonthly = () => {
             </div>
 
             <div className="card mb-3">
-                <div className="card-body d-flex align-items-center justify-content-center" style={{ height: '400px', width: '100%' }}>
+                <div className="card-body d-flex align-items-center justify-content-center" style={{ height: '450px', width: '100%' }}>
                     <Pie data={monthlyPerformance} options={adjustPieChart} />
                 </div>
             </div>

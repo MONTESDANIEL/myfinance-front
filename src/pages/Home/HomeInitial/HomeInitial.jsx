@@ -9,11 +9,11 @@ const HomeInitial = () => {
             <div className="container-fluid bg-dark-subtle p-3 rounded">
                 <h1 className='text-center'>Desempeño Financiero</h1>
                 <hr />
-                <div className="row gx-4">
-                    <div className="col-xl-6 col-lg-12 mb-4">
+                <div className="row gx-4 flex-fill">
+                    <div className="col-xl-6 col-lg-12 align-content-center">
                         <PerformanceMonthly />
                     </div>
-                    <div className="col-xl-6 col-lg-12 mb-4">
+                    <div className="col-xl-6 col-lg-12 align-content-center">
                         <PerformanceType />
                     </div>
                 </div>

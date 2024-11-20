@@ -1,6 +1,7 @@
 const getCSSVariable = (variable) => {
     return getComputedStyle(document.documentElement).getPropertyValue(variable);
 };
+
 export const optionsPalette = {
     blue: getCSSVariable('--blue-2'),
     purple: getCSSVariable('--purple-2'),
