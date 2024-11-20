@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
 import { dataYear } from '@data/initialData.js'
+import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
 
@@ -63,10 +64,27 @@ const InitialSummary = () => {
     // Variable del total de los ahorros
     const annualSavingsTotal = dataYear.savings.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
 
+    const [isOpen, setIsOpen] = useState(false); // Estado para saber si el CardMovements está abierto
+    const [selectedTitle, setSelectedTitle] = useState(""); // Estado para almacenar el título de la tarjeta seleccionada
+
+    const handleOpen = (title) => {
+        setSelectedTitle(title); // Establecer el título de la tarjeta seleccionada
+        setIsOpen(true); // Abrir el CardMovements
+    };
+
+    const handleClose = () => {
+        setIsOpen(false); // Cerrar el CardMovements
+        setSelectedTitle(""); // Limpiar el título
+    };
+
+
     return (
         <div className="p-4 bg-body-tertiary rounded shadow-sm">
             {/** Tarjeta ahorro total */}
-            <div className="col-md-12 text-center">
+            <div
+                className="col-md-12 text-center"
+                onClick={() => handleOpen('Ahorro')}
+                style={{ cursor: 'pointer' }}>
                 <CardInfo
                     title='Ahorro Total'
                     icon='bi bi-piggy-bank'
@@ -74,6 +92,13 @@ const InitialSummary = () => {
                     backgroundColor={colors.savings[3]}
                 />
             </div>
+
+            <CardMovements
+                title={selectedTitle}
+                isOpen={isOpen}
+                onClose={handleClose}
+                year={new Date()}
+            />
 
             {/** Gráfico de Ahorro */}
             <div className="card mb-3">
@@ -85,11 +110,6 @@ const InitialSummary = () => {
                         <Bar data={annualSavingsMonth} options={adjustBarChart} />
                     </div>
                 </div>
-            </div>
-
-            {/** Alertas y Motivaciones */}
-            <div className="alert alert-info mb-0" role="alert">
-                ¡Sigue así para alcanzar tus metas!
             </div>
         </div>
     );

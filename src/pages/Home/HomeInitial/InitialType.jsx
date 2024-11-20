@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
 import { dataYear } from '@data/initialData.js'
+import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
 
@@ -158,6 +159,19 @@ const PerformanceType = () => {
     const annualIncome = dataYear.income.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
     const annualExpense = dataYear.expense.reduce((total, amount) => total + amount, 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
 
+    const [isOpen, setIsOpen] = useState(false); // Estado para saber si el CardMovements está abierto
+    const [selectedTitle, setSelectedTitle] = useState(""); // Estado para almacenar el título de la tarjeta seleccionada
+
+    const handleOpen = (title) => {
+        setSelectedTitle(title); // Establecer el título de la tarjeta seleccionada
+        setIsOpen(true); // Abrir el CardMovements
+    };
+
+    const handleClose = () => {
+        setIsOpen(false); // Cerrar el CardMovements
+        setSelectedTitle(""); // Limpiar el título
+    };
+
     return (
         <div className="p-4 bg-body-tertiary rounded shadow-sm">
 
@@ -165,7 +179,10 @@ const PerformanceType = () => {
 
             <div className="row mb-4 d-flex">
                 {/* Tarjeta total ingresos */}
-                <div className="col-md-6 text-center">
+                <div
+                    className="col-md-6 text-center"
+                    onClick={() => handleOpen('Ingresos')}
+                    style={{ cursor: 'pointer' }}>
                     <CardInfo
                         title='Ingresos Totales'
                         icon='bi bi-cash'
@@ -174,7 +191,9 @@ const PerformanceType = () => {
                     />
                 </div>
                 {/* Tarjeta total gastos */}
-                <div className="col-md-6 text-center">
+                <div className="col-md-6 text-center"
+                    onClick={() => handleOpen('Egresos')}
+                    style={{ cursor: 'pointer' }}>
                     <CardInfo
                         title='Egresos Totales'
                         icon='bi bi-credit-card'
@@ -183,6 +202,13 @@ const PerformanceType = () => {
                     />
                 </div>
             </div>
+
+            <CardMovements
+                title={selectedTitle}
+                isOpen={isOpen}
+                onClose={handleClose}
+                year={new Date()}
+            />
 
             {/* Gráfico de barras */}
             <div className="card mb-3">
@@ -209,13 +235,6 @@ const PerformanceType = () => {
                     ))}
                 </div>
             </div>
-
-            {/* Alertas y Notificaciones */}
-            <div className="alert alert-success mb-0" role="alert">
-                Felicidades por mantener tus finanzas en verde! <br />
-                Sigue asegurando tu futuro financiero.
-            </div>
-
         </div>
     )
 }

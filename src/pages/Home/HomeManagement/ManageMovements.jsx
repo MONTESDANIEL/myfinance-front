@@ -9,13 +9,19 @@ const ListItem = ({ date, description, amount, type, tag }) => {
         setIsOpen(!isOpen);
     };
 
+    const typeTranslation = {
+        income: 'Ingreso',
+        saving: 'Ahorro',
+        egress: 'Egreso'
+    };
+
     return (
         <div className="border p-3" style={{ cursor: 'pointer' }} onClick={toggleDetails} key={amount.id}>
             <div className="d-flex justify-content-between align-items-center">
                 <span className="fw-bold">{description}</span>
                 <div className="d-flex align-items-center">
 
-                    <span className={`d-none d-md-block ${amount < 0 ? 'text-danger' : 'text-success'}`}>
+                    <span className={`d-none d-md-block  ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}>
                         {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
                     </span>
                     <span><i className={isOpen ? "bi bi-chevron-compact-up ms-3" : "bi bi-chevron-compact-down ms-3"}></i></span>
@@ -23,11 +29,11 @@ const ListItem = ({ date, description, amount, type, tag }) => {
             </div>
             {isOpen && (
                 <div className="m-2">
-                    <span className={`d-block d-md-none ${amount < 0 ? 'text-danger' : 'text-success'}`}>
+                    <span className={`d-block d-md-none ${type === 'egress' ? 'text-danger' : type === 'saving' ? 'text-primary' : 'text-success'}`}>
                         <strong>Monto:</strong> {amount.toLocaleString('es-ES', { style: 'currency', currency: 'COP' })}
                     </span>
                     <div><strong>Fecha:</strong> {new Date(date).toLocaleDateString('es-ES')}</div>
-                    <div><strong>Tipo:</strong> {type}</div>
+                    <div><strong>Tipo:</strong> {typeTranslation[type]}</div>
                     <div><strong>Etiqueta:</strong> {tag}</div>
                 </div>
             )}

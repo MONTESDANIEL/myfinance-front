@@ -4,7 +4,7 @@ export const movementsData = [
         date: '2024-08-22',
         description: 'Pago de Mercado',
         amount: -500000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Mercado'
     },
     {
@@ -12,7 +12,7 @@ export const movementsData = [
         date: '2024-08-23',
         description: 'Pago de Moto',
         amount: -1000000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'AhorroMoto'
     },
     {
@@ -20,7 +20,7 @@ export const movementsData = [
         date: '2024-09-12',
         description: 'Cuota casa',
         amount: 350000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Arriendo'
     },
     {
@@ -28,7 +28,7 @@ export const movementsData = [
         date: '2024-09-15',
         description: 'Venta de bicicleta',
         amount: 2000000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Venta'
     },
     {
@@ -36,7 +36,7 @@ export const movementsData = [
         date: '2024-09-20',
         description: 'Compra de comida',
         amount: -150000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Alimentación'
     },
     {
@@ -44,7 +44,7 @@ export const movementsData = [
         date: '2024-09-25',
         description: 'Salario mensual',
         amount: 3000000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Salario'
     },
     {
@@ -52,7 +52,7 @@ export const movementsData = [
         date: '2024-10-01',
         description: 'Pago de servicios públicos',
         amount: -250000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Servicios'
     },
     {
@@ -60,7 +60,7 @@ export const movementsData = [
         date: '2024-10-05',
         description: 'Café con amigos',
         amount: -50000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Entretenimiento'
     },
     {
@@ -68,7 +68,7 @@ export const movementsData = [
         date: '2024-10-10',
         description: 'Inversión en acciones',
         amount: -1000000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Inversión'
     },
     {
@@ -76,7 +76,7 @@ export const movementsData = [
         date: '2024-10-15',
         description: 'Reembolso de gastos',
         amount: 300000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Reembolso'
     },
     {
@@ -84,7 +84,7 @@ export const movementsData = [
         date: '2024-10-20',
         description: 'Compra de ropa',
         amount: -300000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Ropa'
     },
     {
@@ -92,7 +92,7 @@ export const movementsData = [
         date: '2024-10-22',
         description: 'Intereses bancarios',
         amount: 100000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Intereses'
     },
     {
@@ -100,7 +100,7 @@ export const movementsData = [
         date: '2024-10-23',
         description: 'Cena en restaurante',
         amount: -200000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Alimentación'
     },
     {
@@ -108,7 +108,7 @@ export const movementsData = [
         date: '2024-10-24',
         description: 'Pago de internet',
         amount: -80000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Servicios'
     },
     {
@@ -116,7 +116,7 @@ export const movementsData = [
         date: '2024-10-25',
         description: 'Alquiler de oficina',
         amount: -1500000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Arriendo'
     },
     {
@@ -124,7 +124,7 @@ export const movementsData = [
         date: '2024-10-26',
         description: 'Venta de muebles usados',
         amount: 500000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Venta'
     },
     {
@@ -132,7 +132,7 @@ export const movementsData = [
         date: '2024-10-27',
         description: 'Ahorros mensuales',
         amount: 600000,
-        type: 'Ingreso',
+        type: 'saving',  // Cambio aquí
         tag: 'Ahorro'
     },
     {
@@ -140,7 +140,7 @@ export const movementsData = [
         date: '2024-10-28',
         description: 'Compra de libros',
         amount: -250000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Educación'
     },
     {
@@ -148,7 +148,7 @@ export const movementsData = [
         date: '2024-10-29',
         description: 'Gastos de viaje',
         amount: -1200000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Viaje'
     },
     {
@@ -156,16 +156,15 @@ export const movementsData = [
         date: '2024-10-30',
         description: 'Dividendos de inversión',
         amount: 400000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Dividendos'
     },
-    // Nuevas entradas
     {
         id: 21,
         date: '2024-11-01',
         description: 'Compra de hardware',
         amount: -750000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Tecnología'
     },
     {
@@ -173,7 +172,7 @@ export const movementsData = [
         date: '2024-11-03',
         description: 'Pago de seguro',
         amount: -120000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Seguros'
     },
     {
@@ -181,7 +180,7 @@ export const movementsData = [
         date: '2024-11-05',
         description: 'Bonificación de desempeño',
         amount: 500000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Bonificación'
     },
     {
@@ -189,7 +188,7 @@ export const movementsData = [
         date: '2024-11-10',
         description: 'Compra de herramientas',
         amount: -300000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Hogar'
     },
     {
@@ -197,7 +196,7 @@ export const movementsData = [
         date: '2024-11-12',
         description: 'Salario de noviembre',
         amount: 3200000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Salario'
     },
     {
@@ -205,7 +204,7 @@ export const movementsData = [
         date: '2024-11-15',
         description: 'Ahorro de noviembre',
         amount: 500000,
-        type: 'Ingreso',
+        type: 'saving',  // Cambio aquí
         tag: 'Ahorro'
     },
     {
@@ -213,7 +212,7 @@ export const movementsData = [
         date: '2024-11-20',
         description: 'Pago de alquiler de oficina',
         amount: -1600000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Arriendo'
     },
     {
@@ -221,7 +220,7 @@ export const movementsData = [
         date: '2024-11-25',
         description: 'Gastos de transporte',
         amount: -300000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Transporte'
     },
     {
@@ -229,7 +228,7 @@ export const movementsData = [
         date: '2024-11-28',
         description: 'Venta de productos',
         amount: 1800000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Venta'
     },
     {
@@ -237,7 +236,7 @@ export const movementsData = [
         date: '2024-12-01',
         description: 'Compra de regalo de cumpleaños',
         amount: -700000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Regalos'
     },
     {
@@ -245,7 +244,7 @@ export const movementsData = [
         date: '2024-12-05',
         description: 'Ingreso por freelance',
         amount: 1500000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Freelance'
     },
     {
@@ -253,7 +252,7 @@ export const movementsData = [
         date: '2024-12-10',
         description: 'Cuidado personal',
         amount: -250000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Salud'
     },
     {
@@ -261,7 +260,7 @@ export const movementsData = [
         date: '2024-12-12',
         description: 'Inversión en criptomonedas',
         amount: -500000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Inversión'
     },
     {
@@ -269,7 +268,7 @@ export const movementsData = [
         date: '2024-12-15',
         description: 'Pago de membresía de gimnasio',
         amount: -120000,
-        type: 'Gasto',
+        type: 'egress',  // Cambio aquí
         tag: 'Salud'
     },
     {
@@ -277,58 +276,131 @@ export const movementsData = [
         date: '2024-12-20',
         description: 'Intereses de inversión',
         amount: 300000,
-        type: 'Ingreso',
+        type: 'income',  // Cambio aquí
         tag: 'Intereses'
     },
     {
         id: 36,
         date: '2024-12-25',
-        description: 'Fiesta de fin de año',
-        amount: -500000,
-        type: 'Gasto',
-        tag: 'Entretenimiento'
+        description: 'Gastos navideños',
+        amount: -1500000,
+        type: 'egress',  // Cambio aquí
+        tag: 'Navidad'
     },
     {
         id: 37,
-        date: '2024-12-30',
-        description: 'Donación a caridad',
-        amount: -100000,
-        type: 'Gasto',
-        tag: 'Donación'
-    },
-    {
-        id: 38,
-        date: '2025-01-01',
-        description: 'Regalo de año nuevo',
-        amount: -300000,
-        type: 'Gasto',
-        tag: 'Regalos'
-    },
-    {
-        id: 39,
-        date: '2025-01-05',
-        description: 'Ingreso de inversión',
-        amount: 800000,
-        type: 'Ingreso',
-        tag: 'Inversión'
-    },
-    {
-        id: 40,
-        date: '2025-01-10',
-        description: 'Alquiler de vivienda',
-        amount: -1600000,
-        type: 'Gasto',
+        date: '2024-11-02',
+        description: 'Pago de alquiler',
+        amount: -1200000,
+        type: 'egress',
         tag: 'Arriendo'
     },
     {
+        id: 38,
+        date: '2024-11-03',
+        description: 'Pago de internet',
+        amount: -95000,
+        type: 'egress',
+        tag: 'Servicios'
+    },
+    {
+        id: 39,
+        date: '2024-11-04',
+        description: 'Venta de equipo usado',
+        amount: 800000,
+        type: 'income',
+        tag: 'Venta'
+    },
+    {
+        id: 40,
+        date: '2024-11-07',
+        description: 'Compra de material de oficina',
+        amount: -200000,
+        type: 'egress',
+        tag: 'Oficina'
+    },
+    {
         id: 41,
-        date: '2025-01-15',
-        description: 'Compra de equipo de oficina',
-        amount: -1000000,
-        type: 'Gasto',
+        date: '2024-11-08',
+        description: 'Pago de seguro de vida',
+        amount: -150000,
+        type: 'egress',
+        tag: 'Seguros'
+    },
+    {
+        id: 42,
+        date: '2024-11-11',
+        description: 'Venta de libros',
+        amount: 500000,
+        type: 'income',
+        tag: 'Venta'
+    },
+    {
+        id: 43,
+        date: '2024-11-14',
+        description: 'Comida rápida',
+        amount: -70000,
+        type: 'egress',
+        tag: 'Alimentación'
+    },
+    {
+        id: 44,
+        date: '2024-11-16',
+        description: 'Compra de software',
+        amount: -400000,
+        type: 'egress',
         tag: 'Tecnología'
+    },
+    {
+        id: 45,
+        date: '2024-11-18',
+        description: 'Ingreso extra freelance',
+        amount: 1200000,
+        type: 'income',
+        tag: 'Freelance'
+    },
+    {
+        id: 46,
+        date: '2024-11-20',
+        description: 'Pago de transporte público',
+        amount: -30000,
+        type: 'egress',
+        tag: 'Transporte'
+    },
+    {
+        id: 47,
+        date: '2024-11-22',
+        description: 'Ahorros noviembre',
+        amount: 600000,
+        type: 'saving',
+        tag: 'Ahorro'
+    },
+    {
+        id: 48,
+        date: '2024-11-24',
+        description: 'Compra de regalo de cumpleaños',
+        amount: -500000,
+        type: 'egress',
+        tag: 'Regalos'
+    },
+    {
+        id: 49,
+        date: '2024-11-27',
+        description: 'Pago de membresía de gimnasio',
+        amount: -120000,
+        type: 'egress',
+        tag: 'Salud'
+    },
+    {
+        id: 50,
+        date: '2025-11-27',
+        description: 'Ahorrito',
+        amount: 2000000,
+        type: 'saving',
+        tag: 'Salud'
     }
 ];
+
 
 export const tags = [
     { value: '', label: 'Selecciona tipo de deuda' },

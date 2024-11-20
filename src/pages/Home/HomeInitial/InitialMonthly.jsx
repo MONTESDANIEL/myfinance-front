@@ -1,15 +1,13 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
 import { dataMonth } from '@data/initialData.js'
+import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
 
-
-
-// Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 const PerformanceMonthly = () => {
@@ -53,7 +51,6 @@ const PerformanceMonthly = () => {
         ],
     };
 
-    // Opciones del gráfico de desempeño mensual
     const adjustPieChart = {
         responsive: true,
         maintainAspectRatio: false,
@@ -65,8 +62,33 @@ const PerformanceMonthly = () => {
                 display: true,
                 text: 'Distribución mensual de dinero',
             },
-        },
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        const total = tooltipItem.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        const value = tooltipItem.raw;
+                        const percentage = ((value / total) * 100).toFixed(2);
+                        return `${tooltipItem.label}: ${percentage}%`;  // Mostrar porcentaje en el tooltip
+                    }
+                }
+            }
+        }
     };
+
+
+    const [isOpen, setIsOpen] = useState(false); // Estado para saber si el CardMovements está abierto
+    const [selectedTitle, setSelectedTitle] = useState(""); // Estado para almacenar el título de la tarjeta seleccionada
+
+    const handleOpen = (title) => {
+        setSelectedTitle(title); // Establecer el título de la tarjeta seleccionada
+        setIsOpen(true); // Abrir el CardMovements
+    };
+
+    const handleClose = () => {
+        setIsOpen(false); // Cerrar el CardMovements
+        setSelectedTitle(""); // Limpiar el título
+    };
+
 
     return (
         <div className="p-4 bg-body-tertiary rounded shadow-sm"> {/* Fondo interno uniforme */}
@@ -90,7 +112,10 @@ const PerformanceMonthly = () => {
             <div className="row d-flex">
 
                 {/** Tarjeta total ingresos */}
-                <div className="col-md-4 my-2 text-center">
+                <div
+                    className="col-md-4 my-2 text-center"
+                    onClick={() => handleOpen('Disponible')}
+                    style={{ cursor: 'pointer' }}>
                     <CardInfo
                         title="Disponible"
                         icon="bi-cash"
@@ -100,7 +125,10 @@ const PerformanceMonthly = () => {
                 </div>
 
                 {/** Tarjeta total ahorro */}
-                <div className="col-md-4 my-2 text-center">
+                <div
+                    className="col-md-4 my-2 text-center cursor-pointer"
+                    onClick={() => handleOpen('Ahorro')}
+                    style={{ cursor: 'pointer' }}>
                     <CardInfo
                         title="Ahorro"
                         icon="bi-piggy-bank"
@@ -110,7 +138,10 @@ const PerformanceMonthly = () => {
                 </div>
 
                 {/** Tarjeta total gastos */}
-                <div className="col-md-4 my-2 text-center">
+                <div
+                    className="col-md-4 my-2 text-center cursor-pointer"
+                    onClick={() => handleOpen('Egresos')}
+                    style={{ cursor: 'pointer' }}>
                     <CardInfo
                         title="Egresos"
                         icon="bi-credit-card"
@@ -119,6 +150,13 @@ const PerformanceMonthly = () => {
                     />
                 </div>
 
+                <CardMovements
+                    title={selectedTitle}
+                    isOpen={isOpen}
+                    onClose={handleClose}
+                    month={new Date()}
+                />
+
             </div>
 
             <div className="card mb-3">
@@ -126,13 +164,6 @@ const PerformanceMonthly = () => {
                     <Pie data={monthlyPerformance} options={adjustPieChart} />
                 </div>
             </div>
-
-            {/* Alertas y Notificaciones */}
-            <div className="alert alert-danger mb-0" role="alert">
-                Tu balance esta en negativo! <br />
-                Considera realizar un plan para reevaluar gastos.
-            </div>
-
         </div>
     )
 }

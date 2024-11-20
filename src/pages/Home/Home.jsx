@@ -14,6 +14,9 @@ import LogoSimple from '@assets/images/logos/Logo.png';
 
 function handleWelcomeRedirect() {
     window.location.href = '/';
+    localStorage.removeItem('appState');
+    localStorage.removeItem('activeSettingsTab');
+    localStorage.removeItem('activeTab');
 }
 
 const TABS = [
