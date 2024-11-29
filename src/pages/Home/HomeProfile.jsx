@@ -1,4 +1,9 @@
+import { useUser } from '@context/UserContext';
+
 const HomeProfile = () => {
+
+    const { user } = useUser();
+
     return (
         <div className="container">
             <div className="bg-dark-subtle rounded p-3">
@@ -14,7 +19,7 @@ const HomeProfile = () => {
                         <div className="row">
                             <div className="col-md-12 mb-3">
                                 <label htmlFor="name" className="form-label mb-0">Nombre completo</label>
-                                <input type="text" className="form-control" id="name" />
+                                <input type="text" className="form-control" id="name" value={user?.name || 'Usuario'} disabled />
                                 <small className="text-muted d-block ms-1">
                                     <i className="bi bi-info-circle">
                                         <span className="ms-1">Tal como aparece en tu identificación.</span>
@@ -23,7 +28,7 @@ const HomeProfile = () => {
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="email" className="form-label mb-0">Correo electrónico</label>
-                                <input type="email" className="form-control" id="email" />
+                                <input type="email" className="form-control" id="email" value={user?.email || 'Usuario'} disabled />
                                 <small className="text-muted d-block ms-1">
                                     <i className="bi bi-info-circle">
                                         <span className="ms-1">Se utilizará para notificaciones importantes.</span>
@@ -32,15 +37,15 @@ const HomeProfile = () => {
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="phone" className="form-label mb-0">Número de teléfono</label>
-                                <input type="tel" className="form-control" id="phone" />
+                                <input type="tel" className="form-control" id="phone" value={user?.phoneNumber || 'Usuario'} disabled />
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="id" className="form-label mb-0">Número de identificación</label>
-                                <input type="text" className="form-control" id="id" />
+                                <input type="text" className="form-control" id="id" value={user?.id || 'Usuario'} disabled />
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="birthdate" className="form-label mb-0">Fecha de nacimiento</label>
-                                <input type="date" className="form-control" id="birthdate" />
+                                <input type="date" className="form-control" id="birthdate" value={user?.birthDate || 'Usuario'} disabled />
                             </div>
                         </div>
                         <div className="mt-4 d-flex justify-content-end">

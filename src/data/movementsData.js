@@ -284,32 +284,6 @@ export const movementsData = [
         type: 'egress',
         tag: 'Arriendo'
     },
-
-    // Diciembre
-    {
-        id: 34,
-        date: '2024-12-01',
-        description: 'Ahorro mensual',
-        amount: 650000,
-        type: 'saving',
-        tag: 'Ahorro'
-    },
-    {
-        id: 35,
-        date: '2024-12-05',
-        description: 'Salario diciembre',
-        amount: 3400000,
-        type: 'income',
-        tag: 'Salario'
-    },
-    {
-        id: 36,
-        date: '2024-12-10',
-        description: 'Pago de alquiler',
-        amount: -1400000,
-        type: 'egress',
-        tag: 'Arriendo'
-    },
     {
         id: 37,
         date: '2024-11-02',
@@ -330,7 +304,7 @@ export const movementsData = [
         id: 39,
         date: '2024-11-04',
         description: 'Venta de equipo usado',
-        amount: 8000000,
+        amount: 80000,
         type: 'income',
         tag: 'Venta'
     },
@@ -421,94 +395,6 @@ export const movementsData = [
         amount: 2000000,
         type: 'saving',
         tag: 'Salud'
-    },
-    {
-        id: 51,
-        date: '2024-12-01',
-        description: 'Pago de alquiler de oficina',
-        amount: -1500000,
-        type: 'egress',
-        tag: 'Arriendo'
-    },
-    {
-        id: 52,
-        date: '2024-12-05',
-        description: 'Ingreso por freelance',
-        amount: 1500000,
-        type: 'income',
-        tag: 'Freelance'
-    },
-    {
-        id: 53,
-        date: '2024-12-07',
-        description: 'Compra de regalos navidad',
-        amount: -1200000,
-        type: 'egress',
-        tag: 'Regalos'
-    },
-    {
-        id: 54,
-        date: '2024-12-10',
-        description: 'Compra de medicamento',
-        amount: -200000,
-        type: 'egress',
-        tag: 'Salud'
-    },
-    {
-        id: 55,
-        date: '2024-12-12',
-        description: 'Pago de impuestos',
-        amount: -300000,
-        type: 'egress',
-        tag: 'Impuestos'
-    },
-    {
-        id: 56,
-        date: '2024-12-15',
-        description: 'Inversión en acciones',
-        amount: -500000,
-        type: 'egress',
-        tag: 'Inversión'
-    },
-    {
-        id: 57,
-        date: '2024-12-18',
-        description: 'Ahorros diciembre',
-        amount: 700000,
-        type: 'saving',
-        tag: 'Ahorro'
-    },
-    {
-        id: 58,
-        date: '2024-12-20',
-        description: 'Ingreso por freelance',
-        amount: 1800000,
-        type: 'income',
-        tag: 'Freelance'
-    },
-    {
-        id: 59,
-        date: '2024-12-22',
-        description: 'Pago de seguro de casa',
-        amount: -300000,
-        type: 'egress',
-        tag: 'Seguros'
-    },
-    {
-        id: 60,
-        date: '2024-12-25',
-        description: 'Gastos de navidad',
-        amount: -2000000,
-        type: 'egress',
-        tag: 'Navidad'
-    },
-    {
-        id: 61,
-        date: '2024-12-30',
-        description: 'Bono navideño',
-        amount: 1500000,
-        type: 'income',
-        tag: 'Bonificación'
     }
 ]
 

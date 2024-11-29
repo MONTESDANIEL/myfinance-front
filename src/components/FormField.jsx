@@ -1,5 +1,5 @@
-const FormField = ({ label, type, id, placeholder, required }) => (
-    <div className="mb-3">
+const FormField = ({ label, type = "text", id, placeholder, required, value, onChange }) => (
+    <div>
         <label htmlFor={id} className="form-label">
             {label}
         </label>
@@ -9,8 +9,10 @@ const FormField = ({ label, type, id, placeholder, required }) => (
             id={id}
             placeholder={placeholder}
             required={required}
+            value={value} // Valor controlado
+            onChange={onChange} // Función que actualiza el estado
         />
     </div>
 );
 
-export default FormField
+export default FormField;

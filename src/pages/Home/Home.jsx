@@ -12,6 +12,8 @@ import ThemeBtn from '@components/ThemeBtn';
 import Logo from '@assets/images/logos/LogoVerde.png';
 import LogoSimple from '@assets/images/logos/Logo.png';
 
+import { useUser } from '@context/UserContext';
+
 function handleWelcomeRedirect() {
     window.location.href = '/';
     localStorage.removeItem('appState');
@@ -29,6 +31,7 @@ const TABS = [
 ];
 
 const Home = () => {
+    const { user } = useUser();
     const [activeTab, setActiveTab] = useState(() => localStorage.getItem('activeTab') || 'home');
     useEffect(() => {
         localStorage.setItem('activeTab', activeTab);
@@ -124,7 +127,7 @@ const Home = () => {
                                             role="button"
                                             data-bs-toggle="dropdown"
                                             aria-expanded="false">
-                                            <span className="me-2">Daniel Amaya Montes</span>
+                                            <span className="me-2">{user?.name || 'Usuario'}</span>
                                         </a>
                                         <ul className="dropdown-menu">
                                             {TABS.slice(3).map((tab) => (
