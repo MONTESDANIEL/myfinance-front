@@ -21,6 +21,7 @@ function handleWelcomeRedirect() {
     localStorage.removeItem('activeTab');
     window.location.href = '/';
     logout();
+    localStorage.removeItem('authToken');
 }
 
 const TABS = [

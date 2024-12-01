@@ -7,10 +7,11 @@ const HomeProfile = () => {
     const { user } = useUser();
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar si estamos editando
     const [editedUser, setEditedUser] = useState({
+        id: user?.id || '',
+        idType: user?.idType || "",
         name: user?.name || '',
         email: user?.email || '',
         phoneNumber: String(user?.phoneNumber) || '',
-        id: user?.id || '',
         birthDate: user?.birthDate || '',
         password: user?.password || '', // Campo de contraseña vacío
     });
@@ -62,7 +63,6 @@ const HomeProfile = () => {
             if (userData.password === '') {
                 delete userData.password; // Elimina la contraseña si está vacía
             }
-
             // Llama a la API para actualizar los datos del usuario
             await updateUserData(userData);
             setIsEditing(false); // Después de guardar, desactiva el modo de edición
@@ -91,7 +91,7 @@ const HomeProfile = () => {
                 <main className="container-fluid rounded p-3 bg-body-tertiary">
                     <form>
                         <div className="row">
-                            <div className="col-md-6 mb-3">
+                            <div className="col-md-12 mb-3">
                                 <FormField
                                     label="Nombre completo"
                                     id="name"
@@ -102,7 +102,19 @@ const HomeProfile = () => {
                                 />
                                 {errors.name && <small className="text-danger">{errors.name}</small>}
                             </div>
+                        </div>
 
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <FormField
+                                    label="Tipo de identificación"
+                                    id="idType"
+                                    placeholder="Ingresa tu tipo de identificación"
+                                    value={editedUser.idType}
+                                    onChange={handleChange}
+                                    disable={true} // Este campo siempre estará deshabilitado
+                                />
+                            </div>
                             <div className="col-md-6 mb-3">
                                 <FormField
                                     label="Número de identificación"

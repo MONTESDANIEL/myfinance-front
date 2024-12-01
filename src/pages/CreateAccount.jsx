@@ -10,6 +10,7 @@ function handleLoginRedirect() {
 
 const CreateAccount = () => {
   const [id, setId] = useState('');
+  const [idType, setIdType] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,7 +44,8 @@ const CreateAccount = () => {
     }
 
     try {
-      await registerUser({ id, name, email, phoneNumber, birthDate, password });
+      const response = await registerUser({ id, idType, name, email, phoneNumber, birthDate, password });
+      console.info(response);
       window.location.href = '/login';
     } catch (err) {
       setErrors({ submit: 'Error al registrar la cuenta, por favor intente nuevamente.' });
@@ -62,7 +64,7 @@ const CreateAccount = () => {
           <hr />
           <form onSubmit={handlRegister}>
             <div className="row">
-              <div className="col-md-6 mb-2">
+              <div className="col-md-12 mb-2">
                 <FormField
                   label="Nombre completo"
                   type="text"
@@ -72,6 +74,28 @@ const CreateAccount = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
                 {errors.name && <small className="text-danger">{errors.name}</small>}
+              </div>
+
+            </div>
+
+            <div className="row">
+              <div className="col-md-6 mb-2">
+                <label htmlFor="idType" className='form-label'>Tipo de identificación</label>
+                <select
+                  className="form-control"
+                  id="idType"
+                  value={idType}
+                  onChange={(e) => setIdType(e.target.value)}
+                >
+                  <option value="">Selecciona el tipo de identificación</option>
+                  <option value="CC">Cédula de Ciudadanía (CC)</option>
+                  <option value="CE">Cédula de Extranjería (CE)</option>
+                  <option value="NIT">Número de Identificación Tributaria (NIT)</option>
+                  <option value="PAS">Pasaporte (PAS)</option>
+                  <option value="NIE">Número de Identidad de Extranjero (NIE)</option>
+                  <option value="RUT">Registro Único Tributario (RUT)</option>
+                  <option value="CEX">Carné de Extranjería (CEX)</option>
+                </select>
               </div>
               <div className="col-md-6 mb-2">
                 <FormField

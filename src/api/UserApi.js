@@ -12,12 +12,11 @@ export const getUserData = async () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/view`, {
                 headers: {
-                    'Authorization': `${token}`  // Envía el token en el encabezado Authorization
+                    'Authorization': `Bearer ${token}`  // Envía el token en el encabezado Authorization
                 }
             });
-            return response.data;  // Devuelve todos los datos del usuario (id, username, etc.)
+            return response.data.data;  // Devuelve todos los datos del usuario (id, username, etc.)
         } catch (error) {
-            console.error('Error fetching user data:', error);
             return null;  // Retorna null si ocurre un error
         }
     } else {
@@ -31,10 +30,10 @@ export const updateUserData = async (userData) => {
         try {
             const response = await axios.put(`${API_BASE_URL}/update`, userData, {
                 headers: {
-                    'Authorization': `${token}`  // Envía el token en el encabezado Authorization
+                    'Authorization': `Bearer ${token}`  // Envía el token en el encabezado Authorization
                 }
             });
-            return response.data;
+            return response.data.message;
         } catch (error) {
             console.error('Error fetching user data:', error);
             return null;  // Retorna null si ocurre un error

@@ -8,7 +8,7 @@ export const loginUser = async (loginData) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/login`, loginData);
         // Devuelve el token recibido del backend
-        return response.data;
+        return response.data.data;
     } catch (error) {
         throw error;
     }
@@ -18,7 +18,7 @@ export const registerUser = async (registerData) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/register`, registerData);
         // Devuelve la respuesta del backend
-        return response.data;
+        return response.data.message;
     } catch (error) {
         throw error;
     }
@@ -29,7 +29,7 @@ export const recoverPassword = async (email) => {
         const response = await axios.get(`${API_BASE_URL}/password-recovery`, {
             params: { email }
         });
-        return response.data;
+        return response.data.message;
     } catch (error) {
         throw error;
     }
@@ -68,16 +68,13 @@ export const logout = async () => {
  * @returns {Promise<string>} - Mensaje de éxito del backend.
  */
 export const resetPassword = async (token, newPassword, confirmPassword) => {
-    console.log("Token de acceso: " + token)
-    console.log("Nueva contraseña: " + newPassword)
-    console.log("Confirmacion contraseña: " + confirmPassword)
     try {
         const response = await axios.post(`${API_BASE_URL}/reset-password`, {
             token,
             newPassword,
             confirmPassword,
         });
-        return response.data; // Devuelve el mensaje del backend
+        return response.data.message; // Devuelve el mensaje del backend
     } catch (error) {
         // Manejo de errores
         throw error.response?.data || 'Error al intentar cambiar la contraseña.';
