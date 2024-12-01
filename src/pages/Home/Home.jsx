@@ -13,12 +13,14 @@ import Logo from '@assets/images/logos/LogoVerde.png';
 import LogoSimple from '@assets/images/logos/Logo.png';
 
 import { useUser } from '@context/UserContext';
+import { logout } from '@api/AuthApi'
 
 function handleWelcomeRedirect() {
-    window.location.href = '/';
     localStorage.removeItem('appState');
     localStorage.removeItem('activeSettingsTab');
     localStorage.removeItem('activeTab');
+    window.location.href = '/';
+    logout();
 }
 
 const TABS = [

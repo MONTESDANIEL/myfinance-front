@@ -25,3 +25,21 @@ export const getUserData = async () => {
     }
 };
 
+export const updateUserData = async (userData) => {
+
+    if (token) {
+        try {
+            const response = await axios.put(`${API_BASE_URL}/update`, userData, {
+                headers: {
+                    'Authorization': `${token}`  // Envía el token en el encabezado Authorization
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            return null;  // Retorna null si ocurre un error
+        }
+    } else {
+        return null;  // Retorna null si no hay token
+    }
+};
