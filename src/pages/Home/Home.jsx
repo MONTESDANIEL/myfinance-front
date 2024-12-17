@@ -34,6 +34,7 @@ const TABS = [
 ];
 
 const Home = () => {
+
     const { user } = useUser();
     const [activeTab, setActiveTab] = useState(() => localStorage.getItem('activeTab') || 'home');
     useEffect(() => {

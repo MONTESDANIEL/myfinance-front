@@ -25,8 +25,8 @@ export const validateFields = (fields) => {
     // Validar Contraseña si se pasa
     if (fields.password && !fields.password.trim()) {
         errors.password = 'La contraseña es obligatoria.';
-    } else if (fields.password && fields.password.length < 6) {
-        errors.password = 'La contraseña debe tener al menos 6 caracteres.';
+    } else if (fields.password && fields.password.length < 8) {
+        errors.password = 'La contraseña debe tener al menos 8 caracteres.';
     }
 
     // Validar Confirmar contraseña si se pasa

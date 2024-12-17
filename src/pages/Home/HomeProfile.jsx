@@ -24,11 +24,6 @@ const HomeProfile = () => {
     const validateFields = () => {
         const validationErrors = {};
 
-        // Validación de nombre
-        if (!editedUser.name.trim()) {
-            validationErrors.name = 'El nombre es obligatorio.';
-        }
-
         // Validación de email
         if (!editedUser.email.trim()) {
             validationErrors.email = 'El correo electrónico es obligatorio.';
@@ -98,7 +93,7 @@ const HomeProfile = () => {
                                     placeholder="Ingresa tu nombre completo"
                                     value={editedUser.name}
                                     onChange={handleChange}
-                                    disable={!isEditing} // Deshabilitar cuando no estamos en modo de edición
+                                    disable={true} // Deshabilitar cuando no estamos en modo de edición
                                 />
                                 {errors.name && <small className="text-danger">{errors.name}</small>}
                             </div>

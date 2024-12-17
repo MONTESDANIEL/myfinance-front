@@ -1,12 +1,14 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { movementsData } from '@data/movementsData';
 import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
+
+import { realMovementsData as movementsData } from '@data/movementsData';
+import { getUserData } from '@api/MovementsApi'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
@@ -32,13 +34,13 @@ const processDailyMovements = (movements) => {
 
         // Filtrar por el mes y año actual
         if (movementMonth === currentMonth && movementYear === currentYear) {
-            const amount = movement.type === 'egress' ? Math.abs(movement.amount) : movement.amount;
+            const amount = movement.movementType === 'egress' ? Math.abs(movement.amount) : movement.amount;
 
-            if (movement.type === 'income') {
+            if (movement.movementType === 'income') {
                 data.income.push(amount);
-            } else if (movement.type === 'saving') {
+            } else if (movement.movementType === 'savings') {
                 data.savings.push(amount);
-            } else if (movement.type === 'egress') {
+            } else if (movement.movementType === 'expense') {
                 data.expense.push(amount);
             }
         }
@@ -53,6 +55,23 @@ const dataMonth = processDailyMovements(movementsData);
 
 
 const PerformanceMonthly = () => {
+
+    const [allUserMovements, setAllUserMovements] = useState(null);
+
+    useEffect(() => {
+        const fetchMovements = async () => {
+            try {
+                const data = await getUserData();  // Llama a la función para obtener los datos
+                if (data) {
+                    setAllUserMovements(data);  // Establece los movimientos en el estado
+                } else {
+                }
+            } catch (error) {
+            }
+        };
+
+        fetchMovements();  // Llama a la función cuando el componente se monta
+    }, []);
 
     const { colors } = useMovementPalette();
 
@@ -93,7 +112,6 @@ const PerformanceMonthly = () => {
             }
         ],
     };
-
 
     const adjustPieChart = {
         responsive: true,

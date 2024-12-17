@@ -147,7 +147,7 @@ const ManageMovements = () => {
                         </form>
                     </div>
 
-                    <div className="card-body p-0" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                    <div className="card-body p-0" style={{ maxHeight: '500px', overflowY: 'auto' }}>
                         <div className="list-responsive">
                             {movementsData.length > 1 ? (
                                 movementsData.map((row, index) => (

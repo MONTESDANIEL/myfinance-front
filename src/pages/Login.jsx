@@ -60,10 +60,10 @@ const Login = () => {
 
             <div className="mb-3">
               <FormField
-                label="Correo electrónico o usuario"
+                label="Correo electrónico"
                 type="text"
                 id="email"
-                placeholder="Ingresa tu correo o usuario"
+                placeholder="Ingresa tu correo"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />

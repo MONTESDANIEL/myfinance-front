@@ -1,5 +1,5 @@
-import { React, useState } from 'react';
-import { movementsData } from '@data/movementsData.js';
+import { React, useState, useEffect } from 'react';
+import { realMovementsData as movementsData } from '@data/movementsData.js';
 import FloatWindow from '@components/FloatWindow';
 import { useMovementPalette } from '@context/ColorContext';
 
@@ -14,14 +14,8 @@ const ListItem = ({ date, description, amount, type, tag }) => {
 
     const typeTranslation = {
         income: 'Ingreso',
-        saving: 'Ahorro',
-        egress: 'Egreso'
-    };
-
-    const typeMovement = {
-        income: 'income',
-        saving: 'savings',
-        egress: 'expense'
+        savings: 'Ahorro',
+        expenses: 'Egreso'
     };
 
     return (
@@ -62,6 +56,24 @@ const ListItem = ({ date, description, amount, type, tag }) => {
 };
 
 export const CardMovements = ({ title, isOpen, onClose, month, year, showAll }) => {
+
+    const [allUserMovements, setAllUserMovements] = useState(null);
+
+    useEffect(() => {
+        const fetchMovements = async () => {
+            try {
+                const data = await getUserData();  // Llama a la función para obtener los datos
+                if (data) {
+                    setAllUserMovements(data);  // Establece los movimientos en el estado
+                } else {
+                }
+            } catch (error) {
+            }
+        };
+
+        fetchMovements();  // Llama a la función cuando el componente se monta
+    }, []);
+
     // Traducción del título a tipo en inglés
     const typeTranslation = {
         'Disponible': 'income',

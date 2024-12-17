@@ -395,6 +395,236 @@ export const movementsData = [
         amount: 2000000,
         type: 'saving',
         tag: 'Salud'
+    },
+    {
+        id: 51,
+        date: '2024-12-01',
+        description: 'Pago de renta',
+        amount: -800000,
+        type: 'egress',
+        tag: 'Hogar'
+    },
+    {
+        id: 52,
+        date: '2024-12-05',
+        description: 'Compra de decoraciones navideñas',
+        amount: -150000,
+        type: 'egress',
+        tag: 'Hogar'
+    },
+    {
+        id: 53,
+        date: '2024-12-08',
+        description: 'Ingreso por trabajo freelance',
+        amount: 950000,
+        type: 'income',
+        tag: 'Freelance'
+    },
+    {
+        id: 54,
+        date: '2024-12-12',
+        description: 'Pago de servicios públicos',
+        amount: -250000,
+        type: 'egress',
+        tag: 'Servicios'
+    },
+    {
+        id: 55,
+        date: '2024-12-15',
+        description: 'Regalo de Navidad',
+        amount: -300000,
+        type: 'egress',
+        tag: 'Regalos'
+    },
+    {
+        id: 56,
+        date: '2024-12-18',
+        description: 'Compra de alimentos para cena navideña',
+        amount: -400000,
+        type: 'egress',
+        tag: 'Alimentos'
+    },
+    {
+        id: 57,
+        date: '2024-12-22',
+        description: 'Ahorro para fin de año',
+        amount: 500000,
+        type: 'saving',
+        tag: 'Ahorro'
+    },
+    {
+        id: 58,
+        date: '2024-12-24',
+        description: 'Ingreso por bono de fin de año',
+        amount: 1200000,
+        type: 'income',
+        tag: 'Trabajo'
+    },
+    {
+        id: 59,
+        date: '2024-12-27',
+        description: 'Compra de ropa',
+        amount: -200000,
+        type: 'egress',
+        tag: 'Moda'
+    },
+    {
+        id: 60,
+        date: '2024-12-30',
+        description: 'Pago de tarjeta de crédito',
+        amount: -450000,
+        type: 'egress',
+        tag: 'Finanzas'
+    },
+    {
+        id: 61,
+        date: '2024-12-31',
+        description: 'Ingreso extra por venta de objetos usados',
+        amount: 300000,
+        type: 'income',
+        tag: 'Ventas'
+    }
+]
+
+export const realMovementsData = [
+
+    {
+        "id": 1,
+        "userId": 1000270957,
+        "date": "2024-12-01",
+        "description": "Compra de supermercado",
+        "amount": 150000.00,
+        "movementType": "expense",
+        "tag": {
+            "id": 1,
+            "name": "Comida",
+            "isGlobal": true,
+            "userId": null
+        }
+    },
+    {
+        "id": 2,
+        "userId": 1000270957,
+        "date": "2024-12-02",
+        "description": "Ahorros mensuales",
+        "amount": 1000000.00,
+        "movementType": "savings",
+        "tag": {
+            "id": 3,
+            "name": "Ahorros",
+            "isGlobal": true,
+            "userId": null
+        }
+    },
+    {
+        "id": 3,
+        "userId": 1000270957,
+        "date": "2024-12-05",
+        "description": "Venta de celular usado",
+        "amount": 5000000.00,
+        "movementType": "income",
+        "tag": null
+    },
+    {
+        "id": 4,
+        "userId": 1000270957,
+        "date": "2024-12-06",
+        "description": "Pago de factura de gas",
+        "amount": 80000.00,
+        "movementType": "expense",
+        "tag": {
+            "id": 4,
+            "name": "Salud",
+            "isGlobal": true,
+            "userId": null
+        }
+    },
+    {
+        "id": 5,
+        "userId": 1000270957,
+        "date": "2024-12-07",
+        "description": "Alquiler de vivienda",
+        "amount": 1000000.00,
+        "movementType": "expense",
+        "tag": {
+            "id": 5,
+            "name": "Vivienda",
+            "isGlobal": true,
+            "userId": null
+        }
+    },
+    {
+        "id": 6,
+        "userId": 1000270957,
+        "date": "2024-12-10",
+        "description": "Suscripción a plataforma de streaming",
+        "amount": 25000.00,
+        "movementType": "expense",
+        "tag": null
+    },
+    {
+        "id": 7,
+        "userId": 1000270957,
+        "date": "2024-12-11",
+        "description": "Compra de ropa de temporada",
+        "amount": 300000.00,
+        "movementType": "expense",
+        "tag": {
+            "id": 8,
+            "name": "Ropa",
+            "isGlobal": false,
+            "userId": 1000270957
+        }
+    },
+    {
+        "id": 8,
+        "userId": 1000270957,
+        "date": "2024-12-12",
+        "description": "Pago de matrícula universitaria",
+        "amount": 1200000.00,
+        "movementType": "expense",
+        "tag": {
+            "id": 7,
+            "name": "Educación",
+            "isGlobal": false,
+            "userId": 1000270957
+        }
+    },
+    {
+        "id": 9,
+        "userId": 1000270957,
+        "date": "2024-12-15",
+        "description": "Ingreso por freelance",
+        "amount": 450000.00,
+        "movementType": "income",
+        "tag": null
+    },
+    {
+        "id": 21,
+        "userId": 1000270957,
+        "date": "2024-12-14",
+        "description": "Suscripción a NETFLIX",
+        "amount": 13000.00,
+        "movementType": "expense",
+        "tag": null
+    },
+    {
+        "id": 22,
+        "userId": 1000270957,
+        "date": "2024-12-01",
+        "description": "Mercado de Diciembre",
+        "amount": 350000.00,
+        "movementType": "expense",
+        "tag": null
+    },
+    {
+        "id": 23,
+        "userId": 1000270957,
+        "date": "2024-12-14",
+        "description": "Suscripción a NETFLIX",
+        "amount": 13000.00,
+        "movementType": "expense",
+        "tag": null
     }
 ]
 

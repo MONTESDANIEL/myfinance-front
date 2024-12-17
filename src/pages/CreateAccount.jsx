@@ -28,6 +28,8 @@ const CreateAccount = () => {
     e.preventDefault();
     setErrors({});
 
+    console.info(birthDate);
+
     const validationErrors = validateFields({
       id,
       name,

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Configuración base para las solicitudes
-const API_BASE_URL = 'http://192.168.1.5:8081/api/auth';
+const API_BASE_URL = 'http://192.168.1.2:8081/api/auth';
 
 export const loginUser = async (loginData) => {
     try {
