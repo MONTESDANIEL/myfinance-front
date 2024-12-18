@@ -52,8 +52,6 @@ const processDailyMovements = (movements) => {
 // Llamada a la función con la data
 const dataMonth = processDailyMovements(movementsData);
 
-
-
 const PerformanceMonthly = () => {
 
     const [allUserMovements, setAllUserMovements] = useState(null);

@@ -3,7 +3,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { movementsData } from '@data/movementsData';
+import { realMovementsData as movementsData } from '@data/movementsData';
 import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
@@ -20,14 +20,14 @@ const processMonthlyMovements = (movements) => {
     movements.forEach(movement => {
         const movementDate = new Date(movement.date);
         const movementMonth = movementDate.getMonth(); // El mes es un valor entre 0 y 11
-        const amount = movement.type === 'egress' ? Math.abs(movement.amount) : movement.amount;
+        const amount = movement.movementType === 'expense' ? Math.abs(movement.amount) : movement.amount;
 
         // Asignar el valor al mes correspondiente
-        if (movement.type === 'income') {
+        if (movement.movementType === 'income') {
             data.income[movementMonth] += amount;
-        } else if (movement.type === 'saving') {
+        } else if (movement.movementType === 'savings') {
             data.savings[movementMonth] += amount;
-        } else if (movement.type === 'egress') {
+        } else if (movement.movementType === 'expense') {
             data.expense[movementMonth] += amount;
         }
     });
