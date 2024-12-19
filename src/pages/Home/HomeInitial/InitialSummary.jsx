@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-import CardInfo from '@components/CardInfo';
-import { realMovementsData as movementsData } from '@data/movementsData';
 import { CardMovements } from './CardMovements';
 
+import CardInfo from '@components/CardInfo';
+
 import { useMovementPalette } from '@context/ColorContext';
+import { useUser } from '@context/UserContext';
 
 const processMonthlyMovements = (movements) => {
     // Inicializar el objeto data con arrays para cada tipo de movimiento, con 12 meses (de enero a diciembre)
@@ -35,13 +37,13 @@ const processMonthlyMovements = (movements) => {
     return data;
 };
 
-
-const dataYear = processMonthlyMovements(movementsData);
-
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 const InitialSummary = () => {
+    const { movements } = useUser();
+
+    const dataYear = processMonthlyMovements(movements);
 
     const { colors } = useMovementPalette();
 

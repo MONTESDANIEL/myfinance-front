@@ -629,11 +629,28 @@ export const realMovementsData = [
 ]
 
 export const tags = [
-    { value: '', label: 'Selecciona tipo de deuda' },
-    { value: 'GastoMoto', label: 'GastoMoto' },
-    { value: 'Mercado', label: 'Mercado' },
-    { value: 'Arriendo', label: 'Arriendo' },
-    { value: 'Salario', label: 'Salario' },
-    { value: 'Universidad', label: 'Universidad' },
-    { value: 'Diversion', label: 'Diversión' }
+    {
+        "id": 7,
+        "name": "Educación",
+        "isGlobal": false,
+        "userId": 1000270957
+    },
+    {
+        "id": 8,
+        "name": "Ropa",
+        "isGlobal": false,
+        "userId": 1000270957
+    },
+    {
+        "id": 11,
+        "name": "Pc Gamer",
+        "isGlobal": false,
+        "userId": 1000270957
+    },
+    {
+        "id": 12,
+        "name": "XBOX",
+        "isGlobal": false,
+        "userId": 1000270957
+    }
 ]

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { realMovementsData as movementsData } from '@data/movementsData.js';
+
 import FloatWindow from '@components/FloatWindow';
+
 import { useMovementPalette } from '@context/ColorContext';
+import { useUser } from '@context/UserContext';
+
 import classNames from 'classnames';
 
 // Traducciones
@@ -86,8 +89,10 @@ const ListItem = ({ date, description, amount, movementType, tag }) => {
 
 // Componente principal CardMovements
 export const CardMovements = ({ title, isOpen, onClose, month, year, showAll }) => {
+    const { movements } = useUser();
+
     const typeInEnglish = TITLE_TRANSLATION[title] || null;
-    const filteredMovements = filterMovements(movementsData, { showAll, typeInEnglish, month, year });
+    const filteredMovements = filterMovements(movements, { showAll, typeInEnglish, month, year });
 
     return (
         <FloatWindow isOpen={isOpen} onClose={onClose} title={title} size="lg">

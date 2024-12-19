@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
@@ -6,9 +6,7 @@ import CardInfo from '@components/CardInfo';
 import { CardMovements } from './CardMovements';
 
 import { useMovementPalette } from '@context/ColorContext';
-
-import { realMovementsData as movementsData } from '@data/movementsData';
-import { getUserData } from '@api/MovementsApi'
+import { useUser } from '@context/UserContext';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
@@ -49,27 +47,10 @@ const processDailyMovements = (movements) => {
     return data;
 };
 
-// Llamada a la función con la data
-const dataMonth = processDailyMovements(movementsData);
-
 const PerformanceMonthly = () => {
+    const { movements } = useUser();
 
-    const [allUserMovements, setAllUserMovements] = useState(null);
-
-    useEffect(() => {
-        const fetchMovements = async () => {
-            try {
-                const data = await getUserData();  // Llama a la función para obtener los datos
-                if (data) {
-                    setAllUserMovements(data);  // Establece los movimientos en el estado
-                } else {
-                }
-            } catch (error) {
-            }
-        };
-
-        fetchMovements();  // Llama a la función cuando el componente se monta
-    }, []);
+    const dataMonth = processDailyMovements(movements);
 
     const { colors } = useMovementPalette();
 
@@ -162,7 +143,7 @@ const PerformanceMonthly = () => {
     return (
         <div className="p-2 bg-body-tertiary rounded h-100 align-content-center"> {/* Fondo interno uniforme */}
 
-            <h2 className="text-center mb-4">Mensual - {monthNames[new Date().getMonth()]}</h2>
+            <h2 className="text-center m-4">Mensual - {monthNames[new Date().getMonth()]}</h2>
 
             <div className="row">
                 {/** Tarjeta total ingresos */}

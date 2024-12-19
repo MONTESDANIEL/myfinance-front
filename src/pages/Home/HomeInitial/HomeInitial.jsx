@@ -10,10 +10,10 @@ const HomeInitial = () => {
                 <h1 className='text-center'>Desempeño Financiero</h1>
                 <hr />
                 <div className="row gx-4 flex-fill">
-                    <div className="col-xl-6 col-lg-12 align-content-center">
+                    <div className="col-xl-6 col-lg-12 align-content-center my-2">
                         <PerformanceMonthly />
                     </div>
-                    <div className="col-xl-6 col-lg-12 align-content-center">
+                    <div className="col-xl-6 col-lg-12 align-content-center my-2">
                         <PerformanceType />
                     </div>
                 </div>

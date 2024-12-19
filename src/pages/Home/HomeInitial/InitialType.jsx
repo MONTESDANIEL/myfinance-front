@@ -3,9 +3,10 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 
 import CardInfo from '@components/CardInfo';
-import { realMovementsData as movementsData } from '@data/movementsData.js';
+
 import { CardMovements } from './CardMovements';
 
+import { useUser } from '@context/UserContext';
 import { useMovementPalette } from '@context/ColorContext';
 
 const processMonthlyMovements = (movements) => {
@@ -35,9 +36,6 @@ const processMonthlyMovements = (movements) => {
     return data;
 };
 
-
-const dataYear = processMonthlyMovements(movementsData);
-
 // Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
@@ -46,7 +44,9 @@ const calculateData = (dataArray, groups) =>
     groups.map(group => group.reduce((sum, idx) => sum + dataArray[idx], 0));
 
 const PerformanceType = () => {
+    const { movements } = useUser();
 
+    const dataYear = processMonthlyMovements(movements);
     const { colors } = useMovementPalette();
 
     if (!colors) {
