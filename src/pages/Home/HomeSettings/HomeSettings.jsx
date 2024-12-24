@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SettingsSecurity from './SettingsSecurity';
-import SettingsCustomization from './SettingsCustomization';
+import SettingsCustomization from './SettingsCustomization/SettingsCustomization';
 import SettingsFinancial from './SettingsFinancial/SettingsFinancial';
 
 import { useAppContext } from '@context/AppContext';

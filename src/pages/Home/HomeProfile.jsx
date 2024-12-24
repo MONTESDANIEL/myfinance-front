@@ -77,7 +77,7 @@ const HomeProfile = () => {
     return (
         <div className="container">
             <div className="bg-dark-subtle rounded p-3">
-                <div className="text-center text-light">
+                <div className="text-center">
                     <h1 className="text-center mb-3">Información del Usuario</h1>
                     <p className="text-muted text-center">Visualiza y gestiona la información del usuario, realizando ediciones según sea necesario.</p>
                     <hr />

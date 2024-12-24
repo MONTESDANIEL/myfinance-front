@@ -4,10 +4,6 @@ const goalsData = [
         "title": "No gastar tanto en entretenimiento",
         "targetAmount": 500000,
         "currentSpending": 300000,
-        "lastExpense": {
-            "description": "Cena en restaurante",
-            "amount": 50000
-        },
         "remainingBudget": 200000,
         "progress": 80,
         "type": "Reductivo",
@@ -22,10 +18,6 @@ const goalsData = [
         "title": "Ahorro para vacaciones",
         "targetAmount": 1000000,
         "currentSpending": 450000,
-        "lastDeposit": {
-            "description": "Depósito inicial",
-            "amount": 150000
-        },
         "remainingBudget": 550000,
         "progress": 40,
         "type": "Incremental",
@@ -43,49 +35,10 @@ const goalsData = [
         ]
     },
     {
-        "id": 3,
-        "title": "Compra de un nuevo coche",
-        "endDate": "2025-01-15",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
-        "id": 4,
-        "title": "Viaje a Europa",
-        "endDate": "2024-11-30",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
-        "id": 5,
-        "title": "Fondo para emergencias",
-        "endDate": "2025-01-01",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
-        "id": 6,
-        "title": "Comprar una computadora nueva",
-        "endDate": "2024-09-10",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
-        "id": 7,
-        "title": "Ahorro para una bicicleta",
-        "endDate": "2024-12-20",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
         "id": 19,
         "title": "Pago de deudas",
         "targetAmount": 300000,
         "currentSpending": 200000,
-        "lastExpense": {
-            "description": "Pago de tarjeta de crédito",
-            "amount": 30000
-        },
         "remainingBudget": 100000,
         "progress": 66,
         "type": "Reductivo",
@@ -99,10 +52,6 @@ const goalsData = [
         "title": "Ahorro para la universidad",
         "targetAmount": 500000,
         "currentSpending": 100000,
-        "lastDeposit": {
-            "description": "Ahorro mensual",
-            "amount": 20000
-        },
         "remainingBudget": 400000,
         "progress": 20,
         "type": "Incremental",
@@ -112,21 +61,10 @@ const goalsData = [
         ]
     },
     {
-        "id": 21,
-        "title": "Compra de una lavadora",
-        "endDate": "2025-02-01",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
         "id": 22,
         "title": "Gastos de salud mensuales",
         "targetAmount": 150000,
         "currentSpending": 80000,
-        "lastExpense": {
-            "description": "Visita al médico",
-            "amount": 30000
-        },
         "remainingBudget": 70000,
         "progress": 53,
         "type": "Reductivo",
@@ -140,10 +78,6 @@ const goalsData = [
         "title": "Ahorro para un nuevo televisor",
         "targetAmount": 400000,
         "currentSpending": 60000,
-        "lastDeposit": {
-            "description": "Depósito inicial",
-            "amount": 20000
-        },
         "remainingBudget": 340000,
         "progress": 15,
         "type": "Incremental",
@@ -157,10 +91,6 @@ const goalsData = [
         "title": "Pago de impuestos",
         "targetAmount": 200000,
         "currentSpending": 120000,
-        "lastExpense": {
-            "description": "Impuesto de propiedad",
-            "amount": 50000
-        },
         "remainingBudget": 80000,
         "progress": 60,
         "type": "Reductivo",
@@ -169,21 +99,10 @@ const goalsData = [
         ]
     },
     {
-        "id": 25,
-        "title": "Compra de entradas para el teatro",
-        "endDate": "2024-12-15",
-        "progress": 0,
-        "type": "Fijo"
-    },
-    {
         "id": 26,
         "title": "Ahorro para comprar un coche usado",
         "targetAmount": 1200000,
         "currentSpending": 200000,
-        "lastDeposit": {
-            "description": "Ahorro mensual",
-            "amount": 50000
-        },
         "remainingBudget": 1000000,
         "progress": 17,
         "type": "Incremental",
@@ -197,10 +116,6 @@ const goalsData = [
         "title": "Ahorro para el seguro del coche",
         "targetAmount": 500000,
         "currentSpending": 300000,
-        "lastDeposit": {
-            "description": "Depósito mensual",
-            "amount": 50000
-        },
         "remainingBudget": 200000,
         "progress": 60,
         "type": "Incremental",

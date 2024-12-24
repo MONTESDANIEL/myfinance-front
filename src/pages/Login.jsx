@@ -6,10 +6,13 @@ import { validateFields } from '@utils/validationUtils'; // Importa la función 
 
 const Login = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(() => { return localStorage.getItem('rememberMe') === 'true'; });
+
   const [error, setError] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(rememberMe ? localStorage.getItem('userEmail') : '');
+
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -30,6 +33,13 @@ const Login = () => {
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors); // Establecer los errores de validación
       return;
+    }
+    if (rememberMe) {
+      localStorage.setItem('rememberMe', rememberMe);
+      localStorage.setItem('userEmail', email)
+    } else {
+      localStorage.removeItem('rememberMe')
+      localStorage.removeItem('userEmail')
     }
 
     try {
@@ -94,13 +104,16 @@ const Login = () => {
             <div className="my-3">
               <input
                 type="checkbox"
+                checked={rememberMe} // Asegurarte de que el estado sea reflejado
                 className="form-check-input"
+                onChange={(e) => setRememberMe(e.target.checked)} // Cambiar el estado dinámicamente
                 id="rememberMe"
               />
               <label className="form-check-label" htmlFor="rememberMe">
-                <span className='ms-2'>Recuérdame</span>
+                <span className="ms-2">Recuérdame</span>
               </label>
             </div>
+
 
             {error?.general && <small className="text-danger">{error.general}</small>}
 
