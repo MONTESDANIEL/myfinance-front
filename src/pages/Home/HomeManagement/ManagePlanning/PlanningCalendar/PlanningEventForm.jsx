@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+
 import FloatWindow from "@components/FloatWindow";
-import { newUserEvent } from "@api/EventsApi";
+import { newUserEvent, updateUserEvent } from "@api/EventsApi";
 
 const PlanningEventForm = ({ isOpen, onClose, event }) => {
     const isEdit = Boolean(event);
@@ -10,12 +11,23 @@ const PlanningEventForm = ({ isOpen, onClose, event }) => {
         return Number(value).toLocaleString("en-US");
     };
 
-    const [eventData, setEventData] = useState({
-        title: "",
-        amount: 0,
-        date: "",
-        type: event ? event.type : "income",
-    });
+    const initialEventData = isEdit
+        ? {
+            id: event?.id || null,
+            userId: event?.userId || null,
+            title: event?.title || "",
+            amount: event?.amount || 0,
+            date: event?.date || "",
+            type: event?.type || "income",
+        }
+        : {
+            title: "",
+            amount: 0,
+            date: "",
+            type: event?.type || "income",
+        };
+
+    const [eventData, setEventData] = useState(initialEventData);
 
     useEffect(() => {
         if (isEdit && event) {
@@ -41,7 +53,11 @@ const PlanningEventForm = ({ isOpen, onClose, event }) => {
         e.preventDefault();
 
         try {
-            await newUserEvent(eventData);
+            if (isEdit) {
+                await updateUserEvent(eventData);
+            } else {
+                await newUserEvent(eventData);
+            }
             window.location.reload();
         } catch (error) {
             console.log("Ocurrió un error inesperado");
