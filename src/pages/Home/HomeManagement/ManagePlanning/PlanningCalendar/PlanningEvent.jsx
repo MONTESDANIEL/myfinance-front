@@ -41,14 +41,11 @@ const PlanningEvent = ({ selectedDate, events }) => {
     if (!selectedDate) return [];
 
     // Convertir selectedDate a un formato sin hora para comparación
-    const selectedDateFormatted = new Date(selectedDate).toLocaleDateString(
-      "es-CO"
-    );
+    const selectedDateFormatted = new Date(selectedDate).toLocaleDateString("es-CO");
 
     const eventsForDate = events.filter((event) => {
-      const eventStartDateFormatted = new Date(
-        event.startDate
-      ).toLocaleDateString("es-CO");
+      // Convertir startDate del evento a un formato sin hora
+      const eventStartDateFormatted = new Date(event.startDate).toLocaleDateString("es-CO");
       return eventStartDateFormatted === selectedDateFormatted;
     });
 
@@ -63,11 +60,17 @@ const PlanningEvent = ({ selectedDate, events }) => {
     });
   }, [selectedDate, events]);
 
+  // Abrir la ventana manualmente cuando el usuario selecciona una fecha con eventos
   useEffect(() => {
-    setIsOpen(eventDetails.length > 0);
-  }, [eventDetails]);
+    if (selectedDate && eventDetails.length > 0) {
+      setIsOpen(true); // Abrir solo si hay eventos para la fecha seleccionada
+    } else {
+    }
+  }, [selectedDate, eventDetails]);
 
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <FloatWindow
@@ -75,35 +78,39 @@ const PlanningEvent = ({ selectedDate, events }) => {
       onClose={handleClose}
       title={`Eventos del día ${adjustedSelectedDate}`}
     >
-      {eventDetails.map((event, index) => (
-        <div
-          key={index}
-          className="border rounded p-3 mb-2"
-          style={{ backgroundColor: event.color, color: "black" }}
-        >
-          <div className="row">
-            <div className="col-10 mt-1">
-              <h5 className="fw-bold">{event.title}</h5>
-              <div>
-                <strong>Cantidad:</strong> {event.amount}
+      {eventDetails.length === 0 ? (
+        <p>No hay eventos para esta fecha.</p>
+      ) : (
+        eventDetails.map((event, index) => (
+          <div
+            key={index}
+            className="border rounded p-3 mb-2"
+            style={{ backgroundColor: event.color, color: "black" }}
+          >
+            <div className="row">
+              <div className="col-10 mt-1">
+                <h5 className="fw-bold">{event.title}</h5>
+                <div>
+                  <strong>Cantidad:</strong> {event.amount}
+                </div>
+                <div>
+                  <strong>Tipo:</strong> {event.type}
+                </div>
               </div>
-              <div>
-                <strong>Tipo:</strong> {event.type}
-              </div>
-            </div>
-            <div className="col-2 d-flex flex-column justify-content-center align-items-end pe-4">
-              <div className="d-flex flex-column">
-                <button className="btn btn-sm btn-dark mb-2 border-1">
-                  <i className="bi bi-pencil-square"></i>
-                </button>
-                <button className="btn btn-sm btn-dark border-0">
-                  <i className="bi bi-trash-fill"></i>
-                </button>
+              <div className="col-2 d-flex flex-column justify-content-center align-items-end pe-4">
+                <div className="d-flex flex-column">
+                  <button className="btn btn-sm btn-dark mb-2 border-1">
+                    <i className="bi bi-pencil-square"></i>
+                  </button>
+                  <button className="btn btn-sm btn-dark border-0">
+                    <i className="bi bi-trash-fill"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </FloatWindow>
   );
 };

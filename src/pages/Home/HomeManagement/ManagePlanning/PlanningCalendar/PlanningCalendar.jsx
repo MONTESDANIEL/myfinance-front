@@ -4,9 +4,9 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import PlanningEvent from "./PlanningEvent";
+import PlanningEventForm from "./PlanningEventForm";
 
 import CardInfo from "@components/CardInfo";
-import FloatWindow from "@components/FloatWindow";
 
 import { useMovementPalette } from "@context/ColorContext";
 import { useUser } from "@context/UserContext";
@@ -17,51 +17,41 @@ const PlanningCalendar = () => {
   const { events } = useUser();
   const { colors } = useMovementPalette();
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [newEvent, setNewEvent] = useState({
-    amount: 0,
-    title: "",
-    start: "",
-    type: "Ingreso",
-  });
-
   const [selectedDate, setSelectedDate] = useState(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleClose = () => {
-    setIsOpen(false);
+  const openForm = (date) => {
+    setSelectedDate(date);
+    setIsFormOpen(true);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewEvent({ ...newEvent, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Añadir el nuevo evento a la lista de eventos
-    setEventDetails([...eventDetails, newEvent]);
-    setNewEvent({ title: "", start: "", type: "Ingreso" });
-    handleClose();
+  const closeForm = () => {
+    setIsFormOpen(false);
   };
 
   const renderToolbar = (toolbar) => {
+    const handleNavigate = (action) => {
+      if (toolbar.onNavigate) {
+        toolbar.onNavigate(action);
+      }
+    };
+
     return (
       <div className="d-flex align-items-center mb-2">
         <button
-          onClick={() => toolbar.onNavigate("PREV")}
+          onClick={() => handleNavigate("PREV")}
           className="btn btn-light me-2 btn-sm"
         >
           <i className="bi bi-chevron-left"></i>
         </button>
         <button
-          onClick={() => toolbar.onNavigate("TODAY")}
+          onClick={() => handleNavigate("TODAY")}
           className="btn btn-light me-2 btn-sm"
         >
           <span>Hoy</span>
         </button>
         <button
-          onClick={() => toolbar.onNavigate("NEXT")}
+          onClick={() => handleNavigate("NEXT")}
           className="btn btn-light btn-sm"
         >
           <i className="bi bi-chevron-right"></i>
@@ -71,71 +61,12 @@ const PlanningCalendar = () => {
         </div>
         <div className="ms-auto">
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={() => openForm(null)}
             className="btn btn-success btn-sm"
           >
             Agregar Evento
           </button>
         </div>
-        {/* Ventana flotante para agregar eventos */}
-        {isOpen && (
-          <FloatWindow
-            isOpen={isOpen}
-            onClose={handleClose}
-            title={`Agregar Evento`}
-          >
-            <form onSubmit={handleSubmit} className="mb-3">
-              <div className="mb-3">
-                <label htmlFor="title" className="form-label">
-                  Título
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="title"
-                  name="title"
-                  value={newEvent.title}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="start" className="form-label">
-                  Fecha
-                </label>
-                <input
-                  type="date"
-                  className="form-control"
-                  id="start"
-                  name="start"
-                  value={newEvent.start}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="type" className="form-label">
-                  Tipo
-                </label>
-                <select
-                  className="form-select"
-                  id="type"
-                  name="type"
-                  value={newEvent.type}
-                  onChange={handleInputChange}
-                >
-                  <option value="Ingreso">Ingreso</option>
-                  <option value="Egreso">Egreso</option>
-                  <option value="Ahorro">Ahorro</option>
-                </select>
-              </div>
-              <button type="submit" className="btn btn-success">
-                <span>Agregar Evento</span>
-                <i className="bi bi-plus-square-dotted ms-2"></i>
-              </button>
-            </form>
-          </FloatWindow>
-        )}
       </div>
     );
   };
@@ -165,10 +96,10 @@ const PlanningCalendar = () => {
           event.type === "income"
             ? colors.income[1]
             : event.type === "expense"
-            ? colors.expense[1]
-            : event.type === "savings"
-            ? colors.savings[1]
-            : "",
+              ? colors.expense[1]
+              : event.type === "savings"
+                ? colors.savings[1]
+                : "",
       };
 
       filteredEvents.push(formattedEvent);
@@ -192,10 +123,10 @@ const PlanningCalendar = () => {
           event.type === "income"
             ? colors.income[1]
             : event.type === "expense"
-            ? colors.expense[1]
-            : event.type === "savings"
-            ? colors.savings[1]
-            : "",
+              ? colors.expense[1]
+              : event.type === "savings"
+                ? colors.savings[1]
+                : "",
       };
 
       // Inicializar el objeto para la fecha si no existe
@@ -215,9 +146,8 @@ const PlanningCalendar = () => {
     );
   };
 
-  // Función para manejar el clic en un día del calendario
-  const handleDateClick = (slotInfo) => {
-    const selectedDate = new Date(slotInfo.startDate);
+  const handleEventClick = (event) => {
+    const selectedDate = new Date(event.startDate);
     setSelectedDate(selectedDate);
   };
 
@@ -271,19 +201,28 @@ const PlanningCalendar = () => {
             }}
             eventPropGetter={(event) => ({
               style: {
-                backgroundColor: event.color, // Asegúrate de que el color esté disponible
+                backgroundColor: event.color,
                 padding: "5px",
               },
             })}
-            onSelectEvent={handleDateClick} // Aquí se pasa la función handleDateClick
+            onSelectEvent={handleEventClick} // Aquí debería llamarse correctamente a openEventDetails
             onDrillDown={{}}
           />
           <PlanningEvent
             selectedDate={selectedDate}
-            events={filterEventsByType(events)}
+            events={filterEventsByType(events)} // Asegúrate de pasar todos los eventos al componente
           />
         </div>
       </div>
+
+
+      {/* Formulario flotante para agregar evento */}
+      {isFormOpen && (
+        <PlanningEventForm
+          isOpen={isFormOpen}
+          onClose={closeForm}
+        />
+      )}
     </>
   );
 };
