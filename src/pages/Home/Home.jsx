@@ -27,10 +27,8 @@ function handleWelcomeRedirect() {
 const TABS = [
     { id: 'home', label: 'Inicio', icon: 'bi-house-door', component: <HomeInitial /> },
     { id: 'management', label: 'Gestión de finanzas', icon: 'bi-graph-up', component: <HomeManagement /> },
-    { id: 'about', label: 'Acerca de', icon: 'bi-info-circle', component: <HomeAbout /> },
     { id: 'profile', label: 'Perfil', icon: 'bi-person', component: <HomeProfile /> },
     { id: 'settings', label: 'Configuración', icon: 'bi-gear', component: <HomeSettings /> },
-    { id: 'news', label: 'Novedades', icon: 'bi-newspaper', component: <HomeNews /> },
 ];
 
 const Home = () => {
@@ -111,7 +109,7 @@ const Home = () => {
 
                             <div className="offcanvas-body">
                                 <ul className="navbar-nav justify-content-end flex-grow-1" id="pills-tab" role="tablist">
-                                    {TABS.slice(0, 3).map((tab) => (
+                                    {TABS.slice(0, 2).map((tab) => (
                                         <li className="nav-item" role="presentation" key={tab.id}>
                                             <button
                                                 className={`nav-link ${activeTab === tab.id ? 'active' : ''} close-offcanvas`}
@@ -134,7 +132,7 @@ const Home = () => {
                                             <span className="me-2">{user?.name || 'Usuario'}</span>
                                         </a>
                                         <ul className="dropdown-menu">
-                                            {TABS.slice(3).map((tab) => (
+                                            {TABS.slice(2).map((tab) => (
                                                 <li key={tab.id}>
                                                     <button
                                                         className="dropdown-item close-offcanvas"

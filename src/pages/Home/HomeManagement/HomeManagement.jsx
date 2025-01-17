@@ -3,7 +3,6 @@ import { useAppContext } from '@context/AppContext'; // Importar el contexto
 import ManageMovements from './ManageMovements';
 import ManagePlanning from './ManagePlanning/ManagePlanning';
 import ManageReports from './ManageReports';
-import ManageDue from './ManageDue';
 
 const tabs = [
     {
@@ -23,12 +22,6 @@ const tabs = [
         label: 'Reportes',
         icon: 'bi-file-earmark-text',
         component: <ManageReports />
-    },
-    {
-        id: 'due',
-        label: 'Control de deudas',
-        icon: 'bi-receipt',
-        component: <ManageDue />
     }
 ];
 
@@ -46,6 +39,7 @@ const HomeManagement = () => {
             dispatch({ type: 'SET_CURRENT_TAB', payload: { page: 'management', tab: 'movements' } });
         }
     }, [managementTab, dispatch]);
+
     return (
         <div className="container-fluid">
             {/* Navbar para dispositivos pequeños */}
