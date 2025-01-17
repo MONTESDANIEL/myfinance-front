@@ -88,20 +88,18 @@ const ListItem = ({
           </span>
           <span>
             <i
-              className={`d-none d-md-block ${
-                isOpen
-                  ? "bi bi-chevron-compact-up ms-3"
-                  : "bi bi-chevron-compact-down ms-3"
-              }`}
+              className={`d-none d-md-block ${isOpen
+                ? "bi bi-chevron-compact-up ms-3"
+                : "bi bi-chevron-compact-down ms-3"
+                }`}
             ></i>
           </span>
           <span>
             <i
-              className={`d-block d-md-none ${
-                isOpen
-                  ? "bi bi-chevron-compact-up ms-3"
-                  : "bi bi-chevron-compact-down ms-3"
-              }`}
+              className={`d-block d-md-none ${isOpen
+                ? "bi bi-chevron-compact-up ms-3"
+                : "bi bi-chevron-compact-down ms-3"
+                }`}
               style={{ color: colors[movementType][2] }}
             ></i>
           </span>
@@ -171,7 +169,7 @@ const Movements = ({
   goalId,
   tagId,
 }) => {
-  const { tags } = useUser();
+  const { tags, goals } = useUser();
   const [amountState, setAmount] = useState(amount);
   const [dateState, setDate] = useState(date);
   const [descriptionState, setDescription] = useState(description);
@@ -199,7 +197,7 @@ const Movements = ({
       description: descriptionState,
       amount: parseInt(unformatNumber(amountState), 10), // Remueve formato
       movementType: movementTypeState,
-      goalId: selectedGoal ? { id: selectedGoal } : null,
+      goalId: selectedGoal ? selectedGoal : 0,
       tag: selectedTag ? { id: selectedTag } : null,
     };
 
@@ -283,9 +281,9 @@ const Movements = ({
                 }
               >
                 <option value="">Sin meta</option>
-                {tags.map((tag) => (
-                  <option key={tag.id} value={tag.id}>
-                    {tag.name}
+                {goals.map((goals) => (
+                  <option key={goals.id} value={goals.id}>
+                    {goals.title}
                   </option>
                 ))}
               </select>
@@ -335,13 +333,13 @@ const ManageMovements = () => {
       movementData?.id
         ? movementData
         : {
-            id: null,
-            date: "",
-            description: "",
-            amount: "",
-            movementType: "income",
-            tagId: null,
-          }
+          id: null,
+          date: "",
+          description: "",
+          amount: "",
+          movementType: "income",
+          tagId: null,
+        }
     );
     setIsOpen(true);
   };

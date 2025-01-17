@@ -11,17 +11,36 @@ export const getUserMovements = async () => {
         try {
             const response = await axios.get(`${API_BASE_URL}/viewUserMovements`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`  // Envía el token en el encabezado Authorization
+                    'Authorization': `Bearer ${token}` 
                 }
             });
-            return response.data.data;  // Devuelve los movimientos del usuario
+            return response.data.data;  
         } catch (error) {
-            console.error('Error al obtener los datos del usuario:', error);
-            return null;  // Retorna null si ocurre un error
+            console.error('Error al obtener los movimientos del usuario:', error);
+            return null; 
         }
     } else {
         console.warn('No se encontró el token.');
-        return null;  // Retorna null si no hay token
+        return null; 
+    }
+};
+
+export const getGoalMovements = async (goalId) => {
+    if (token) {
+        try {
+            const response = await axios.get(`${API_BASE_URL}/viewGoalMovements/${goalId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            });
+            return response.data.data; 
+        } catch (error) {
+            console.error('Error al obtener los movimientos realacionados a una meta: ', error);
+            return null;
+        }
+    } else {
+        console.warn('No se encontró el token.');
+        return null; 
     }
 };
 

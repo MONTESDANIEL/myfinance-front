@@ -3,7 +3,7 @@ import { getUserData } from '@api/userApi';
 import { getUserMovements } from '@api/MovementsApi'
 import { getUserTags } from '@api/TagsApi';
 import { getUserEvents } from '@api/EventsApi';
-
+import { getUserGoals } from '@api/GoalsApi'
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
     const [movements, setMovements] = useState([]);
     const [events, setEvents] = useState([]);
     const [tags, setTags] = useState([]);
+    const [goals, setGoals] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -20,12 +21,14 @@ export const UserProvider = ({ children }) => {
                 setUser(userData); // Establece los datos del usuario
 
                 if (userData) {
-                    const userMovements = await getUserMovements(); // Obtén los movimientos del usuario si existe
-                    const userEvents = await getUserEvents(); // Obtén los movimientos del usuario si existe
+                    const userMovements = await getUserMovements();
+                    const userEvents = await getUserEvents();
                     const userTags = await getUserTags()
-                    setMovements(userMovements || []); // Asegúrate de que movimientos sea un arreglo
-                    setEvents(userEvents || []); // Asegúrate de que movimientos sea un arreglo
-                    setTags(userTags || []); // Asegúrate de que movimientos sea un arreglo
+                    const userGoals = await getUserGoals()
+                    setMovements(userMovements || []);
+                    setEvents(userEvents || []);
+                    setTags(userTags || []);
+                    setGoals(userGoals || []);
                 }
 
 
@@ -40,7 +43,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, movements, tags, events, loading }}>
+        <UserContext.Provider value={{ user, movements, tags, events, loading, goals }}>
             {children}
         </UserContext.Provider>
     );

@@ -1,34 +1,25 @@
 import React, { useState } from 'react';
 
-import financialGoalsData from '@data/goalsData.js';
+import { useUser } from "@context/UserContext";
 
 import GoalGroup from './GoalGroup';
 import GoalDetailsWindow from './GoalDetailWindow';
+
 import FloatWindow from '@components/FloatWindow';
 
 const PlanningGoals = () => {
-
-    const getProgressColor = ({ progress, type }) => {
-        if (type === 'unica') return '#e0e0e0';
-
-        if (progress <= 25) return type === 'Reductivo' ? '#198754' : '#dc3545';
-        if (progress <= 50) return type === 'Reductivo' ? '#ffc107' : '#fd7e14';
-        if (progress <= 75) return type === 'Reductivo' ? '#fd7e14' : '#ffc107';
-        return type === 'Reductivo' ? '#dc3545' : '#198754';
-    };
+    const { goals } = useUser();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedGoal, setSelectedGoal] = useState('Todos');
-
-    const goalOptions = {
-        'Todos': 'Todos',
-        'Reductivo': 'Reducción de Gastos',
-        'Incremental': 'Ahorro Progresivo',
-        'Fijo': 'Objetivo a Plazo Fijo'
-    };
-
+    const [selectedGoal, setSelectedGoal] = useState('all');
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
     const [selectedGoalDetails, setSelectedGoalDetails] = useState(null);
+
+    const goalOptions = {
+        'all': 'Todos',
+        'reductive': 'Reducción de Gastos',
+        'incremental': 'Ahorro Progresivo'
+    };
 
     const handleClose = () => {
         setIsOpen(false);
@@ -45,19 +36,20 @@ const PlanningGoals = () => {
     };
 
     const groupedGoals = () => {
-        return financialGoalsData.reduce((acc, goal) => {
+        return goals.reduce((acc, goal) => {
             if (!acc[goal.type]) acc[goal.type] = [];
             acc[goal.type].push(goal);
             return acc;
         }, {});
     };
 
-    const filteredGoals = selectedGoal === 'Todos'
-        ? Object.entries(groupedGoals()) // Llama a la función aquí
+    const filteredGoals = selectedGoal === 'all'
+        ? Object.entries(groupedGoals())
         : Object.entries(groupedGoals()).filter(([type]) => type === selectedGoal);
 
     return (
         <>
+
             <div className="row justify-content-center">
                 <div className="row justify-content-between align-items-center p-2">
                     <div className="col-auto">
@@ -90,7 +82,6 @@ const PlanningGoals = () => {
                         </div>
                     </div>
 
-
                     <div className="col-auto">
                         <button
                             className="btn btn-link"
@@ -102,13 +93,23 @@ const PlanningGoals = () => {
                 </div>
 
                 <FloatWindow isOpen={isOpen} onClose={handleClose} title="Interpretación de los Colores">
-                    <div className="color-legend">
-                        <ul>
-                            <li style={{ color: '#198754' }}>Verde: Buen progreso</li>
-                            <li style={{ color: '#ffc107' }}>Amarillo: Avance moderado</li>
-                            <li style={{ color: '#fd7e14' }}>Naranja: Precaución</li>
-                            <li style={{ color: '#dc3545' }}>Rojo: Alerta</li>
-                        </ul>
+                    <div className="color-legend d-flex justify-content-center align-items-center">
+                        <div className="legend-section p-1">
+                            <ul className="list-unstyled">
+                                <li style={{ color: '#198754' }} className='my-2'>
+                                    <strong>Verde:</strong> Estás logrando un gran progreso, ¡sigue así! Estás cerca de alcanzar tu objetivo.
+                                </li>
+                                <li style={{ color: '#ffc107' }} className='my-2'>
+                                    <strong>Amarillo:</strong> Tienes un avance moderado, pero aún hay margen para seguir mejorando.
+                                </li>
+                                <li style={{ color: '#fd7e14' }} className='my-2'>
+                                    <strong>Naranja:</strong> El progreso es insuficiente, necesitas mejorar para no quedarte atrás.
+                                </li>
+                                <li style={{ color: '#dc3545' }} className='my-2'>
+                                    <strong>Rojo:</strong> El progreso es bajo, ¡actúa rápidamente para evitar llegar a un punto crítico!
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </FloatWindow>
 
@@ -117,7 +118,6 @@ const PlanningGoals = () => {
                         key={type}
                         type={type}
                         goals={goals}
-                        getProgressColor={getProgressColor}
                         handleShowDetails={(goal) => {
                             setSelectedGoalDetails(goal);
                             setIsDetailsOpen(true);

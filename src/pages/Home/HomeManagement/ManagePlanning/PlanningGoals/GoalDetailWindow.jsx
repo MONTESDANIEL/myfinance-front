@@ -1,97 +1,178 @@
-import React from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import FloatWindow from '@components/FloatWindow';
+import { getGoalMovements } from '@api/MovementsApi';
 
 const getProgressColor = ({ progress, type }) => {
-    if (type === 'unica') return '#e0e0e0';
+    if (type === "incremental") {
+        if (progress <= 25) return '#dc3545'; // Rojo
+        if (progress <= 50) return '#fd7e14'; // Naranja
+        if (progress <= 75) return '#ffc107'; // Amarillo
+        return '#198754'; // Verde
+    } else {
+        if (progress <= 25) return '#198754'; // Verde
+        if (progress <= 50) return '#ffc107'; // Amarillo
+        if (progress <= 75) return '#fd7e14'; // Naranja
+        return '#dc3545'; // Rojo
+    }
+};
 
-    if (progress <= 25) return type === 'Reductivo' ? '#198754' : '#dc3545';
-    if (progress <= 50) return type === 'Reductivo' ? '#ffc107' : '#fd7e14';
-    if (progress <= 75) return type === 'Reductivo' ? '#fd7e14' : '#ffc107';
-    return type === 'Reductivo' ? '#dc3545' : '#198754';
+const formatNumber = (value) => {
+    if (value === null || value === undefined || value === "") return "";
+    return Number(value).toLocaleString("en-US");
+};
+
+// Función combinada para obtener movimientos, calcular el total y el porcentaje
+const calculateGoalDetails = async (goal) => {
+    const result = await getGoalMovements(goal.id);  // Obtener los movimientos para la meta
+
+    // Sumar los amounts de todos los movimientos
+    const totalAmount = result.reduce((sum, movement) => {
+        return sum + parseFloat(movement.amount) || 0; // Asegúrate de convertir el amount a un número
+    }, 0);
+
+    // Obtener el objetivo de la meta
+    const targetAmount = goal.targetAmount;
+
+    // Calcular lo que falta para alcanzar la meta
+    const remainingAmount = targetAmount - totalAmount;
+
+    // Calcular el porcentaje de progreso
+    const progress = Math.min(Math.max(Math.round((totalAmount / targetAmount) * 100), 0), 100);
+
+    return {
+        totalAmount,
+        targetAmount,
+        remainingAmount,
+        progress,
+        movements: result
+    };
+};
+
+const ListGroup = ({ items, title, isExpense = false }) => {
+    return (
+        items && (
+            <>
+                <h6>{title}:</h6>
+                {items.length > 0 ? (
+                    <div className="list-group overflow-auto" style={{ height: items.length > 5 ? '200px' : 'auto' }}>
+                        {items.map((item, index) => (
+                            <div className="list-group-item d-flex justify-content-between" key={index}>
+                                <span>{item.description}</span>
+                                <span className={`ms-2 text-nowrap ${isExpense ? 'text-danger' : 'text-success'}`}>
+                                    {isExpense ? `- $ ${item.amount}` : `$ ${item.amount}`}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-center m-2">No hay nada para mostrar</p>
+                )}
+            </>
+        )
+    );
 };
 
 const GoalDetailsWindow = ({ selectedGoal, isOpen, onClose }) => {
+
+    const [goalDetails, setGoalDetails] = useState({
+        totalAmount: 0,
+        targetAmount: 0,
+        remainingAmount: 0,
+        progress: 0,
+        movements: []
+    });
+
+    useEffect(() => {
+        const fetchGoalDetails = async () => {
+            if (selectedGoal && selectedGoal.id) {
+                const details = await calculateGoalDetails(selectedGoal);
+                setGoalDetails(details);
+            }
+        };
+
+        fetchGoalDetails();
+    }, [selectedGoal?.id]);
+
+    // Desestructuración para mayor legibilidad
+    const { totalAmount, targetAmount, remainingAmount, progress } = goalDetails;
+
+    // Color del progreso
+    const progressColor = getProgressColor({ progress, type: selectedGoal.type });
+
     return (
-        <FloatWindow isOpen={isOpen} onClose={onClose} title={selectedGoal.title} size="lg">
+        <FloatWindow isOpen={isOpen} onClose={onClose} title="Detalles" size="lg">
             <div className="card p-3">
-                <h3 className="text-center m-0">Detalles</h3>
+                <h3 className="text-center m-0">{selectedGoal.title}</h3>
                 <hr />
 
-                <div className="row justify-content-center px-3 mb-2">
+                <div className="row justify-content-center">
                     {[
-                        { label: 'Cantidad Objetivo', value: selectedGoal.targetAmount },
-                        selectedGoal.currentSpending !== undefined && {
-                            label: selectedGoal.type === 'Reductivo' ? 'Gastos actuales' : 'Falta depositar',
-                            value: selectedGoal.currentSpending,
+                        {
+                            label: selectedGoal.type === 'incremental' ? 'Monto Objetivo' : 'Presupuesto Límite',
+                            value: formatNumber(targetAmount),
                         },
-                        selectedGoal.remainingBudget !== undefined && {
-                            label: selectedGoal.type === 'Reductivo' ? 'Presupuesto Restante' : 'Depósitos Actuales',
-                            value: selectedGoal.remainingBudget,
-                        }
+                        totalAmount !== undefined && {
+                            label: selectedGoal.type === 'incremental' ? 'Progreso Acumulado' : 'Gastos Actuales',
+                            value: formatNumber(totalAmount),
+                        },
+                        remainingAmount !== undefined && {
+                            label: selectedGoal.type === 'incremental'
+                                ? remainingAmount < totalAmount
+                                    ? 'Progreso Superior'
+                                    : 'Progreso Restante'
+                                : remainingAmount < 0
+                                    ? 'Presupuesto Excedido'
+                                    : 'Presupuesto Restante',
+                            value: formatNumber(Math.abs(remainingAmount)), // Usar el valor absoluto para mantener la claridad
+                        },
                     ]
-                        .filter(Boolean)
+                        .filter(Boolean) // Elimina valores falsos o undefined
                         .map((item, index) => (
-                            <div key={index} className="col-lg-3 text-center m-1 p-2" >
+                            <div key={index} className="col-lg-4 text-center p-1 my-1">
                                 <div className="d-flex flex-column align-items-center">
-                                    <h6 className="m-0">{item.label}</h6>
+                                    <h5 className="m-0">{item.label}</h5>
                                     <p className="m-0">${item.value}</p>
                                 </div>
                             </div>
                         ))}
+
                 </div>
                 <div className="mt-2 mb-3">
                     <h6>Progreso:</h6>
-                    <div style={{ position: 'relative', width: '100%', height: '15px', backgroundColor: '#e0e0e0', borderRadius: '5px' }}>
+                    <div
+                        className='bg-secondary'
+                        style={{ position: 'relative', width: '100%', height: '20px', borderRadius: '5px' }}>
                         <div
                             style={{
-                                width: `${selectedGoal.progress}%`,
+                                width: `${progress}%`,
                                 height: '100%',
-                                backgroundColor: getProgressColor({ progress: selectedGoal.progress, type: selectedGoal.type }),
+                                backgroundColor: progressColor,
                                 borderRadius: '5px'
                             }}
                         ></div>
-                        <span style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', color: 'black' }}>
-                            {selectedGoal.progress}%
+                        <span
+                            className="position-absolute start-50 translate-middle fw-bold text-black"
+                            style={{ top: '50%', transform: 'translate(-50%, -50%)' }}
+                        >
+                            {progress}%
                         </span>
                     </div>
                 </div>
 
-                {selectedGoal.depositHistory && (
-                    <>
-                        <h6>Historial de Depósitos:</h6>
-                        {selectedGoal.depositHistory.length > 0 ? (
-                            <div className="list-group overflow-auto" style={{ height: selectedGoal.depositHistory.length > 5 ? '200px' : 'auto' }}>
-                                {selectedGoal.depositHistory.map((deposit, index) => (
-                                    <div className="list-group-item d-flex justify-content-between" key={index}>
-                                        <span>{deposit.description}</span>
-                                        <span className="text-success ms-2 text-nowrap">$ {deposit.amount}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="text-center m-2">No hay nada para mostrar</p>
-                        )}
-                    </>
-                )}
-
-                {selectedGoal.recentExpenses && (
-                    <>
-                        <h6>Gastos Recientes:</h6>
-                        {selectedGoal.recentExpenses.length > 0 ? (
-                            <div className="list-group overflow-auto" style={{ height: selectedGoal.recentExpenses.length > 5 ? '200px' : 'auto' }}>
-                                {selectedGoal.recentExpenses.map((expense, index) => (
-                                    <div className="list-group-item d-flex justify-content-between" key={index}>
-                                        <span>{expense.description}</span>
-                                        <span className="text-danger ms-2 text-nowrap">- $ {expense.amount}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="text-center m-2">No hay nada para mostrar</p>
-                        )}
-                    </>
-                )}
-
+                {
+                    selectedGoal.type === 'incremental' ? (
+                        <ListGroup
+                            items={goalDetails.movements}
+                            title="Historial de Depósitos"
+                        />
+                    ) : (
+                        <ListGroup
+                            items={goalDetails.movements}
+                            title="Gastos Recientes"
+                            isExpense={true}
+                        />
+                    )
+                }
             </div>
         </FloatWindow>
     );

@@ -1,128 +1,93 @@
 const goalsData = [
     {
         "id": 1,
+        "userId": 1000270957,
         "title": "No gastar tanto en entretenimiento",
         "targetAmount": 500000,
-        "currentSpending": 300000,
-        "remainingBudget": 200000,
-        "progress": 80,
-        "type": "Reductivo",
-        "recentExpenses": [
-            { "description": "Cine", "amount": 15000 },
-            { "description": "Salidas a comer", "amount": 100000 },
-            { "description": "Suscripción a plataforma de streaming", "amount": 15000 }
-        ]
+        "currentSpending": 200000,
+        "remainingBudget": 300000,
+        "type": "reductive"
     },
     {
         "id": 2,
+        "userId": 1000270957,
         "title": "Ahorro para vacaciones",
         "targetAmount": 1000000,
-        "currentSpending": 450000,
-        "remainingBudget": 550000,
-        "progress": 40,
-        "type": "Incremental",
-        "depositHistory": [
-            { "description": "Depósito de cumpleaños", "amount": 10000 },
-            { "description": "Depósito mensual", "amount": 200000 },
-            { "description": "Regalo familiar", "amount": 5000 },
-            { "description": "Intereses ganados", "amount": 1500 },
-            { "description": "Depósito de sueldo", "amount": 7500 },
-            { "description": "Depósito extra", "amount": 3000 },
-            { "description": "Intereses", "amount": 1000 },
-            { "description": "Depósito de bonificación", "amount": 400000 },
-            { "description": "Venta de artículos", "amount": 5000 },
-            { "description": "Reembolso de gastos", "amount": 1000 }
-        ]
+        "currentSpending": 800000,
+        "remainingBudget": 200000,
+        "type": "incremental"
     },
     {
-        "id": 19,
+        "id": 3,
+        "userId": 1000270957,
         "title": "Pago de deudas",
         "targetAmount": 300000,
-        "currentSpending": 200000,
-        "remainingBudget": 100000,
-        "progress": 66,
-        "type": "Reductivo",
-        "recentExpenses": [
-            { "description": "Pago de préstamo", "amount": 50000 },
-            { "description": "Pago de servicios", "amount": 20000 }
-        ]
+        "currentSpending": 300000,
+        "remainingBudget": 0,
+        "type": "reductive"
     },
     {
-        "id": 20,
+        "id": 4,
+        "userId": 1000270957,
         "title": "Ahorro para la universidad",
         "targetAmount": 500000,
         "currentSpending": 100000,
         "remainingBudget": 400000,
-        "progress": 20,
-        "type": "Incremental",
-        "depositHistory": [
-            { "description": "Ahorro de verano", "amount": 30000 },
-            { "description": "Intereses ganados", "amount": 5000 }
-        ]
+        "type": "incremental"
     },
     {
-        "id": 22,
+        "id": 5,
+        "userId": 1000270957,
         "title": "Gastos de salud mensuales",
         "targetAmount": 150000,
-        "currentSpending": 80000,
-        "remainingBudget": 70000,
-        "progress": 53,
-        "type": "Reductivo",
-        "recentExpenses": [
-            { "description": "Medicamentos", "amount": 15000 },
-            { "description": "Exámenes", "amount": 20000 }
-        ]
+        "currentSpending": 30000,
+        "remainingBudget": 120000,
+        "type": "reductive"
     },
     {
-        "id": 23,
+        "id": 6,
+        "userId": 1000270957,
         "title": "Ahorro para un nuevo televisor",
         "targetAmount": 400000,
-        "currentSpending": 60000,
-        "remainingBudget": 340000,
-        "progress": 15,
-        "type": "Incremental",
-        "depositHistory": [
-            { "description": "Ahorro mensual", "amount": 10000 },
-            { "description": "Regalo de cumpleaños", "amount": 5000 }
-        ]
+        "currentSpending": 200000,
+        "remainingBudget": 200000,
+        "type": "incremental"
     },
     {
-        "id": 24,
+        "id": 7,
+        "userId": 1000270957,
         "title": "Pago de impuestos",
         "targetAmount": 200000,
         "currentSpending": 120000,
         "remainingBudget": 80000,
-        "progress": 60,
-        "type": "Reductivo",
-        "recentExpenses": [
-            { "description": "Impuesto sobre la renta", "amount": 70000 }
-        ]
+        "type": "reductive"
     },
     {
-        "id": 26,
+        "id": 8,
+        "userId": 1000270957,
         "title": "Ahorro para comprar un coche usado",
         "targetAmount": 1200000,
-        "currentSpending": 200000,
-        "remainingBudget": 1000000,
-        "progress": 17,
-        "type": "Incremental",
-        "depositHistory": [
-            { "description": "Depósito extra", "amount": 100000 },
-            { "description": "Intereses ganados", "amount": 2000 }
-        ]
+        "currentSpending": 1000000,
+        "remainingBudget": 200000,
+        "type": "incremental"
     },
     {
-        "id": 27,
+        "id": 10,
+        "userId": 1000270957,
         "title": "Ahorro para el seguro del coche",
         "targetAmount": 500000,
         "currentSpending": 300000,
         "remainingBudget": 200000,
-        "progress": 60,
-        "type": "Incremental",
-        "depositHistory": [
-            { "description": "Pago de una póliza", "amount": 10000 },
-            { "description": "Depósito adicional", "amount": 20000 }
-        ]
+        "type": "incremental"
+    },
+    {
+        "id": 11,
+        "userId": 1000270957,
+        "title": "Ahorro para pago del semestre",
+        "targetAmount": 1000000,
+        "currentSpending": 500000,
+        "remainingBudget": 500000,
+        "type": "reductive"
     }
 ];
 
