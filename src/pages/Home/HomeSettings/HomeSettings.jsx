@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import SettingsSecurity from './SettingsSecurity';
 import SettingsCustomization from './SettingsCustomization/SettingsCustomization';
-import SettingsFinancial from './SettingsFinancial/SettingsFinancial';
 
 import { useAppContext } from '@context/AppContext';
 
@@ -17,12 +16,6 @@ const tabs = [
         label: 'Personalización',
         icon: 'bi-palette',
         component: <SettingsCustomization />
-    },
-    {
-        id: 'financial',
-        label: 'Financiero',
-        icon: 'bi-calculator',
-        component: <SettingsFinancial />
     }
 ];
 
