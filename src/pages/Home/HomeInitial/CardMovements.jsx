@@ -40,7 +40,7 @@ const filterMovements = (data, { showAll, typeInEnglish, month, year }) => {
 };
 
 // Componente ListItem
-const ListItem = ({ date, description, amount, movementType, tag }) => {
+const ListItem = ({ date, description, amount, movementType, goal, tag }) => {
     const { colors } = useMovementPalette();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -80,6 +80,7 @@ const ListItem = ({ date, description, amount, movementType, tag }) => {
                     </span>
                     <div><strong>Fecha:</strong> {new Date(date).toLocaleDateString('es-ES')}</div>
                     <div><strong>Tipo:</strong> {TYPE_TRANSLATION[movementType]}</div>
+                    <div><strong>Meta:</strong> {goal == null ? 'No tiene una meta asignada' : goal.title}</div>
                     <div><strong>Etiqueta:</strong> {tag == null ? 'No tiene una etiqueta' : tag.name}</div>
                 </div>
             )}

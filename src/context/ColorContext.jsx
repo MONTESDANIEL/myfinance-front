@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
-import { movementsPalette } from '@data/movementsPalette';
+import { useUser } from "@context/UserContext";
+import LoadingScreen from '@components/LoadingScreen';
 
 // Crear el contexto
 const MovementPaletteContext = createContext();
@@ -23,20 +24,28 @@ const getColorShades = (color) => {
     };
 };
 
+
 // Proveedor para envolver la aplicación o los componentes que necesiten acceder al contexto
 export const MovementPaletteProvider = ({ children }) => {
+
+    const { favoriteColors, loading } = useUser();
+
+    if (loading) {
+        return <LoadingScreen></LoadingScreen>;
+    }
+
     // Estado para los colores principales
     const [mainColors, setMainColors] = useState({
-        income: movementsPalette.income,
-        savings: movementsPalette.savings,
-        expense: movementsPalette.expense,
+        income: favoriteColors.incomeColor,
+        savings: favoriteColors.savingsColor,
+        expense: favoriteColors.expenseColor,
     });
 
     // Estado para los tonos de cada color
     const [colors, setColors] = useState({
-        income: getColorShades(movementsPalette.income),
-        savings: getColorShades(movementsPalette.savings),
-        expense: getColorShades(movementsPalette.expense),
+        income: getColorShades(favoriteColors.incomeColor),
+        savings: getColorShades(favoriteColors.savingsColor),
+        expense: getColorShades(favoriteColors.expenseColor),
     });
 
     // Función para actualizar los colores principales y sus tonalidades

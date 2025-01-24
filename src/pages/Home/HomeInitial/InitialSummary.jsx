@@ -11,6 +11,9 @@ import { useMovementPalette } from '@context/ColorContext';
 import { useUser } from '@context/UserContext';
 
 const processMonthlyMovements = (movements) => {
+
+    const currentYear = new Date().getFullYear();
+
     // Inicializar el objeto data con arrays para cada tipo de movimiento, con 12 meses (de enero a diciembre)
     const data = {
         income: new Array(12).fill(0), // Inicializar todos los valores en 0
@@ -21,16 +24,19 @@ const processMonthlyMovements = (movements) => {
     // Procesar los movimientos
     movements.forEach(movement => {
         const movementDate = new Date(movement.date);
-        const movementMonth = movementDate.getMonth(); // El mes es un valor entre 0 y 11
-        const amount = movement.movementType === 'expense' ? Math.abs(movement.amount) : movement.amount;
+        const movementYear = movementDate.getFullYear(); // Obtener el año del movimiento
+        if (movementYear === currentYear) {
+            const movementMonth = movementDate.getMonth(); // El mes es un valor entre 0 y 11
+            const amount = movement.movementType === 'expense' ? Math.abs(movement.amount) : movement.amount;
 
-        // Asignar el valor al mes correspondiente
-        if (movement.movementType === 'income') {
-            data.income[movementMonth] += amount;
-        } else if (movement.movementType === 'savings') {
-            data.savings[movementMonth] += amount;
-        } else if (movement.movementType === 'expense') {
-            data.expense[movementMonth] += amount;
+            // Asignar el valor al mes correspondiente
+            if (movement.movementType === 'income') {
+                data.income[movementMonth] += amount;
+            } else if (movement.movementType === 'savings') {
+                data.savings[movementMonth] += amount;
+            } else if (movement.movementType === 'expense') {
+                data.expense[movementMonth] += amount;
+            }
         }
     });
 

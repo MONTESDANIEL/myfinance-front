@@ -47,8 +47,6 @@ const CustomizationTags = () => {
             userId: user.id,
         };
 
-        console.log(updatedTag)
-
         try {
             await updateUserTag(updatedTag);
             setEditingTagId(null); // Salir del modo edición
@@ -71,7 +69,7 @@ const CustomizationTags = () => {
     return (
         <div className="bg-body-tertiary rounded px-2 py-3 shadow-sm">
             <div className="text-center">
-                <h3 className="mb-3 m-md-1">Etiquetas personalizadas</h3>            con
+                <h3 className="mb-3 m-md-1">Etiquetas personalizadas</h3>
 
             </div>
             <div className="row m-3">

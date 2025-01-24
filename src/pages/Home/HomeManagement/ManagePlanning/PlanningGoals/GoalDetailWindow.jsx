@@ -45,7 +45,7 @@ const ListGroup = ({ items, title, isExpense = false }) => (
                         <span
                             className={`ms-2 text-nowrap ${isExpense ? 'text-danger' : 'text-success'}`}
                         >
-                            {isExpense ? `- $ ${amount}` : `$ ${amount}`}
+                            {isExpense ? `- $ ${formatNumber(amount)}` : `$ ${formatNumber(amount)}`}
                         </span>
                     </div>
                 ))}
@@ -110,7 +110,7 @@ const GoalDetailsWindow = ({ selectedGoal, isOpen, onClose, handleEdit }) => {
                         },
                         remainingAmount !== undefined && {
                             label: selectedGoal.type === 'incremental'
-                                ? remainingAmount < totalAmount
+                                ? targetAmount < totalAmount
                                     ? 'Progreso Superior'
                                     : 'Progreso Restante'
                                 : remainingAmount < 0

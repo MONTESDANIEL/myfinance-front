@@ -85,38 +85,6 @@ const SettingsSecurity = () => {
                     </div>
 
                 </div >
-
-                <div className="bg-body-tertiary rounded px-2 py-3 mb-3">
-
-                    <div className="text-center">
-                        <h3 className="mb-3 mb-md-1">Preguntas de Recuperación</h3>
-                        <p className="d-none d-md-block m-0">Configura preguntas de seguridad para recuperar tu cuenta en caso de olvidar tu contraseña.</p>
-                        <p className="d-none d-md-block">Asegúrese de elegir respuestas que solo usted pueda recordar.</p>
-                        <hr />
-                    </div>
-
-                    {Array.from({ length: 3 }).map((_, i) => (
-                        <div className="mb-3" key={i}>
-                            <label htmlFor={`recoveryQuestion${i + 1}`} className="form-label">
-                                Selecciona una pregunta de recuperación
-                            </label>
-                            <select
-                                id={`recoveryQuestion${i + 1}`}
-                                className="form-select mb-2"
-                                value={selectedQuestions[i]}
-                                onChange={(e) => handleQuestionChange(i, e.target.value)}
-                                required
-                            >
-                                <option value="" disabled>Selecciona una pregunta</option>
-                                {questions.map((question, index) => (
-                                    <option key={index} value={question}>{question}</option>
-                                ))}
-                            </select>
-                            <input type="text" className="form-control" placeholder="Tu respuesta" required />
-                        </div>
-                    ))}
-
-                </div>
             </form >
 
             <button type="submit" className="btn btn-primary w-100">

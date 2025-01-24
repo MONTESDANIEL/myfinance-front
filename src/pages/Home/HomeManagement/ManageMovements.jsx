@@ -63,6 +63,7 @@ const ListItem = ({
       description,
       amount,
       movementType,
+      goalId: goal ? goal.id : null,
       tagId: tag ? tag.id : null,
     });
   };
@@ -219,6 +220,19 @@ const Movements = ({
         <div className="card-body">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
+              <label htmlFor="description" className="form-label">
+                Descripción
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                placeholder="Ingrese una descripción"
+                value={descriptionState}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
               <label htmlFor="amount" className="form-label">
                 Monto
               </label>
@@ -236,19 +250,6 @@ const Movements = ({
                 placeholder="Ingresa la fecha en la que se realizó el movimiento"
                 value={dateState}
                 onChange={(e) => setDate(e.target.value)}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="description" className="form-label">
-                Descripción
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="description"
-                placeholder="Ingrese una descripción"
-                value={descriptionState}
-                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -338,7 +339,8 @@ const ManageMovements = () => {
           description: "",
           amount: "",
           movementType: "income",
-          tagId: null,
+          goalId: null,
+          tagId: null
         }
     );
     setIsOpen(true);

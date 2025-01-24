@@ -70,7 +70,6 @@ const PerformanceMonthly = () => {
     const formatMonthlyExpense = formatCurrency(monthlyExpense)
     const formatMonthlyAvailable = formatCurrency(Math.abs(monthlyAvailable))
 
-    // Datos configurados para el grafico de barras
     const monthlyPerformance = {
         labels: negativeBalance
             ? ['Ahorros', 'Egresos']
@@ -226,7 +225,11 @@ const PerformanceMonthly = () => {
 
             <div className="card mb-3">
                 <div className="card-body d-flex align-items-center justify-content-center" style={{ height: '450px', width: '100%' }}>
-                    <Pie data={monthlyPerformance} options={adjustPieChart} />
+                    {dataMonth.expense.length === 0 && dataMonth.income.length === 0 && dataMonth.savings.length === 0 ? (
+                        <span>No hay datos para graficar</span>
+                    ) : (
+                        <Pie data={monthlyPerformance} options={adjustPieChart} />
+                    )}
                 </div>
             </div>
         </div>

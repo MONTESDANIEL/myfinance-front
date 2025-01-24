@@ -112,14 +112,29 @@ const PlanningGoals = () => {
                 </FloatWindow>
 
                 {/* Lista de metas */}
-                {filteredGoals().map(([type, goals]) => (
-                    <GoalGroup
-                        key={type}
-                        type={type}
-                        goals={goals}
-                        handleShowDetails={(goal) => handleWindowToggle("details", { goal })}
-                    />
-                ))}
+                {
+                    filteredGoals().length > 0 ? (
+                        filteredGoals().map(([type, goals]) => (
+                            <GoalGroup
+                                key={type}
+                                type={type}
+                                goals={goals}
+                                handleShowDetails={(goal) => handleWindowToggle("details", { goal })}
+                            />
+                        ))
+                    ) : (
+                        <div>
+                            <div className="p-3 my-2 card text-center">
+                                <span>
+                                    {selectedGoal === 'all'
+                                        ? "No hay metas para mostrar."
+                                        : `No hay metas para mostrar de  ${selectedGoal === 'reductive' ? "reducción de gastos" : "ahorro progresivo"}.`}
+                                </span>
+                            </div>
+                        </div>
+                    )
+                }
+
             </div>
 
             {/* Ventana de detalles */}
