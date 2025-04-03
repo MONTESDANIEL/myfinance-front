@@ -49,7 +49,7 @@ const ManageReports = () => {
             // Enviar datos a través de axios si no hay errores
             try {
                 // Preparar datos en formato correcto para axios
-                const response = await axios.post('http://192.168.1.2:8083/api/report/generateReport', reportData, {
+                const response = await axios.post('http://192.168.1.9:8083/api/report/generateReport', reportData, {
                     responseType: 'blob', // Asegúrate de recibir el archivo en formato binario (PDF)
                 });
 

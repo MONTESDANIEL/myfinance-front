@@ -1,37 +1,90 @@
-# Aplicación de Finanzas Personales
+# 🏦 MyFinance Frontend
 
-## Descripción
+## 📌 Descripción
 
-Esta es una aplicación de finanzas personales diseñada para ayudarte a gestionar tus ingresos, gastos y presupuestos. La aplicación proporciona un dashboard personalizado donde puedes ver un resumen de tus finanzas, gráficos de tus gastos, y mucho más. También incluye funcionalidades para registrar transacciones, gestionar categorías, y realizar análisis financieros.
+Este repositorio contiene el **frontend** de **MyFinance**, una aplicación de gestión financiera personal.  
+La interfaz permite a los usuarios visualizar y administrar sus ingresos, egresos y presupuestos de manera intuitiva, con gráficos interactivos y una experiencia optimizada para dispositivos móviles y escritorio.
 
-## Funcionalidades
+Este proyecto está desarrollado con **React** y **Bootstrap**, proporcionando una interfaz moderna y responsiva.  
+Se conecta con el backend a través de **APIs REST**, facilitando la autenticación, gestión de transacciones y análisis financiero.
 
-- **Inicio de sesión y Registro**: Permite a los usuarios crear cuentas y autenticarse en la aplicación.
-- **Dashboard Principal**: Muestra un resumen de tus finanzas, gráficos y tablas para visualizar tu situación financiera.
-- **Gestión de Transacciones**: Registra ingresos y gastos con detalles y categorías.
-- **Presupuesto y Planificación**: Configura presupuestos y realiza un seguimiento del cumplimiento.
-- **Reportes y Análisis**: Genera reportes detallados y análisis de tus gastos e ingresos.
-- **Interfaz de Usuario**: Diseño responsivo y accesible en dispositivos móviles y de escritorio.
+---
 
-## Tecnologías Utilizadas
+## ✨ Características Principales
 
-- **Frontend**: React, Bootstrap
-- **Backend**: Spring Boot
-- **Base de Datos**: MySQL
+✅ **Inicio de Sesión y Registro** – Autenticación de usuarios con validaciones.  
+✅ **Dashboard Financiero** – Panel interactivo con resumen de ingresos, egresos y ahorros.  
+✅ **Gestión de Movimientos** – Registro, edición y eliminación de transacciones con categorías.  
+✅ **Presupuesto y Planificación** – Configuración de metas financieras y seguimiento de gastos.  
+✅ **Reportes en PDF** – Generación de documentos con análisis financieros.  
+✅ **Personalización** – Modificación de etiquetas y colores en la interfaz.
 
-## Instalación
+---
 
-### Requisitos
+## 🛠 Tecnologías Utilizadas
 
-- JDK 17 o superior
-- Node.js
-- MySQL
+- **React**: Biblioteca para construir la interfaz de usuario.
+- **React DOM**: Manejo del DOM en aplicaciones React.
+- **React Router DOM**: Enrutamiento para aplicaciones de una sola página (SPA).
+- **Bootstrap**: Framework de diseño responsivo y componentes predefinidos.
+- **Chart.js**: Biblioteca para la visualización de datos con gráficos dinámicos.
+- **Context API**: Manejo del estado global sin necesidad de Redux.
+- **Axios**: Cliente HTTP para realizar peticiones a la API.
+- **APIs REST**: Comunicación con el backend para obtener y enviar datos.
 
-### Uso
+---
 
-- Iniciar Sesión / Registrarse
-- Dirígete a la página de inicio y utiliza el formulario de registro para crear una nueva cuenta o inicia sesión con una cuenta existente.
-- Explorar el Dashboard
-- Una vez autenticado, explora el dashboard para ver un resumen de tus finanzas y acceder a las diferentes secciones de la aplicación.
-- Registrar Transacciones
-- Utiliza la funcionalidad de gestión de transacciones para añadir nuevos ingresos y gastos, y asigna categorías para un mejor seguimiento.
+## 🚀 Instalación y Ejecución
+
+### 📌 Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instalado:
+
+- **Node.js** (v16 o superior)
+- **npm**
+
+### 📥 Clonar el Repositorio
+
+```sh
+git clone https://github.com/MONTESDANIEL/myfinance-front.git
+cd myfinance-front
+```
+
+### 📦 Instalar Dependencias
+
+```sh
+npm install
+```
+
+### ▶ Ejecutar el Proyecto
+
+```sh
+npm run dev
+```
+
+---
+
+## 📂 Estructura del Proyecto
+
+```sh
+myfinance-front/
+│── public/             # Archivos estáticos
+│── src/                # Código fuente
+│   ├── api/            # Comunicación con el backend
+│   ├── assets/         # Ilustraciones y estilos
+│   ├── components/     # Componentes reutilizables
+│   ├── context/        # Estado global con Context API
+│   ├── pages/          # Páginas principales
+│   ├── utils/          # Validaciones
+│── .env.example        # Variables de entorno (configuración)
+│── package.json        # Dependencias del proyecto
+│── README.md           # Documentación del repositorio
+```
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia MIT, por lo que puedes usarlo y modificarlo libremente.
+
+## ⛓️Relacionado
+
+🔗 Repositorio Principal: [MyFinance](https://github.com/MONTESDANIEL/myfinance)
