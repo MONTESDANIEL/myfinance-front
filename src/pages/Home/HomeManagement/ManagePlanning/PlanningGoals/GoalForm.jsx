@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import FloatWindow from "@components/FloatWindow";
-import { useUser } from "@context/UserContext";
 import { newUserGoal, updateUserGoal } from "@api/GoalsApi";
 
 const GoalForm = ({ isOpen, onClose, goal }) => {
@@ -45,7 +44,6 @@ const GoalForm = ({ isOpen, onClose, goal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(goalData)
         try {
             if (isEdit) {
                 await updateUserGoal(goalData);

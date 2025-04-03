@@ -4,7 +4,8 @@ import { getUserMovements } from '@api/MovementsApi'
 import { getUserTags } from '@api/TagsApi';
 import { getUserEvents } from '@api/EventsApi';
 import { getUserGoals } from '@api/GoalsApi'
-import { getUserFavoriteColors } from '@api/SettingUserApi';
+import { getUserFavoriteColors, getUserSettings } from '@api/SettingUserApi';
+
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -14,6 +15,7 @@ export const UserProvider = ({ children }) => {
     const [tags, setTags] = useState([]);
     const [goals, setGoals] = useState([]);
     const [favoriteColors, setFavoriteColors] = useState([]);
+    const [settings, setSettings] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -28,11 +30,14 @@ export const UserProvider = ({ children }) => {
                     const userTags = await getUserTags();
                     const userGoals = await getUserGoals();
                     const userColors = await getUserFavoriteColors();
+                    const userSettings = await getUserSettings()
+
                     setMovements(userMovements || []);
                     setEvents(userEvents || []);
                     setTags(userTags || []);
                     setGoals(userGoals || []);
                     setFavoriteColors(userColors || []);
+                    setSettings(userSettings || []);
                 }
 
 
@@ -47,7 +52,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, movements, tags, events, loading, goals, favoriteColors }}>
+        <UserContext.Provider value={{ user, movements, tags, events, loading, goals, favoriteColors, settings }}>
             {children}
         </UserContext.Provider>
     );

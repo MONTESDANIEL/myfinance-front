@@ -1,17 +1,17 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useUser } from '@context/UserContext';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useUser } from "@context/UserContext";
 import LoadingScreen from '@components/LoadingScreen';
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useUser();
 
     if (loading) {
-        return <LoadingScreen />; // Muestra un indicador de carga mientras se verifica el usuario
+        return <LoadingScreen></LoadingScreen>;
     }
 
     if (!user) {
-        console.warn('Usuario no autenticado. Redirigiendo...');
+        console.warn("Usuario no autenticado. Redirigiendo...");
         return <Navigate to="/expired-session" replace />;
     }
 

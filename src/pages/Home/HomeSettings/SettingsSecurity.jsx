@@ -1,26 +1,45 @@
 import { React, useState } from 'react';
+import { useUser } from "@context/UserContext";
+import { updateUserSettings, resetToDefaultSettings } from '@api/SettingUserApi';
 
 const SettingsSecurity = () => {
 
-    const questions = [
-        "¿Cuál es el nombre de tu primer mascota?",
-        "¿En qué ciudad naciste?",
-        "¿Cuál es el nombre de tu mejor amigo de la infancia?",
-        "¿Cuál es el nombre de tu profesor favorito?",
-        "¿Cuál es el nombre de tu personaje favorito de infancia?",
-        "¿Cuál es tu color favorito?",
-        "¿Cuál es el lugar de vacaciones favorito de tu familia?"
-    ];
+    const { settings } = useUser();
 
-    const [selectedQuestions, setSelectedQuestions] = useState(["", "", ""]);
+    const [securitySettings, setSecuritySettings] = useState({
+        twoFactorAuth: settings.twoFactorAuth,
+        preferredAuthMethod: settings.preferredAuthMethod,
+        preferredPasswordRecovery: settings.preferredPasswordRecovery,
+    });
 
-    const handleQuestionChange = (index, value) => {
-        setSelectedQuestions(prev => {
-            const newQuestions = [...prev];
-            newQuestions[index] = value;
-            return newQuestions;
-        });
+    const handleChange = (key, value) => {
+        setSecuritySettings((prevState) => ({
+            ...prevState,
+            [key]: value,
+        }));
     };
+
+    const handleSaveSettings = async (e) => {
+        e.preventDefault();
+
+        try {
+            await updateUserSettings(securitySettings);
+            window.location.reload();
+        } catch (error) {
+            console.error("Ocurrió un error inesperado", error);
+        }
+    }
+
+    const handleRestartSettings = async (e) => {
+        e.preventDefault();
+
+        try {
+            await resetToDefaultSettings();
+            window.location.reload();
+        } catch (error) {
+            console.error("Ocurrió un error inesperado", error);
+        }
+    }
 
     return (
         <>
@@ -42,7 +61,9 @@ const SettingsSecurity = () => {
                         <input
                             type="checkbox"
                             className="form-check-input"
+                            checked={securitySettings.twoFactorAuth}
                             id="enable2FA"
+                            onChange={(e) => handleChange('twoFactorAuth', e.target.checked)}
                         />
                         <label className="form-check-label" htmlFor="enable2FA">
                             Habilitar Autenticación de Dos Factores
@@ -54,7 +75,8 @@ const SettingsSecurity = () => {
                         <select
                             id="authMethod"
                             className="form-select"
-                            required
+                            value={securitySettings.preferredAuthMethod}
+                            onChange={(e) => handleChange('preferredAuthMethod', e.target.value)}
                         >
                             <option value="">Selecciona un método</option>
                             <option value="sms">SMS</option>
@@ -76,7 +98,8 @@ const SettingsSecurity = () => {
                         <select
                             id="recoveryMethod"
                             className="form-select"
-                            required
+                            value={securitySettings.preferredPasswordRecovery}
+                            onChange={(e) => handleChange('preferredPasswordRecovery', e.target.value)}
                         >
                             <option value="">Selecciona un método</option>
                             <option value="email">Correo Electrónico</option>
@@ -87,10 +110,20 @@ const SettingsSecurity = () => {
                 </div >
             </form >
 
-            <button type="submit" className="btn btn-primary w-100">
-                <span>Guardar Cambios</span>
-                <i className="bi bi-save ms-2"></i>
-            </button>
+            <div className="row d-flex align-items-center justify-content-center">
+                <div className="col-md-4 my-1">
+                    <button type="submit" className="btn btn-primary w-100" onClick={(e) => handleSaveSettings(e)}>
+                        <span>Guardar cambios</span>
+                        <i class="bi bi-save ms-2"></i>
+                    </button>
+                </div>
+                <div className="col-md-4 my-1">
+                    <button type="submit" className="btn btn-warning w-100" onClick={(e) => handleRestartSettings(e)}>
+                        <span>Restablecer valores</span>
+                        <i class="bi bi-arrow-clockwise ms-2"></i>
+                    </button>
+                </div>
+            </div>
         </ >
     );
 };
